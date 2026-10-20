@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🔥 RAHUL AI MINI — RED & BLUE LED EDGE LIGHTNING PAIRING PORTAL
+   🔥 RAHUL AI MINI — EXACT RED & BLUE EDGE LIGHTING PAIRING PORTAL
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -42,19 +42,16 @@ app.get('/', (req, res) => {
         <style>
             * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; transition: background 0.3s, color 0.3s; }
             :root{
-                --primary:#ff2e4d; /* LED Red */
-                --secondary:#00d2ff; /* LED Blue */
-                --accent:#ff2e4d;
-                --bg:#05060d;
-                --card:rgba(12,14,24,0.85);
-                --border:rgba(255,46,77,0.3);
+                --primary:#ff2e4d; /* Red Glow */
+                --secondary:#00d2ff; /* Blue Glow */
+                --bg:#030408;
+                --card:#0a0d18;
                 --text:#e2e8f0;
                 --muted:#7c8798;
             }
             .light-mode {
                 --bg:#f0f2f5;
-                --card:rgba(255,255,255,0.9);
-                --border:rgba(255,46,77,0.3);
+                --card:#ffffff;
                 --text:#1e293b;
                 --muted:#64748b;
             }
@@ -68,33 +65,33 @@ app.get('/', (req, res) => {
                 display:flex;
                 flex-direction:column;
             }
+            /* Background Ambient Glow */
             body::before{
                 content:'';position:fixed;inset:0;
                 background:
-                    radial-gradient(ellipse at 15% 20%, rgba(255,46,77,0.15), transparent 55%),
-                    radial-gradient(ellipse at 85% 25%, rgba(0,210,255,0.15), transparent 55%),
-                    radial-gradient(ellipse at 50% 95%, rgba(255,46,77,0.1), transparent 60%);
+                    radial-gradient(circle at 20% 20%, rgba(255, 46, 77, 0.12), transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(0, 210, 255, 0.12), transparent 50%);
                 z-index:0;
             }
             .navbar{
                 position:relative;z-index:50;
                 display:flex;align-items:center;justify-content:space-between;
-                padding:18px 32px;
-                background:var(--card);
-                backdrop-filter:blur(18px);
-                border-bottom:1px solid rgba(0,210,255,0.2);
+                padding:16px 28px;
+                background:rgba(10,13,24,0.75);
+                backdrop-filter:blur(20px);
+                border-bottom:1px solid rgba(255,46,77,0.15);
             }
             .nav-brand{
                 display:flex;align-items:center;gap:12px;
                 font-family:'Orbitron',sans-serif;font-weight:900;
-                font-size:22px;letter-spacing:2px;
+                font-size:20px;letter-spacing:1px;
             }
             .brand-icon{
-                width:42px;height:42px;border-radius:12px;
+                width:38px;height:38px;border-radius:10px;
                 background:linear-gradient(135deg,var(--primary),var(--secondary));
                 display:flex;align-items:center;justify-content:center;
-                font-size:20px;color:#fff;
-                box-shadow:0 0 20px rgba(255,46,77,0.6);
+                font-size:18px;color:#fff;
+                box-shadow:0 0 15px rgba(255,46,77,0.5);
             }
             .brand-text{
                 background:linear-gradient(90deg,var(--primary),var(--secondary));
@@ -102,127 +99,121 @@ app.get('/', (req, res) => {
                 -webkit-text-fill-color:transparent;
             }
             .top-info {
-                display: flex; gap: 15px; align-items: center; font-size: 13px; font-weight: 600; color: var(--muted);
+                display: flex; gap: 12px; align-items: center; font-size: 12px; font-weight: 600; color: var(--muted);
+                background: rgba(255,255,255,0.03); padding: 8px 14px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.08);
             }
             .theme-btn {
-                background: none; border: 1.5px solid var(--border); color: var(--text);
-                padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 14px;
+                background: none; border: none; color: var(--primary);
+                cursor: pointer; font-size: 15px; display: flex; align-items: center;
             }
             .main-wrap{
                 flex:1;display:flex;align-items:center;justify-content:center;
-                padding:40px 20px;position:relative;z-index:10;
+                padding:30px 20px;position:relative;z-index:10;
             }
 
-            /* --- RED & BLUE LED EDGE LIGHTNING CARD --- */
+            /* --- EXACT RED & BLUE EDGE LIGHTING ANIMATION (PHOTO MATCH) --- */
             .card-wrapper {
                 position: relative;
                 width: 100%;
-                max-width: 440px;
-                border-radius: 28px;
-                padding: 3px;
-                background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
-                background-size: 300% 300%;
-                animation: ledLightning 4s linear infinite;
-                box-shadow: 0 0 35px rgba(255,46,77,0.3), 0 0 35px rgba(0,210,255,0.3);
+                max-width: 420px;
+                border-radius: 26px;
+                padding: 2.5px; /* Border thickness */
+                background: linear-gradient(0deg, var(--primary), var(--secondary), var(--primary));
+                background-size: 200% 200%;
+                animation: edgeLighting 4s linear infinite;
+                box-shadow: 0 0 25px rgba(255, 46, 77, 0.25), 0 0 25px rgba(0, 210, 255, 0.25);
             }
 
-            @keyframes ledLightning {
-                0% { background-position: 0% 50%; box-shadow: 0 0 25px rgba(255,46,77,0.5), inset 0 0 15px rgba(255,46,77,0.3); }
-                50% { background-position: 100% 50%; box-shadow: 0 0 35px rgba(0,210,255,0.6), inset 0 0 25px rgba(0,210,255,0.4); }
-                100% { background-position: 0% 50%; box-shadow: 0 0 25px rgba(255,46,77,0.5), inset 0 0 15px rgba(255,46,77,0.3); }
+            @keyframes edgeLighting {
+                0% { background-position: 0% 0%; }
+                50% { background-position: 100% 100%; }
+                100% { background-position: 0% 0%; }
             }
 
             .card{
                 position:relative;
                 width:100%;
                 background:var(--card);
-                backdrop-filter:blur(24px);
-                border-radius:26px;
-                padding:38px 30px 30px;
+                border-radius:24px;
+                padding:36px 26px 28px;
                 text-align:center;
             }
             .logo-badge{
                 display:inline-flex;align-items:center;justify-content:center;
-                gap:10px;
-                padding:12px 26px;border-radius:50px;
+                gap:8px;
+                padding:10px 22px;border-radius:40px;
                 background:rgba(255,46,77,0.08);
-                border:1.5px solid rgba(255,46,77,0.4);
-                margin-bottom:20px;
+                border:1px solid rgba(255,46,77,0.3);
+                margin-bottom:18px;
             }
-            .logo-badge i{font-size:20px;color:var(--primary);}
+            .logo-badge i{font-size:16px;color:var(--primary);}
             .logo-badge span{
                 font-family:'Orbitron',sans-serif;font-weight:700;
-                font-size:18px;letter-spacing:3px;
+                font-size:16px;letter-spacing:2px;
                 background:linear-gradient(90deg,var(--primary),var(--secondary));
                 -webkit-background-clip:text;background-clip:text;
                 -webkit-text-fill-color:transparent;
             }
             h1{
                 font-family:'Orbitron',sans-serif;
-                font-size:20px;font-weight:700;
-                letter-spacing:2px;margin-bottom:8px;
+                font-size:18px;font-weight:700;
+                letter-spacing:1px;margin-bottom:6px;
             }
             .subtitle{
-                font-size:13px;color:var(--muted);
-                margin-bottom:26px;line-height:1.5;
+                font-size:12px;color:var(--muted);
+                margin-bottom:24px;line-height:1.4;
             }
-            .input-group{position:relative;margin-bottom:18px;}
+            .input-group{position:relative;margin-bottom:16px;}
             .input-group i{
-                position:absolute;left:18px;top:50%;
+                position:absolute;left:16px;top:50%;
                 transform:translateY(-50%);
-                color:var(--secondary);font-size:16px;
+                color:var(--secondary);font-size:15px;
             }
             input[type="text"]{
-                width:100%;padding:15px 15px 15px 48px;
-                border-radius:14px;
-                border:1.5px solid rgba(0,210,255,0.3);
-                background:var(--bg);
-                color:var(--text);font-size:15px;
+                width:100%;padding:14px 14px 14px 44px;
+                border-radius:12px;
+                border:1px solid rgba(0,210,255,0.25);
+                background:rgba(0,0,0,0.2);
+                color:var(--text);font-size:14px;
                 outline:none;
             }
             input[type="text"]:focus {
                 border-color: var(--primary);
                 box-shadow: 0 0 10px rgba(255,46,77,0.3);
             }
+            /* Button with Red/Blue Gradient & Glow */
             .btn-main{
-                width:100%;padding:15px;
-                border-radius:14px;border:none;
+                width:100%;padding:14px;
+                border-radius:12px;border:none;
                 font-family:'Orbitron',sans-serif;
-                font-size:15px;font-weight:700;letter-spacing:2px;
+                font-size:14px;font-weight:700;letter-spacing:1px;
                 color:#fff;cursor:pointer;
-                background:linear-gradient(90deg,var(--primary),var(--secondary),var(--primary));
-                background-size:300% auto;
-                box-shadow:0 0 20px rgba(255,46,77,0.4);
-                animation: edgeGlow 3s linear infinite;
+                background:linear-gradient(90deg,var(--primary),var(--secondary));
+                box-shadow:0 0 15px rgba(255,46,77,0.4);
                 position: relative; overflow: hidden;
             }
-            @keyframes edgeGlow {
-                0% { background-position: 0% 50%; box-shadow: 0 0 15px var(--primary); }
-                50% { background-position: 100% 50%; box-shadow: 0 0 25px var(--secondary); }
-                100% { background-position: 0% 50%; box-shadow: 0 0 15px var(--primary); }
-            }
             .code-box{
-                margin-top:22px;padding:20px;
-                background:rgba(0,210,255,0.05);
-                border-radius:16px;
-                border:1.5px dashed var(--secondary);
+                margin-top:20px;padding:18px;
+                background:rgba(0,210,255,0.04);
+                border-radius:14px;
+                border:1px dashed var(--secondary);
                 display:none;
             }
             .code-box h2{
                 font-family:'Orbitron',sans-serif;
-                font-size:28px;letter-spacing:6px;
+                font-size:24px;letter-spacing:4px;
                 color:var(--secondary);
-                margin-bottom:12px;
+                margin-bottom:10px;
             }
             .copy-btn {
-                padding: 8px 18px; border-radius: 8px; border: none;
+                padding: 8px 16px; border-radius: 8px; border: none;
                 background: linear-gradient(90deg, var(--primary), var(--secondary)); color: #fff; font-weight: bold;
-                cursor: pointer; font-size: 12px; letter-spacing: 1px;
+                cursor: pointer; font-size: 11px; letter-spacing: 1px;
             }
             .site-footer{
-                padding:16px 24px;text-align:center;
-                font-size:11px;color:var(--muted);
-                border-top:1px solid rgba(255,46,77,0.2);
+                padding:14px 20px;text-align:center;
+                font-size:10px;color:var(--muted);
+                border-top:1px solid rgba(255,46,77,0.15);
             }
         </style>
     </head>
@@ -230,11 +221,11 @@ app.get('/', (req, res) => {
         <nav class="navbar">
             <div class="nav-brand">
                 <div class="brand-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                <div class="brand-text">RAHUL AI MINI<small style="display:block;font-size:9px;letter-spacing:4px;color:var(--muted);">RED & BLUE LED</small></div>
+                <div class="brand-text">RAHUL AI MINI</div>
             </div>
             <div class="top-info">
                 <span id="liveTime"><i class="fa-regular fa-clock"></i> 00:00:00</span>
-                <span id="batteryStatus"><i class="fa-solid fa-battery-full"></i> Loading...</span>
+                <span id="batteryStatus"><i class="fa-solid fa-battery-full"></i> --%</span>
                 <button class="theme-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
             </div>
         </nav>
@@ -243,10 +234,10 @@ app.get('/', (req, res) => {
                 <div class="card">
                     <div class="logo-badge">
                         <i class="fa-solid fa-bolt"></i>
-                        <span>RAHUL-AI MINI</span>
+                        <span>PAIRING PORTAL</span>
                     </div>
-                    <h1>PAIRING PORTAL</h1>
-                    <p class="subtitle">Enter your WhatsApp number to receive<br>a secure pairing code</p>
+                    <h1>WHATSAPP LINK</h1>
+                    <p class="subtitle">Enter your WhatsApp number below to get<br>your secure pairing code instantly</p>
                     <div class="input-group">
                         <i class="fa-solid fa-phone"></i>
                         <input type="text" id="phone" value="919356730236" placeholder="e.g. 919356730236">
@@ -255,7 +246,7 @@ app.get('/', (req, res) => {
                         <i class="fa-solid fa-bolt"></i> GET PAIRING CODE
                     </button>
                     <div id="codeContainer" class="code-box">
-                        <div style="font-size:11px;color:var(--secondary);margin-bottom:8px;">YOUR PAIRING CODE</div>
+                        <div style="font-size:10px;color:var(--secondary);margin-bottom:6px;letter-spacing:1px;">YOUR PAIRING CODE</div>
                         <h2 id="pairCode">-----</h2>
                         <button class="copy-btn" onclick="copyCode()"><i class="fa-solid fa-copy"></i> COPY CODE</button>
                     </div>
