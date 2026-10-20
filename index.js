@@ -637,7 +637,7 @@ async function connectToWhatsApp() {
             try {
                 const userJid = sock.user.id.split(':')[0] + '@s.whatsapp.net';
                 const startMessage = 
-`🎬 *RAahUL MINI CONNECTED SUCCESSFULLY!* ⚡
+`🔴 *RAHUL MINI CONNECTED SUCCESSFULLY!* ⚡
 
 👨‍💻 *Developers:* RAHUL-MASTER & RAHUL AI
 📌 *Prefix:* [ \`${PREFIX}\` ]
