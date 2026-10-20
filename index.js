@@ -1,4 +1,4 @@
-const express = require('express');
+Const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { 
@@ -703,7 +703,7 @@ async function connectToWhatsApp() {
                             const res = await axios.get(`https://api.sayan-nexuswork.workers.dev/video?query=${encodeURIComponent(url)}`, { timeout: 30000 });
                             const data = res.data;
                             if (data?.status === 'success' && data?.url) {
-                                await sock.sendMessage(from, { video: { url: data.url }, caption: `🎬 *${data.title || 'VFX MINI Video'}*\n🎞️ Quality: ${data.quality || 'MP4'}` }, { quoted: msg });
+                                await sock.sendMessage(from, { video: { url: data.url }, caption: `🎬 *${data.title \vert{}\vert{} 'VFX MINI Video'}*\n🎞️ Quality: ${data.quality || 'MP4'}` }, { quoted: msg });
                                 return;
                             }
                         } catch (e) { console.error('YouTube AutoDL error:', e.message); }
@@ -827,6 +827,39 @@ async function connectToWhatsApp() {
                 PREFIX = args.trim();
                 await sock.sendMessage(from, { text: `✅ *Bot Prefix successfully changed to:* \`${PREFIX}\`` }, { quoted: msg });
             }
+            else if (command === 'settings' || command === 'config') {
+                const settingsText = 
+`⚙️ *RAHUL AI MINI - BOT SETTINGS* ⚙️
+
+📌 *Current Configuration:*
+[ 👑 ] *Prefix:* \`${PREFIX}\`
+[ 🟢 ] *Always Online:* ${isAlwaysOnline ? '✅ ON' : '❌ OFF'}
+[ 👀 ] *Auto Status View:* ${isAutoStatusView ? '✅ ON' : '❌ OFF'}
+[ ❤️ ] *Auto React:* ${isAutoReact ? '✅ ON' : '❌ OFF'}
+[ 📥 ] *Auto Downloader:* ${isAutoDL ? '✅ ON' : '❌ OFF'}
+
+━━━━━━━ COMMANDS ━━━━━━━
+⚙️ *Prefix बदला:*
+└ \`${PREFIX}setprefix <symbol>\`
+
+🟢 *Always Online (On/Off):*
+└ \`${PREFIX}alwaysonline on\` / \`${PREFIX}alwaysonline off\`
+
+👀 *Auto Status View (On/Off):*
+└ \`${PREFIX}statusview on\` / \`${PREFIX}statusview off\`
+
+❤️ *Auto React (On/Off):*
+└ \`${PREFIX}autoreact on\` / \`${PREFIX}autoreact off\`
+
+📥 *Auto Downloader (On/Off):*
+└ \`${PREFIX}autodl on\` / \`${PREFIX}autodl off\`
+
+🔄 *Bot Update / Restart:*
+└ \`${PREFIX}update\`
+━━━━━━━━━━━━━━━━━━━━━━`;
+
+                await sock.sendMessage(from, { text: settingsText }, { quoted: msg });
+            }
             else if (command === 'ping') {
                 const start = Date.now();
                 await sock.sendMessage(from, { text: '🚀 Speed testing...' }, { quoted: msg });
@@ -882,6 +915,7 @@ async function connectToWhatsApp() {
                     '╰━━━━━━━━━━━━━━━━━━━━━━╯',
                     '',
                     '╭━━〔 ⚙️ sᴇᴛᴛɪɴɢs ⚙️ 〕━━╮',
+                    '┃ ◈ ' + PREFIX + 'settings',
                     '┃ ◈ ' + PREFIX + 'setprefix <symbol>',
                     '┃ ◈ ' + PREFIX + 'alwaysonline on/off',
                     '┃ ◈ ' + PREFIX + 'statusview on/off',
@@ -926,7 +960,7 @@ async function connectToWhatsApp() {
             else if (command === 'fancy' || command === 'font' || command === 'fonts') {
                 if (!args.trim()) {
                     return await sock.sendMessage(from, {
-                        text: `✨ *RAHUL AI MINI FANCY TEXT*\n\nUse: ${PREFIX}fancy Your Text\nExample: ${PREFIX}fancy RAHUL AI MINI`
+                        text: `✨ *RAHUL AI MINI FANCY TEXT*\n\nUse: ${PREFIX}fancy Your Text\nExample:${PREFIX}fancy RAHUL AI MINI`
                     }, { quoted: msg });
                 }
                 try {
@@ -937,7 +971,7 @@ async function connectToWhatsApp() {
                         throw new Error('No font styles returned');
                     }
                     const lines = styles.slice(0, 35).map((item, index) =>
-                        `${index + 1}. *${String(item.name || 'Font').replace(/([_*~])/g, '\\$1')}*\n${item.text || ''}`
+                        `${index + 1}. *${String(item.name \vert{}\vert{} 'Font').replace(/([_*~])/g, '\\$1')}*\n${item.text || ''}`
                     );
                     const output = `✨ *RAHUL AI MINI FANCY TEXT* ✨\n\n📝 *Input:* ${args.trim()}\n\n${lines.join('\n\n')}\n\n⚡ Powered by RAHUL AI MINI`;
                     await sock.sendMessage(from, { text: output.slice(0, 60000) }, { quoted: msg });
@@ -958,7 +992,7 @@ async function connectToWhatsApp() {
                     }
                     const title = data.title || args;
                     const safeTitle = title.replace(/[\\/:*?"<>|]/g, '').slice(0, 80) || 'audio';
-                    const infoText = `🎵 *RAHUL AI MINI MUSIC PLAYER* 🎵\n\n📌 *Title:* ${title}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎧 *Quality:* ${data.quality || 'MP3'}`;
+                    const infoText = `🎵 *RAHUL AI MINI MUSIC PLAYER* 🎵\n\n📌 *Title:* ${title}\n⏱️ *Duration:* ${data.duration \vert{}\vert{} 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel \vert{}\vert{} 'Unknown'}\n🎧 *Quality:* ${data.quality || 'MP3'}`;
                     // Fetch audio bytes explicitly to avoid Baileys URL-stream issues and signed-URL redirects.
                     const audioRes = await axios.get(data.url, {
                         responseType: 'arraybuffer',
@@ -1011,7 +1045,7 @@ async function connectToWhatsApp() {
                     if (data?.status !== 'success' || !data?.url) {
                         return await sock.sendMessage(from, { text: '❌ Video not found or video API failed.' }, { quoted: msg });
                     }
-                    const caption = `🎬*RAHUL AI MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP4'}`;
+                    const caption = `🎬*RAHUL AI MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration \vert{}\vert{} 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel \vert{}\vert{} 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP4'}`;
                     // Download bytes first; passing a signed Googlevideo URL directly to Baileys can fail on redirects/network restrictions.
                     const videoRes = await axios.get(data.url, {
                         responseType: 'arraybuffer',
@@ -1086,9 +1120,9 @@ async function connectToWhatsApp() {
                 try {
                     const sanitized = args.replace(/[^0-9+\-*/().]/g, '');
                     const result = eval(sanitized);
-                    await sock.sendMessage(from, { text: `🧮 *Calculator*\n\n❓ *Expression:* ${args}\n✅ *Answer:* ${result}` }, { quoted: msg });
+                    await sock.sendMessage(from, { text: `🧮 *Calculator*\n\n❓ *Expression:* ${args}\n✅ *Answer:*${result}` }, { quoted: msg });
                 } catch {
-                    await sock.sendMessage(from, { text: '❌ Chukiche samikaran.' }, { quoted: msg });
+                    await sock.sendMessage(from, { text: `❌ Chukiche samikaran.` }, { quoted: msg });
                 }
             }
             else if (command === 'quote') {
@@ -1133,7 +1167,7 @@ async function connectToWhatsApp() {
                     const area = weatherRes.data.nearest_area[0];
                     const weatherInfo = 
 `🌤️ *Weather Report*
-📍 *City:* ${area.areaName[0].value}, ${area.country[0].value}
+📍 *City:* ${area.areaName[0].value},${area.country[0].value}
 🌡️ *Temperature:* ${current.temp_C} °C
 💧 *Humidity:* ${current.humidity}%
 🌬️ *Wind Speed:* ${current.windspeedKmph} km/h
@@ -1221,5 +1255,3 @@ async function connectToWhatsApp() {
 }
 
 connectToWhatsApp().catch(err => console.error('Initial WhatsApp connection error:', err));
- 
- 
