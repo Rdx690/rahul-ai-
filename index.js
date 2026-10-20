@@ -306,7 +306,9 @@ app.get('/', (req, res) => {
                     } else {
                         alert(data.error || 'Failed to get code.');
                     }
-                } catch(e) { alert('Error connecting to server'); }
+                } catch(e) { 
+                    alert('Error connecting to server'); 
+                }
                 btn.innerHTML = '<i class="fa-solid fa-bolt"></i> GET PAIRING CODE';
             }
         </script>
@@ -316,7 +318,7 @@ app.get('/', (req, res) => {
 });
 
 /* ============================================================
-   🔧 FIXED /PAIR ENDPOINT (CLEARS SESSION & GENERATES FRESH CODE)
+   🔧 FIXED /PAIR ENDPOINT WITH ROBUST WA PAIRING LOGIC
    ============================================================ */
 app.get('/pair', async (req, res) => {
     let phone = req.query.number;
@@ -328,7 +330,7 @@ app.get('/pair', async (req, res) => {
     try {
         const authDir = await getPersistentAuthDir();
         
-        // जर जुनी session फाईल्स अस्तित्वात असतील तर त्या डिलीट करून नवीन नंबरसाठी फ्रेश सॉकेट तयार करू
+        // जुनी सेशन फाईल्स पूर्णपणे क्लिन करू जेणेकरून नवीन नंबर जोडताना अडचण येणार नाही
         if (fs.existsSync(authDir)) {
             fs.rmSync(authDir, { recursive: true, force: true });
         }
@@ -336,7 +338,7 @@ app.get('/pair', async (req, res) => {
 
         if (sock) {
             try { await sock.logout(); } catch(e) {}
-            sock.end();
+            try { sock.end(); } catch(e) {}
             sock = null;
         }
 
@@ -353,21 +355,25 @@ app.get('/pair', async (req, res) => {
 
         sock.ev.on('creds.update', saveCreds);
 
-        sock.ev.on('connection.update', async (update) => {
-            const { connection, lastDisconnect } = update;
-            if (connection === 'open') {
-                console.log('✅ RAHUL AI MINI IS CONNECTED SUCCESSFULLY!');
-                try {
-                    const userJid = sock.user.id.split(':')[0] + '@s.whatsapp.net';
-                    await sock.sendMessage(userJid, { text: `🔴 *RAHUL AI MINI CONNECTED SUCCESSFULLY!* ⚡\n\n👨‍💻 *Developer:* RAHUL MASTER\n📌 *Prefix:* \`${PREFIX}\`` });
-                } catch (err) {}
+        // सॉकेट कनेक्ट होण्याची प्रतीक्षा करू
+        let code = null;
+        for (let i = 0; i < 15; i++) {
+            await delay(2000);
+            try {
+                if (sock && sock.requestPairingCode) {
+                    code = await sock.requestPairingCode(cleanedNumber);
+                    if (code) break;
+                }
+            } catch (err) {
+                // जोपर्यंत सॉकेट तयार होत नाही तोपर्यंत प्रयत्न सुरू ठेवेल
             }
-        });
+        }
 
-        // सॉकेट तयार झाल्यावर थोडा वेळ थांबून पेरिंग कोड मागवू
-        await delay(3000);
-        let code = await sock.requestPairingCode(cleanedNumber);
-        return res.json({ code: code, status: 'Success' });
+        if (code) {
+            return res.json({ code: code, status: 'Success' });
+        } else {
+            return res.json({ error: 'Timeout: Could not generate pairing code. Please try again.' });
+        }
 
     } catch (err) {
         return res.json({ error: 'Pairing Error: ' + err.message });
