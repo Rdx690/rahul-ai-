@@ -27,12 +27,12 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🔥 RAHUL AI MINI — PREMIUM PAIRING PORTAL (DARK MODE + COPY & BATTERY TIME ANIMATION)
+   🔥 RAHUL AI MINI — PREMIUM PAIRING PORTAL (NEW STYLE)
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
     <!DOCTYPE html>
-    <html lang="en" class="dark">
+    <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,11 +45,11 @@ app.get('/', (req, res) => {
                 --primary:#00e5ff;
                 --secondary:#a855f7;
                 --accent:#ff2e88;
-                --bg:#030408;
-                --card:rgba(10,12,24,0.85);
-                --border:rgba(0,229,255,0.3);
-                --text:#f8fafc;
-                --muted:#94a3b8;
+                --bg:#05060d;
+                --card:rgba(15,17,30,0.75);
+                --border:rgba(0,229,255,0.25);
+                --text:#e2e8f0;
+                --muted:#7c8798;
             }
             html,body{height:100%;}
             body{
@@ -64,9 +64,9 @@ app.get('/', (req, res) => {
             body::before{
                 content:'';position:fixed;inset:0;
                 background:
-                    radial-gradient(ellipse at 15% 20%, rgba(0,229,255,0.15), transparent 55%),
-                    radial-gradient(ellipse at 85% 25%, rgba(168,85,247,0.15), transparent 55%),
-                    radial-gradient(ellipse at 50% 95%, rgba(255,46,136,0.12), transparent 60%);
+                    radial-gradient(ellipse at 15% 20%, rgba(0,229,255,0.18), transparent 55%),
+                    radial-gradient(ellipse at 85% 25%, rgba(168,85,247,0.18), transparent 55%),
+                    radial-gradient(ellipse at 50% 95%, rgba(255,46,136,0.15), transparent 60%);
                 z-index:0;
                 animation:pulseBg 10s ease-in-out infinite;
             }
@@ -77,8 +77,8 @@ app.get('/', (req, res) => {
             body::after{
                 content:'';position:fixed;inset:0;
                 background-image:
-                    linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+                    linear-gradient(rgba(0,229,255,0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,229,255,0.05) 1px, transparent 1px);
                 background-size:50px 50px;
                 z-index:0;
                 mask-image:radial-gradient(circle at center, black 30%, transparent 85%);
@@ -105,7 +105,7 @@ app.get('/', (req, res) => {
                 position:relative;z-index:50;
                 display:flex;align-items:center;justify-content:space-between;
                 padding:18px 32px;
-                background:rgba(5,7,15,0.85);
+                background:rgba(8,10,20,0.75);
                 backdrop-filter:blur(18px);
                 -webkit-backdrop-filter:blur(18px);
                 border-bottom:1px solid var(--border);
@@ -119,7 +119,7 @@ app.get('/', (req, res) => {
                 width:42px;height:42px;border-radius:12px;
                 background:linear-gradient(135deg,var(--primary),var(--secondary));
                 display:flex;align-items:center;justify-content:center;
-                font-size:20px;color:#030408;
+                font-size:20px;color:#05060d;
                 box-shadow:0 0 20px rgba(0,229,255,0.6);
                 animation:iconPulse 2s ease-in-out infinite;
             }
@@ -158,39 +158,9 @@ app.get('/', (req, res) => {
                 display:none;background:none;border:none;color:var(--primary);
                 font-size:22px;cursor:pointer;padding:8px;
             }
-            .status-bar-edge{
-                position:relative;
-                width:100%;max-width:440px;
-                margin:0 auto 15px;
-                padding:10px 16px;
-                background:rgba(8,11,22,0.7);
-                border-radius:14px;
-                display:flex;justify-content:space-between;align-items:center;
-                font-size:12px;color:var(--muted);
-                font-family:'Orbitron',sans-serif;
-                border:1px solid rgba(0,229,255,0.2);
-                box-shadow:0 0 15px rgba(0,229,255,0.08);
-                z-index:10;
-            }
-            .status-bar-edge::before{
-                content:'';position:absolute;inset:-2px;border-radius:16px;
-                background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent),var(--primary));
-                background-size:300% auto;
-                z-index:-1;
-                opacity:0.6;
-                filter:blur(4px);
-                animation:neonEdge 6s linear infinite;
-            }
-            @keyframes neonEdge{
-                0%{background-position:0% 50%;}
-                100%{background-position:300% 50%;}
-            }
-            .status-item{display:flex;align-items:center;gap:6px;}
-            .status-item i{color:var(--primary);}
-            .battery-level{color:#10b981;font-weight:700;}
             .main-wrap{
-                flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-                padding:10px 20px 40px;position:relative;z-index:10;
+                flex:1;display:flex;align-items:center;justify-content:center;
+                padding:40px 20px;position:relative;z-index:10;
             }
             .card{
                 position:relative;
@@ -200,11 +170,11 @@ app.get('/', (req, res) => {
                 -webkit-backdrop-filter:blur(24px);
                 border-radius:26px;
                 padding:38px 30px 30px;
-                border:1.5px solid var(--border);
+                border:1px solid var(--border);
                 box-shadow:
-                    0 25px 60px rgba(0,0,0,0.8),
-                    0 0 60px rgba(0,229,255,0.15),
-                    inset 0 1px 0 rgba(255,255,255,0.08);
+                    0 25px 60px rgba(0,0,0,0.7),
+                    0 0 60px rgba(0,229,255,0.12),
+                    inset 0 1px 0 rgba(255,255,255,0.06);
                 text-align:center;
                 transform-style:preserve-3d;
                 transition:transform .3s ease;
@@ -262,8 +232,8 @@ app.get('/', (req, res) => {
             input[type="text"]{
                 width:100%;padding:15px 15px 15px 48px;
                 border-radius:14px;
-                border:1.5px solid rgba(0,229,255,0.25);
-                background:rgba(3,5,12,0.9);
+                border:1.5px solid rgba(0,229,255,0.2);
+                background:rgba(5,8,18,0.8);
                 color:#fff;font-size:15px;
                 letter-spacing:1px;
                 outline:none;
@@ -272,15 +242,15 @@ app.get('/', (req, res) => {
             input[type="text"]:focus{
                 border-color:var(--primary);
                 box-shadow:0 0 20px rgba(0,229,255,0.35), inset 0 0 12px rgba(0,229,255,0.06);
-                background:rgba(3,5,12,1);
+                background:rgba(5,8,18,0.95);
             }
-            input[type="text"]::placeholder{color:#64748b;}
+            input[type="text"]::placeholder{color:#4a5568;}
             .btn-main{
                 width:100%;padding:15px;
                 border-radius:14px;border:none;
                 font-family:'Orbitron',sans-serif;
                 font-size:15px;font-weight:700;letter-spacing:2px;
-                color:#030408;cursor:pointer;
+                color:#05060d;cursor:pointer;
                 background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent),var(--primary));
                 background-size:300% auto;
                 box-shadow:0 0 25px rgba(0,229,255,0.5), 0 8px 20px rgba(0,0,0,0.4);
@@ -306,7 +276,6 @@ app.get('/', (req, res) => {
                 display:none;
                 box-shadow:inset 0 0 25px rgba(0,229,255,0.08), 0 0 25px rgba(0,229,255,0.15);
                 animation:codeIn .5s ease;
-                position:relative;
             }
             @keyframes codeIn{
                 0%{opacity:0;transform:scale(.9);}
@@ -315,14 +284,11 @@ app.get('/', (req, res) => {
             .code-box .label{
                 font-size:11px;letter-spacing:3px;
                 color:var(--primary);font-weight:600;
-                margin-bottom:8px;text-transform:uppercase;
-            }
-            .code-display-row{
-                display:flex;align-items:center;justify-content:center;gap:15px;
+                margin-bottom:10px;text-transform:uppercase;
             }
             .code-box h2{
                 font-family:'Orbitron',sans-serif;
-                font-size:28px;letter-spacing:6px;
+                font-size:32px;letter-spacing:8px;
                 color:var(--primary);
                 text-shadow:0 0 20px var(--primary), 0 0 40px var(--secondary);
                 animation:codePulse 1.8s ease-in-out infinite;
@@ -330,18 +296,6 @@ app.get('/', (req, res) => {
             @keyframes codePulse{
                 0%,100%{text-shadow:0 0 20px var(--primary),0 0 40px var(--secondary);}
                 50%{text-shadow:0 0 30px var(--primary),0 0 60px var(--accent);}
-            }
-            .btn-copy{
-                background:linear-gradient(135deg,var(--primary),var(--secondary));
-                color:#030408;border:none;border-radius:10px;
-                padding:10px 14px;cursor:pointer;font-weight:700;
-                font-size:13px;transition:all .3s ease;
-                box-shadow:0 0 15px rgba(0,229,255,0.4);
-                display:flex;align-items:center;gap:6px;
-            }
-            .btn-copy:hover{
-                transform:scale(1.05);
-                box-shadow:0 0 25px rgba(168,85,247,0.7);
             }
             .dev-credits{
                 margin-top:26px;padding-top:20px;
@@ -369,7 +323,6 @@ app.get('/', (req, res) => {
                 color:var(--muted);
                 letter-spacing:1.5px;
                 border-top:1px solid rgba(255,255,255,0.04);
-                background:rgba(3,5,12,0.85);
             }
             .site-footer span{color:var(--primary);font-weight:600;}
             @media (max-width:768px){
@@ -377,7 +330,7 @@ app.get('/', (req, res) => {
                 .nav-links{
                     position:absolute;top:100%;left:0;right:0;
                     flex-direction:column;align-items:stretch;
-                    background:rgba(5,7,15,0.98);
+                    background:rgba(8,10,20,0.97);
                     backdrop-filter:blur(20px);
                     padding:12px;
                     border-bottom:1px solid var(--border);
@@ -387,8 +340,12 @@ app.get('/', (req, res) => {
                 .nav-links.open{display:flex;}
                 .hamburger{display:block;}
                 .card{padding:30px 22px 24px;}
-                .code-box h2{font-size:22px;letter-spacing:4px;}
-                .code-display-row{flex-direction:column;gap:10px;}
+                .brand-text{font-size:18px;}
+                .code-box h2{font-size:26px;letter-spacing:5px;}
+            }
+            @media (max-width:380px){
+                .brand-text small{display:none;}
+                .logo-badge span{font-size:15px;letter-spacing:2px;}
             }
         </style>
     </head>
@@ -414,12 +371,6 @@ app.get('/', (req, res) => {
         </nav>
 
         <div class="main-wrap">
-            <div class="status-bar-edge">
-                <div class="status-item"><i class="fa-solid fa-clock"></i> <span id="liveTime">--:--:--</span></div>
-                <div class="status-item"><i class="fa-solid fa-battery-three-quarters"></i> Battery: <span class="battery-level" id="batteryStatus">100%</span></div>
-                <div class="status-item"><i class="fa-solid fa-signal"></i> <span style="color:#00e5ff;">ONLINE</span></div>
-            </div>
-
             <div class="card" id="mainCard">
                 <div class="logo-badge">
                     <i class="fa-solid fa-bolt"></i>
@@ -440,12 +391,7 @@ app.get('/', (req, res) => {
 
                 <div id="codeContainer" class="code-box">
                     <div class="label">Your Pairing Code</div>
-                    <div class="code-display-row">
-                        <h2 id="pairCode">-----</h2>
-                        <button class="btn-copy" onclick="copyCode()" id="copyBtn">
-                            <i class="fa-regular fa-copy"></i> Copy
-                        </button>
-                    </div>
+                    <h2 id="pairCode">-----</h2>
                 </div>
 
                 <div class="dev-credits">
@@ -476,24 +422,6 @@ app.get('/', (req, res) => {
                 }
             })();
 
-            function updateClockAndBattery() {
-                const now = new Date();
-                document.getElementById('liveTime').innerText = now.toLocaleTimeString('en-US', { hour12: false });
-            }
-            setInterval(updateClockAndBattery, 1000);
-            updateClockAndBattery();
-
-            if ('getBattery' in navigator) {
-                navigator.getBattery().then(battery => {
-                    function updateBattery() {
-                        const lvl = Math.round(battery.level * 100);
-                        document.getElementById('batteryStatus').innerText = lvl + '%';
-                    }
-                    updateBattery();
-                    battery.addEventListener('levelchange', updateBattery);
-                });
-            }
-
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('navLinks');
             hamburger.addEventListener('click', () => {
@@ -513,23 +441,6 @@ app.get('/', (req, res) => {
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'rotateY(0) rotateX(0)';
             });
-
-            function copyCode() {
-                const codeText = document.getElementById('pairCode').innerText;
-                if(codeText && codeText !== '-----') {
-                    navigator.clipboard.writeText(codeText).then(() => {
-                        const copyBtn = document.getElementById('copyBtn');
-                        copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-                        copyBtn.style.background = '#10b981';
-                        copyBtn.style.color = '#fff';
-                        setTimeout(() => {
-                            copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
-                            copyBtn.style.background = '';
-                            copyBtn.style.color = '';
-                        }, 2500);
-                    });
-                }
-            }
 
             async function getPairingCode() {
                 const phone = document.getElementById('phone').value.trim();
