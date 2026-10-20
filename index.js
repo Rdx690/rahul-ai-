@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🔥 RAHUL AI MINI — EXACT PHOTO MATCH RED & BLUE PORTAL
+   🔥 RAHUL AI MINI — PURE BLACK BG & RED/BLUE EDGE LIGHTING
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
             :root{
                 --red-glow:#ff2e4d; 
                 --blue-glow:#00d2ff; 
-                --bg:#020307;
+                --bg:#000000; /* Pure Black Background */
                 --card:#080b14;
                 --text:#e2e8f0;
                 --muted:#7c8798;
@@ -65,16 +65,8 @@ app.get('/', (req, res) => {
                 display:flex;
                 flex-direction:column;
             }
-            /* Background Ambient Gradient Blur */
-            body::before{
-                content:'';position:fixed;inset:0;
-                background:
-                    radial-gradient(circle at 15% 15%, rgba(255, 46, 77, 0.22), transparent 45%),
-                    radial-gradient(circle at 85% 85%, rgba(0, 210, 255, 0.18), transparent 45%);
-                z-index:0;
-            }
             
-            /* --- TOP NAVBAR WITH RED/BLUE BORDER GLOW --- */
+            /* --- TOP NAVBAR WITH RED/BLUE EDGE LIGHTING --- */
             .navbar{
                 position:relative;z-index:50;
                 display:flex;align-items:center;justify-content:space-between;
@@ -83,17 +75,15 @@ app.get('/', (req, res) => {
                 width: 92%; max-width: 440px;
                 background:var(--card);
                 border-radius: 18px;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.6);
-                border: 1.5px solid rgba(255, 46, 77, 0.4);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.8);
             }
-            .navbar::after {
+            .navbar::before {
                 content: '';
                 position: absolute; inset: -2px; border-radius: 20px;
                 background: linear-gradient(90deg, var(--red-glow), var(--blue-glow), var(--red-glow));
                 background-size: 200% 200%;
                 z-index: -1;
-                animation: edgeLighting 4s linear infinite;
-                opacity: 0.6;
+                animation: edgeLighting 3s linear infinite;
             }
 
             .nav-brand{
@@ -125,17 +115,17 @@ app.get('/', (req, res) => {
                 padding:15px 20px;position:relative;z-index:10;
             }
 
-            /* --- MAIN CARD WITH SMOOTH RED & BLUE EDGE LIGHTING --- */
+            /* --- MAIN CARD WITH ROTATING RED & BLUE EDGE LIGHTING ANIMATION --- */
             .card-wrapper {
                 position: relative;
                 width: 100%;
                 max-width: 440px;
                 border-radius: 26px;
-                padding: 2px; /* Border thickness */
-                background: linear-gradient(135deg, var(--red-glow), var(--blue-glow), var(--red-glow));
+                padding: 2.5px; /* Border thickness */
+                background: linear-gradient(0deg, var(--red-glow), var(--blue-glow), var(--red-glow));
                 background-size: 300% 300%;
-                animation: edgeLighting 4s linear infinite;
-                box-shadow: 0 0 35px rgba(255, 46, 77, 0.3), 0 0 35px rgba(0, 210, 255, 0.3);
+                animation: edgeLighting 3s linear infinite;
+                box-shadow: 0 0 30px rgba(255, 46, 77, 0.35), 0 0 30px rgba(0, 210, 255, 0.35);
             }
 
             @keyframes edgeLighting {
@@ -189,7 +179,7 @@ app.get('/', (req, res) => {
                 width:100%;padding:14px 14px 14px 44px;
                 border-radius:14px;
                 border:1px solid rgba(0,210,255,0.25);
-                background:rgba(0,0,0,0.3);
+                background:rgba(0,0,0,0.5);
                 color:var(--text);font-size:14px;
                 outline:none;
             }
