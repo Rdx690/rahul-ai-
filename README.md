@@ -5,10 +5,10 @@
 
   <br><br>
 
-  <!-- LOGO WITH RED & BLUE EDGE LIGHTING -->
-  <div align="center" style="position: relative; display: inline-block;">
+  <!-- WORKING LOGO WITH RED & BLUE EDGE LIGHTING -->
+  <div align="center">
     <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">
-      <img src="https://telegra.ph/file/dc50343a992ac2a382101.jpg" width="220" height="220" style="border-radius: 50%; border: 4px solid transparent; background: linear-gradient(135deg, #ff0055, #00e5ff) border-box; box-shadow: 0 0 25px #ff0055, 0 0 25px #00e5ff; animation: edgePulse 3s infinite alternate;" alt="RAHUL-AI-MINI Logo" />
+      <img src="https://files.catbox.moe/w225p2.jpg" width="220" height="220" style="border-radius: 50%; border: 4px solid #00e5ff; box-shadow: 0 0 25px #ff0055, 0 0 25px #00e5ff;" alt="RAHUL-AI-MINI Logo" />
     </a>
   </div>
 
@@ -16,7 +16,7 @@
 
   <!-- RED & BLUE LED ANIMATED HEADING -->
   <h1>
-    <span style="background: linear-gradient(90deg, #ff0044, #00e5ff, #ff0044); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 28px;">
+    <span style="color: #00e5ff; font-weight: 900; font-size: 28px;">
       ⚡ RAHUL AI MINI ⚡
     </span>
   </h1>
@@ -26,7 +26,7 @@
 
   <br>
 
-  <!-- LIVE PAIRING PORTAL BUTTON (LED STYLE) -->
+  <!-- LIVE PAIRING PORTAL BUTTON -->
   <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">
     <img src="https://img.shields.io/badge/FREE_MINI_BOT-PAIR_NOW-00E5FF?style=for-the-badge&logo=whatsapp&logoColor=white&colorA=FF0055" alt="Pair Now Portal" />
   </a>
@@ -41,7 +41,7 @@
   <p>Choose your favorite platform to deploy <b>RAHUL AI MINI</b>:</p>
 
   <!-- KOYEB BUTTON -->
-  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/rahulmaster/RAHUL-AI-MINI&branch=main&name=rahul-ai-mini">
+  <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/Rahul-Bot-Master/rahul-ai-mini&branch=main&name=rahul-ai-mini">
     <img src="https://img.shields.io/badge/Deploy%20To%20Koyeb-121063?style=for-the-badge&logo=koyeb&logoColor=white&color=0055FF" alt="Deploy to Koyeb" />
   </a>
   &nbsp;
@@ -94,15 +94,3 @@
   <p><b>Web Portal:</b> <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">Open Pairing Portal</a></p>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
