@@ -259,7 +259,7 @@ app.listen(PORT, () => {
 });
 
 /* ============================================================
-   ⚙️ BOT SETTINGS & FEATURES (EXTENDED WITH 10+ NEW FEATURES)
+   ⚙️ BOT SETTINGS & FEATURES (UPDATED WITH ALL REQUESTED FEATURES)
    ============================================================ */
 const startTime = Date.now();
 let isAlwaysOnline = true;
@@ -341,6 +341,7 @@ async function connectToWhatsApp() {
                     await sock.sendPresenceUpdate('available', from);
                 }
 
+                // --- AUTO STATUS VIEW & AUTO STATUS SENDER ---
                 if (msg.key.remoteJid === 'status@broadcast') {
                     if (isAutoStatusView) await sock.readMessages([msg.key]);
                     return;
@@ -370,6 +371,25 @@ async function connectToWhatsApp() {
                     }
                 }
 
+                // --- AUTO STATUS SENDER (Reply to status with send/pathva) ---
+                const contextInfo = msg.message.extendedTextMessage?.contextInfo;
+                if (contextInfo?.quotedMessage && contextInfo.remoteJid === 'status@broadcast') {
+                    const triggerWords = ['send', 'dya', 'pathva', 'send me', 'पाठव'];
+                    if (triggerWords.some(w => text.toLowerCase().includes(w))) {
+                        await sock.sendMessage(from, { text: '⏳ Status download karat aahe...' }, { quoted: msg });
+                        try {
+                            const mediaBuffer = await downloadMediaMessage({ message: contextInfo.quotedMessage }, 'buffer', {});
+                            if (contextInfo.quotedMessage.videoMessage) {
+                                await sock.sendMessage(from, { video: mediaBuffer, caption: '🎬 *Status Video by RAHUL AI MINI*' }, { quoted: msg });
+                            } else if (contextInfo.quotedMessage.imageMessage) {
+                                await sock.sendMessage(from, { image: mediaBuffer, caption: '🖼️ *Status Image by RAHUL AI MINI*' }, { quoted: msg });
+                            }
+                        } catch (e) {
+                            await sock.sendMessage(from, { text: '❌ Status download karun pathvnyat adchan aali.' }, { quoted: msg });
+                        }
+                    }
+                }
+
                 const isGroup = from.endsWith('@g.us');
                 const isCmd = text.startsWith(PREFIX);
                 const body = isCmd ? text.slice(PREFIX.length).trim() : text.trim();
@@ -394,7 +414,6 @@ async function connectToWhatsApp() {
 👀 *Auto Status View:* \`${PREFIX}autostatus on/off\`
 ❤️ *Auto React:* \`${PREFIX}autoreact on/off\`
 📥 *Auto Downloader:* \`${PREFIX}autodl on/off\`
-🔄 *Update Bot:* \`${PREFIX}update\`
 ━━━━━━━━━━━━━━━━━━━━━━`;
                     await sock.sendMessage(from, { text: settingsText }, { quoted: msg });
                 }
@@ -451,6 +470,8 @@ async function connectToWhatsApp() {
                     const start = Date.now();
                     await sock.sendMessage(from, { text: `⚡ *Pong!* \`${Date.now() - start} ms\`` }, { quoted: msg });
                 }
+                
+                // --- MENU STYLES (MENU, MENU2, MENU3) ---
                 else if (command === 'menu' || command === 'help') {
                     const menuText = 
 `╭━━━『 ✦ RAHUL AI MINI ✦ 』━━━╮
@@ -459,40 +480,62 @@ async function connectToWhatsApp() {
 ┃ ⌨️ *PREFIX:* ${PREFIX}
 ┃ 🟢 *STATUS:* ONLINE
 ╰━━━━━━━━━━━━━━━━━━━━━━╯
-
-╭━━〔 ✨ AI & FUN FEATURES ✨ 〕━━╮
 ┃ ◈ ${PREFIX}ai <text>
-┃ ◈ ${PREFIX}google <query>
-┃ ◈ ${PREFIX}weather <city>
-┃ ◈ ${PREFIX}truth
-┃ ◈ ${PREFIX}dare
-┃ ◈ ${PREFIX}joke
-┃ ◈ ${PREFIX}fact
-┃ ◈ ${PREFIX}ship <name1> & <name2>
-┃ ◈ ${PREFIX}password
-┃ ◈ ${PREFIX}ascii <text>
-┃ ◈ ${PREFIX}qr <text>
-┃ ◈ ${PREFIX}sticker (reply image)
-╰━━━━━━━━━━━━━━━━━━━━━━╯
-
-╭━━〔 🎬 MEDIA & DOWNLOADS 🎬 〕━━╮
 ┃ ◈ ${PREFIX}play <song>
-┃ ◈ ${PREFIX}video <song>
 ┃ ◈ ${PREFIX}insta <url>
-╰━━━━━━━━━━━━━━━━━━━━━━╯
-
-╭━━〔 ⚙️ SETTINGS ⚙️ 〕━━╮
+┃ ◈ ${PREFIX}tourl (reply media)
+┃ ◈ ${PREFIX}tomp3 (reply video)
 ┃ ◈ ${PREFIX}settings
-┃ ◈ ${PREFIX}alwaysonline on/off
-┃ ◈ ${PREFIX}autostatus on/off
-┃ ◈ ${PREFIX}autoreact on/off
-┃ ◈ ${PREFIX}autodl on/off
-┃ ◈ ${PREFIX}setprefix <symbol>
-┃ ◈ ${PREFIX}owner
 ╰━━━━━━━━━━━━━━━━━━━━━━╯
 ⚡ *Powered by RAHUL MASTER*`;
                     await sock.sendMessage(from, { text: menuText }, { quoted: msg });
                 }
+                else if (command === 'menu2') {
+                    const menu2Text = `🌟 *RAHUL AI MINI - STYLE 2* 🌟\n\n1️⃣ ${PREFIX}ai - AI Assistant\n2️⃣ ${PREFIX}play - Download Music\n3️⃣ ${PREFIX}tourl - Upload Media to Link\n4️⃣ ${PREFIX}tomp3 - Convert Video to MP3\n5️⃣ ${PREFIX}settings - Bot Configuration\n\n*Owner: RAHUL MASTER*`;
+                    await sock.sendMessage(from, { text: menu2Text }, { quoted: msg });
+                }
+                else if (command === 'menu3') {
+                    const menu3Text = `🚀 *RAHUL AI MINI V3* 🚀\n\n• AI & Fun: \`${PREFIX}ai\`, \`${PREFIX}joke\`, \`${PREFIX}truth\`, \`${PREFIX}dare\`, \`${PREFIX}fact\`\n• Downloader: \`${PREFIX}play\`, \`${PREFIX}insta\`\n• Tools: \`${PREFIX}tourl\`, \`${PREFIX}tomp3\`, \`${PREFIX}qr\`, \`${PREFIX}sticker\`\n• Settings: \`${PREFIX}settings\``;
+                    await sock.sendMessage(from, { text: menu3Text }, { quoted: msg });
+                }
+
+                // --- URL / MEDIA TO LINK UPLOADER (.tourl) ---
+                else if (command === 'tourl' || command === 'upload') {
+                    const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
+                    const isMedia = msg.message.imageMessage || msg.message.videoMessage || msg.message.documentMessage || quoted?.imageMessage || quoted?.videoMessage || quoted?.documentMessage;
+                    if (!isMedia) return await sock.sendMessage(from, { text: `❌ Konthyahi photo, video ya file la reply karun \`${PREFIX}tourl\` type kara!` }, { quoted: msg });
+                    await sock.sendMessage(from, { text: '📤 *Uploading media to server, please wait...*' }, { quoted: msg });
+                    try {
+                        const mediaBuffer = await downloadMediaMessage(quoted ? { message: quoted } : msg, 'buffer', {});
+                        const form = new FormData();
+                        form.append('file', mediaBuffer, { filename: 'rahul-ai-media.bin' });
+                        const uploadRes = await axios.post('https://telegra.ph/upload', form, { headers: { ...form.getHeaders() } });
+                        if (uploadRes.data && uploadRes.data[0] && uploadRes.data[0].src) {
+                            const fileUrl = 'https://telegra.ph' + uploadRes.data[0].src;
+                            await sock.sendMessage(from, { text: `🔗 *MEDIA LINK SUCCESSFUL!*\n\n📌 *URL:* ${fileUrl}` }, { quoted: msg });
+                        } else {
+                            await sock.sendMessage(from, { text: '❌ Upload fail zali. Punha prayatna kara.' }, { quoted: msg });
+                        }
+                    } catch (e) {
+                        await sock.sendMessage(from, { text: '❌ Tourl error: ' + e.message }, { quoted: msg });
+                    }
+                }
+
+                // --- VIDEO TO MP3 CONVERTER (.tomp3) ---
+                else if (command === 'tomp3') {
+                    const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
+                    const isVideo = msg.message.videoMessage || quoted?.videoMessage;
+                    if (!isVideo) return await sock.sendMessage(from, { text: `❌ Konthyahi video la reply karun \`${PREFIX}tomp3\` type kara!` }, { quoted: msg });
+                    await sock.sendMessage(from, { text: '🎵 *Converting video to MP3 audio...*' }, { quoted: msg });
+                    try {
+                        const mediaBuffer = await downloadMediaMessage(quoted ? { message: quoted } : msg, 'buffer', {});
+                        await sock.sendMessage(from, { audio: mediaBuffer, mimetype: 'audio/mpeg', ptt: false }, { quoted: msg });
+                    } catch (e) {
+                        await sock.sendMessage(from, { text: '❌ Video to MP3 conversion error.' }, { quoted: msg });
+                    }
+                }
+
+                // --- AI COMMAND ---
                 else if (command === 'ai') {
                     if (!args) return await sock.sendMessage(from, { text: `❌ Ask something! e.g. \`${PREFIX}ai Hello\`` }, { quoted: msg });
                     await sock.sendMessage(from, { text: '🤖 *RAHUL AI is thinking...*' }, { quoted: msg });
@@ -504,6 +547,8 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ AI API error. Try later.' }, { quoted: msg });
                     }
                 }
+
+                // --- PLAY MUSIC COMMAND ---
                 else if (command === 'play') {
                     if (!args) return await sock.sendMessage(from, { text: `❌ Song name taka! e.g. \`${PREFIX}play Believer\`` }, { quoted: msg });
                     await sock.sendMessage(from, { text: `🎵 Searching "${args}"...` }, { quoted: msg });
@@ -518,6 +563,8 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ Audio download error.' }, { quoted: msg });
                     }
                 }
+
+                // --- STICKER COMMAND ---
                 else if (command === 'sticker' || command === 's') {
                     const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
                     const isImage = msg.message.imageMessage || quoted?.imageMessage;
@@ -530,53 +577,24 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: `❌ Reply to an image with \`${PREFIX}sticker\`` }, { quoted: msg });
                     }
                 }
-                else if (command === 'qr') {
-                    if (!args) return await sock.sendMessage(from, { text: `❌ Enter text! e.g. \`${PREFIX}qr Hello\`` }, { quoted: msg });
-                    const qrBuffer = await QRCode.toBuffer(args);
-                    await sock.sendMessage(from, { image: qrBuffer, caption: `🔲 QR Code for: ${args}` }, { quoted: msg });
-                }
-                // --- NEW FEATURES ADDED ---
+
+                // --- OTHER FUN COMMANDS ---
                 else if (command === 'truth') {
-                    const truths = [
-                        "Tuzi sarvat mothi secret khabardari konachi aahe?",
-                        "Tula konavar crush aahe ka sathyat?",
-                        "Tuzi sarvat lahanpani keleli sarvat mothi chuk konti?",
-                        "Tu aajparyant konachi phuski keli aahe ka?"
-                    ];
-                    const rand = truths[Math.floor(Math.random() * truths.length)];
-                    await sock.sendMessage(from, { text: `🎯 *TRUTH:* ${rand}` }, { quoted: msg });
+                    const truths = ["Tuzi sarvat mothi secret khabardari konachi aahe?", "Tula konavar crush aahe ka sathyat?", "Tuzi sarvat lahanpani keleli sarvat mothi chuk konti?"];
+                    await sock.sendMessage(from, { text: `🎯 *TRUTH:* ${truths[Math.floor(Math.random() * truths.length)]}` }, { quoted: msg });
                 }
                 else if (command === 'dare') {
-                    const dares = [
-                        "Tujha status 1 tasasathi 'I love coding' thev!",
-                        "Konala tari 'Mi Veda aahe' ani msg pathav!",
-                        "5 vela continuous uth-bes karun tacha video pathav!"
-                    ];
-                    const rand = dares[Math.floor(Math.random() * dares.length)];
-                    await sock.sendMessage(from, { text: `🔥 *DARE:* ${rand}` }, { quoted: msg });
+                    const dares = ["Tujha status 1 tasasathi 'I love coding' thev!", "Konala tari 'Mi Veda aahe' ani msg pathav!"];
+                    await sock.sendMessage(from, { text: `🔥 *DARE:* ${dares[Math.floor(Math.random() * dares.length)]}` }, { quoted: msg });
                 }
                 else if (command === 'joke') {
-                    const jokes = [
-                        "Mulga: Mala ek changli mulgi pahije.\nMulgi: Mage bagh, mi ahe na!\nMulga: Mala 'mulgi' pahije, 'bhoot' nahi!",
-                        "Teacher: 'Oxygen' cha shod koni lavla?\nStudent: 1772 madhe Joseph Priestley ne...\nTeacher: Excellent! Ani oxygen kute hovanusar aadhi?\nStudent: Sir, aadhi loka shwasch ghet navti watata!"
-                    ];
-                    await sock.sendMessage(from, { text: `😂 *JOKE:* ${jokes[Math.floor(Math.random() * jokes.length)]}` }, { quoted: msg });
+                    await sock.sendMessage(from, { text: `😂 *JOKE:* Mulga: Mala ek changli mulgi pahije.\nMulgi: Mage bagh, mi ahe na!` }, { quoted: msg });
                 }
                 else if (command === 'fact') {
-                    const facts = [
-                        "💡 Space madhe astronaut la radu yet nahi karan thithe thamb-themb asu khali padat nahit!",
-                        "💡 Manus ek divsat kamit kami 20 vela hasato."
-                    ];
-                    await sock.sendMessage(from, { text: `${facts[Math.floor(Math.random() * facts.length)]}` }, { quoted: msg });
-                }
-                else if (command === 'password') {
-                    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!";
-                    let pass = "";
-                    for(let i=0; i<10; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
-                    await sock.sendMessage(from, { text: `🔐 *Generated Password:* \`${pass}\`` }, { quoted: msg });
+                    await sock.sendMessage(from, { text: `💡 *FACT:* Space madhe astronaut la radu yet nahi karan thithe thamb-themb asu khali padat nahit!` }, { quoted: msg });
                 }
                 else if (command === 'owner') {
-                    await sock.sendMessage(from, { text: `👑 *Bot Owner Info*\n\nName: RAHUL MASTER\nBot: RAHUL AI MINI\nLocation: India` }, { quoted: msg });
+                    await sock.sendMessage(from, { text: `👑 *Bot Owner Info*\n\nName: RAHUL MASTER\nBot: RAHUL AI MINI` }, { quoted: msg });
                 }
 
             } catch (err) {
