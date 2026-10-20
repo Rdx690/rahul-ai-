@@ -1063,7 +1063,7 @@ async function connectToWhatsApp() {
                         if (data?.status !== 'success' || !data?.url) {
                             return await sock.sendMessage(from, { text: '❌ Video not found or video API failed.' }, { quoted: msg });
                         }
-                        const caption = `🎬*RAHUL AI MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration \vert{}\vert{} 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel \vert{}\vert{} 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP4'}`;
+                        const caption = `🎬*RAHUL AI MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration \vert{}\vert{} 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel \vert{}\vert{} 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP3'}`;
                         const videoRes = await axios.get(data.url, {
                             responseType: 'arraybuffer',
                             timeout: 120000,
