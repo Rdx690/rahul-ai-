@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🔥 RAHUL AI MINI — EXACT RED & BLUE BORDER ANIMATION PORTAL
+   🔥 RAHUL AI MINI — EXACT PHOTO MATCH RED & BLUE PORTAL
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>RAHUL AI MINI • Premium Pairing Portal</title>
+        <title>RAHUL-AI DOWNLOADER | RAHUL AI MINI</title>
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
@@ -44,8 +44,8 @@ app.get('/', (req, res) => {
             :root{
                 --red-glow:#ff2e4d; 
                 --blue-glow:#00d2ff; 
-                --bg:#030408;
-                --card:#0a0d18;
+                --bg:#020307;
+                --card:#080b14;
                 --text:#e2e8f0;
                 --muted:#7c8798;
             }
@@ -65,46 +65,48 @@ app.get('/', (req, res) => {
                 display:flex;
                 flex-direction:column;
             }
+            /* Background Ambient Gradient Blur */
             body::before{
                 content:'';position:fixed;inset:0;
                 background:
-                    radial-gradient(circle at 10% 20%, rgba(255, 46, 77, 0.15), transparent 45%),
-                    radial-gradient(circle at 90% 80%, rgba(0, 210, 255, 0.15), transparent 45%);
+                    radial-gradient(circle at 15% 15%, rgba(255, 46, 77, 0.22), transparent 45%),
+                    radial-gradient(circle at 85% 85%, rgba(0, 210, 255, 0.18), transparent 45%);
                 z-index:0;
             }
             
-            /* --- EXACT PHOTO MATCH: TOP BAR WITH RED/BLUE BORDER --- */
+            /* --- TOP NAVBAR WITH RED/BLUE BORDER GLOW --- */
             .navbar{
                 position:relative;z-index:50;
                 display:flex;align-items:center;justify-content:space-between;
-                padding:14px 28px;
-                margin: 20px auto 0;
-                width: 92%; max-width: 520px;
+                padding:12px 22px;
+                margin: 16px auto 0;
+                width: 92%; max-width: 440px;
                 background:var(--card);
-                backdrop-filter:blur(20px);
-                border-radius: 20px;
-                position: relative;
+                border-radius: 18px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+                border: 1.5px solid rgba(255, 46, 77, 0.4);
             }
             .navbar::after {
                 content: '';
-                position: absolute; inset: -2px; border-radius: 22px;
+                position: absolute; inset: -2px; border-radius: 20px;
                 background: linear-gradient(90deg, var(--red-glow), var(--blue-glow), var(--red-glow));
                 background-size: 200% 200%;
                 z-index: -1;
-                animation: borderRotate 4s linear infinite;
-                opacity: 0.8;
+                animation: edgeLighting 4s linear infinite;
+                opacity: 0.6;
             }
 
             .nav-brand{
                 display:flex;align-items:center;gap:10px;
                 font-family:'Orbitron',sans-serif;font-weight:900;
-                font-size:16px;letter-spacing:1px;
+                font-size:14px;letter-spacing:1px;
             }
             .brand-icon{
-                width:34px;height:34px;border-radius:10px;
+                width:32px;height:32px;border-radius:8px;
                 background:linear-gradient(135deg,var(--red-glow),var(--blue-glow));
                 display:flex;align-items:center;justify-content:center;
-                font-size:15px;color:#fff;
+                font-size:14px;color:#fff;
+                box-shadow:0 0 10px rgba(255,46,77,0.5);
             }
             .brand-text{
                 background:linear-gradient(90deg,var(--red-glow),var(--blue-glow));
@@ -120,23 +122,23 @@ app.get('/', (req, res) => {
             }
             .main-wrap{
                 flex:1;display:flex;align-items:center;justify-content:center;
-                padding:20px;position:relative;z-index:10;
+                padding:15px 20px;position:relative;z-index:10;
             }
 
-            /* --- EXACT PHOTO MATCH: CARD WITH ROTATING RED & BLUE EDGE LIGHTING --- */
+            /* --- MAIN CARD WITH SMOOTH RED & BLUE EDGE LIGHTING --- */
             .card-wrapper {
                 position: relative;
                 width: 100%;
                 max-width: 440px;
-                border-radius: 28px;
-                padding: 2.5px; /* Border width */
-                background: linear-gradient(0deg, var(--red-glow), var(--blue-glow), var(--red-glow));
+                border-radius: 26px;
+                padding: 2px; /* Border thickness */
+                background: linear-gradient(135deg, var(--red-glow), var(--blue-glow), var(--red-glow));
                 background-size: 300% 300%;
-                animation: borderRotate 4s linear infinite;
-                box-shadow: 0 0 30px rgba(255, 46, 77, 0.25), 0 0 30px rgba(0, 210, 255, 0.25);
+                animation: edgeLighting 4s linear infinite;
+                box-shadow: 0 0 35px rgba(255, 46, 77, 0.3), 0 0 35px rgba(0, 210, 255, 0.3);
             }
 
-            @keyframes borderRotate {
+            @keyframes edgeLighting {
                 0% { background-position: 0% 50%; }
                 50% { background-position: 100% 50%; }
                 100% { background-position: 0% 50%; }
@@ -146,36 +148,36 @@ app.get('/', (req, res) => {
                 position:relative;
                 width:100%;
                 background:var(--card);
-                border-radius:26px;
-                padding:36px 28px 30px;
+                border-radius:24px;
+                padding:32px 24px 26px;
                 text-align:center;
             }
             .logo-badge{
                 display:inline-flex;align-items:center;justify-content:center;
                 gap:8px;
                 padding:10px 24px;border-radius:40px;
-                background:rgba(255,46,77,0.08);
+                background:rgba(255,46,77,0.06);
                 border:1px solid rgba(255,46,77,0.3);
-                margin-bottom:18px;
+                margin-bottom:16px;
             }
-            .logo-badge i{font-size:16px;color:var(--red-glow);}
+            .logo-badge i{font-size:15px;color:var(--red-glow);}
             .logo-badge span{
                 font-family:'Orbitron',sans-serif;font-weight:700;
-                font-size:16px;letter-spacing:2px;
+                font-size:15px;letter-spacing:2px;
                 background:linear-gradient(90deg,var(--red-glow),var(--blue-glow));
                 -webkit-background-clip:text;background-clip:text;
                 -webkit-text-fill-color:transparent;
             }
             h1{
                 font-family:'Orbitron',sans-serif;
-                font-size:19px;font-weight:700;
+                font-size:18px;font-weight:700;
                 letter-spacing:1px;margin-bottom:6px;
                 background:linear-gradient(90deg, var(--red-glow), var(--blue-glow));
                 -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             }
             .subtitle{
-                font-size:12px;color:var(--muted);
-                margin-bottom:24px;line-height:1.4;
+                font-size:11.5px;color:var(--muted);
+                margin-bottom:22px;line-height:1.4;
             }
             .input-group{position:relative;margin-bottom:16px;}
             .input-group i{
@@ -185,7 +187,7 @@ app.get('/', (req, res) => {
             }
             input[type="text"]{
                 width:100%;padding:14px 14px 14px 44px;
-                border-radius:12px;
+                border-radius:14px;
                 border:1px solid rgba(0,210,255,0.25);
                 background:rgba(0,0,0,0.3);
                 color:var(--text);font-size:14px;
@@ -197,16 +199,16 @@ app.get('/', (req, res) => {
             }
             .btn-main{
                 width:100%;padding:14px;
-                border-radius:12px;border:none;
+                border-radius:14px;border:none;
                 font-family:'Orbitron',sans-serif;
                 font-size:13px;font-weight:700;letter-spacing:1px;
                 color:#fff;cursor:pointer;
                 background:linear-gradient(90deg,var(--red-glow),var(--blue-glow));
-                box-shadow:0 0 15px rgba(255,46,77,0.4);
+                box-shadow:0 0 20px rgba(255,46,77,0.4);
                 position: relative; overflow: hidden;
             }
             .code-box{
-                margin-top:20px;padding:18px;
+                margin-top:18px;padding:16px;
                 background:rgba(0,210,255,0.04);
                 border-radius:14px;
                 border:1px dashed var(--blue-glow);
@@ -214,9 +216,9 @@ app.get('/', (req, res) => {
             }
             .code-box h2{
                 font-family:'Orbitron',sans-serif;
-                font-size:24px;letter-spacing:4px;
+                font-size:22px;letter-spacing:4px;
                 color:var(--blue-glow);
-                margin-bottom:10px;
+                margin-bottom:8px;
             }
             .copy-btn {
                 padding: 8px 16px; border-radius: 8px; border: none;
@@ -237,8 +239,8 @@ app.get('/', (req, res) => {
                 <div class="brand-text">RAHUL-AI PORTAL</div>
             </div>
             <div class="top-info">
-                <span id="liveTime"><i class="fa-regular fa-clock"></i> 00:00</span>
-                <span id="batteryStatus"><i class="fa-solid fa-bolt"></i> --%</span>
+                <span id="liveTime"><i class="fa-regular fa-clock"></i> 04:55 pm</span>
+                <span id="batteryStatus"><i class="fa-solid fa-bolt"></i> 21%</span>
                 <button class="theme-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
             </div>
         </nav>
