@@ -61,7 +61,6 @@ app.get('/', (req, res) => {
                 display:flex;
                 flex-direction:column;
             }
-            /* VFX Background */
             body::before{
                 content:'';position:fixed;inset:0;
                 background:
@@ -75,7 +74,6 @@ app.get('/', (req, res) => {
                 0%,100%{opacity:0.85;}
                 50%{opacity:1;}
             }
-            /* Animated grid */
             body::after{
                 content:'';position:fixed;inset:0;
                 background-image:
@@ -91,7 +89,6 @@ app.get('/', (req, res) => {
                 0%{background-position:0 0;}
                 100%{background-position:50px 50px;}
             }
-            /* Floating particles */
             .particles{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
             .particle{
                 position:absolute;width:3px;height:3px;border-radius:50%;
@@ -105,7 +102,6 @@ app.get('/', (req, res) => {
                 100%{transform:translateY(-10vh) scale(1.2);opacity:0;}
             }
 
-            /* ============ NAVBAR ============ */
             .navbar{
                 position:relative;z-index:50;
                 display:flex;align-items:center;justify-content:space-between;
@@ -165,7 +161,6 @@ app.get('/', (req, res) => {
                 font-size:22px;cursor:pointer;padding:8px;
             }
 
-            /* ============ MAIN CARD ============ */
             .main-wrap{
                 flex:1;display:flex;align-items:center;justify-content:center;
                 padding:40px 20px;position:relative;z-index:10;
@@ -192,7 +187,6 @@ app.get('/', (req, res) => {
                 0%{opacity:0;transform:translateY(40px) scale(.95);}
                 100%{opacity:1;transform:translateY(0) scale(1);}
             }
-            /* Top gradient line */
             .card::before{
                 content:'';position:absolute;top:0;left:20%;right:20%;height:2px;
                 background:linear-gradient(90deg,transparent,var(--primary),var(--secondary),transparent);
@@ -312,7 +306,6 @@ app.get('/', (req, res) => {
                 50%{text-shadow:0 0 30px var(--primary),0 0 60px var(--accent);}
             }
 
-            /* Developer credits */
             .dev-credits{
                 margin-top:26px;padding-top:20px;
                 border-top:1px solid rgba(255,255,255,0.06);
@@ -332,7 +325,6 @@ app.get('/', (req, res) => {
             }
             .dev b{color:var(--primary);font-weight:600;letter-spacing:.5px;}
 
-            /* ============ FOOTER ============ */
             .site-footer{
                 position:relative;z-index:10;
                 padding:16px 24px;
@@ -344,7 +336,6 @@ app.get('/', (req, res) => {
             }
             .site-footer span{color:var(--primary);font-weight:600;}
 
-            /* ============ RESPONSIVE ============ */
             @media (max-width:768px){
                 .navbar{padding:14px 18px;}
                 .nav-links{
@@ -371,10 +362,8 @@ app.get('/', (req, res) => {
     </head>
     <body>
 
-        <!-- Floating Particles -->
         <div class="particles" id="particles"></div>
 
-        <!-- ============ NAVBAR ============ -->
         <nav class="navbar">
             <div class="nav-brand">
                 <div class="brand-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
@@ -392,7 +381,6 @@ app.get('/', (req, res) => {
             <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
         </nav>
 
-        <!-- ============ MAIN CARD ============ -->
         <div class="main-wrap">
             <div class="card" id="mainCard">
                 <div class="logo-badge">
@@ -424,13 +412,11 @@ app.get('/', (req, res) => {
             </div>
         </div>
 
-        <!-- ============ FOOTER ============ -->
         <footer class="site-footer">
             POWERED BY <span>RAHUL AI MINI</span> • DEVELOPED BY <span>RAHUL-MASTER</span> &amp; <span>RAHUL AI MINI</span>
         </footer>
 
         <script>
-            // ---------- Floating Particles ----------
             (function(){
                 const container = document.getElementById('particles');
                 const colors = ['#00e5ff','#a855f7','#ff2e88'];
@@ -447,7 +433,6 @@ app.get('/', (req, res) => {
                 }
             })();
 
-            // ---------- Mobile Nav ----------
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('navLinks');
             hamburger.addEventListener('click', () => {
@@ -457,7 +442,6 @@ app.get('/', (req, res) => {
                     : '<i class="fa-solid fa-bars"></i>';
             });
 
-            // ---------- 3D Tilt Effect on Card ----------
             const card = document.getElementById('mainCard');
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -469,7 +453,6 @@ app.get('/', (req, res) => {
                 card.style.transform = 'rotateY(0) rotateX(0)';
             });
 
-            // ---------- Pairing Logic ----------
             async function getPairingCode() {
                 const phone = document.getElementById('phone').value.trim();
                 if(!phone) return alert('Please enter phone number');
@@ -499,7 +482,6 @@ app.get('/', (req, res) => {
     `);
 });
 
-// Endpoint to generate Pairing Code
 app.get('/pair', async (req, res) => {
     let phone = req.query.number || '919356730236';
     let cleanedNumber = phone.replace(/[^0-9]/g, '');
