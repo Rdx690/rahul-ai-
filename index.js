@@ -758,7 +758,35 @@ async function connectToWhatsApp() {
             }
 
             if (!isCmd && command !== 'ping' && command !== 'menu') return;
+            if (command === 'settings') {
+                const settingsText = `
+╭━━━〔 ⚙️ RAHUL AI MINI 〕━━━╮
+      *BOT SETTINGS PANEL*
+╰━━━━━━━━━━━━━━━━━━━━━━╯
 
+🤖 *CURRENT SETTINGS*
+
+🟢 Always Online: ${isAlwaysOnline ? 'ON' : 'OFF'}
+👀 Auto Status View: ${isAutoStatusView ? 'ON' : 'OFF'}
+❤️ Auto React: ${isAutoReact ? 'ON' : 'OFF'}
+📥 Auto Downloader: ${isAutoDL ? 'ON' : 'OFF'}
+
+⌨️ *PREFIX:* ${PREFIX}
+
+🛠️ *SETTINGS COMMANDS*
+${PREFIX}alwaysonline on/off
+${PREFIX}statusview on/off
+${PREFIX}autoreact on/off
+${PREFIX}autodl on/off
+
+⚡ RAHUL AI MINI
+`;
+
+                await sock.sendMessage(from, {
+                    text: settingsText
+                }, { quoted: msg });
+            }
+            else if (command === 'update' || command === 'autoupdate') {
             if (command === 'update' || command === 'autoupdate') {
                 await sock.sendMessage(from, { text: '🔄 *Checking for updates & pulling latest code from GitHub...*' }, { quoted: msg });
                 exec('git pull', async (err, stdout, stderr) => {
