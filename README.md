@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Yithe tumchi logo image link takaychi ahe -->
-<img src="https://i.imgur.com/3ZQZ3ZQ.png" width="180" height="180" style="border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 20px #0000ff;" alt="RAHUL-AI MINI Logo"/>
+<!-- Working logo image -->
+<img src="https://raw.githubusercontent.com/rahulhiran440/rahul-ai-mini/main/logo.png" width="180" height="180" style="border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 20px #0000ff;" alt="RAHUL-AI MINI Logo"/>
 
 # ⚡ 𝚁𝙰𝙷𝚄𝙻-𝙰𝙸 - 𝙼𝙸𝙽𝙸 ⚡
 <p align="center">
@@ -23,9 +23,9 @@
 ## 🚀 **DEPLOYMENT PLATFORMS**
 
 <p align="center">
-  <!-- Koyeb Deploy Button -->
+  <!-- Koyeb Deploy Button with Red & Blue Styling -->
   <a href="https://app.koyeb.com/deploy?type=git&repository=https://github.com/rahulhiran440/rahul-ai-mini&branch=main">
-    <img src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" width="130" alt="Deploy to Koyeb"/>
+    <img src="https://img.shields.io/badge/DEPUY_TO_KOYEB-FF0000?style=for-the-badge&logo=koyeb&logoColor=0000FF" alt="Deploy to Koyeb"/>
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <!-- Railway Deploy Button -->
@@ -54,7 +54,7 @@
 
 <p align="center">
   <a href="https://wa.me/919356730236?text=Hello%20Rahul%20Master,%20I%20need%20Rahul%20AI%20Mini%20Bot!">
-    <img src="https://img.shields.io/badge/WHATSAPP-CONTACT_ME-FF0000?style=for-the-badge&logo=whatsapp&logoColor=0000FF" alt="WhatsApp">
+    <img src="https://img.shields.io/badge/WHATSAPP-9356730236-FF0000?style=for-the-badge&logo=whatsapp&logoColor=0000FF" alt="WhatsApp">
   </a>
 </p>
 
