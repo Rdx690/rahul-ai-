@@ -5,10 +5,10 @@
 
   <br><br>
 
-  <!-- WORKING LOGO WITH RED & BLUE GLOW -->
+  <!-- RAHUL-AI-MINI LOGO WITH RED & BLUE EDGE LIGHTING -->
   <div align="center">
     <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">
-      <img src="https://i.imgur.com/2Xy8o8Q.jpeg" width="220" height="220" style="border-radius: 50%; border: 4px solid #00e5ff; box-shadow: 0 0 30px #ff0055, 0 0 30px #00e5ff;" alt="RAHUL-AI-MINI Logo" />
+      <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80" width="220" height="220" style="border-radius: 50%; border: 4px solid #00e5ff; box-shadow: 0 0 30px #ff0055, 0 0 30px #00e5ff;" alt="RAHUL-AI-MINI Logo" />
     </a>
   </div>
 
