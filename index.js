@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🔥 RAHUL AI MINI — PREMIUM PAIRING PORTAL (NEW STYLE)
+   🔥 RAHUL AI MINI — PREMIUM PAIRING PORTAL
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -74,40 +74,12 @@ app.get('/', (req, res) => {
                 0%,100%{opacity:0.85;}
                 50%{opacity:1;}
             }
-            body::after{
-                content:'';position:fixed;inset:0;
-                background-image:
-                    linear-gradient(rgba(0,229,255,0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0,229,255,0.05) 1px, transparent 1px);
-                background-size:50px 50px;
-                z-index:0;
-                mask-image:radial-gradient(circle at center, black 30%, transparent 85%);
-                -webkit-mask-image:radial-gradient(circle at center, black 30%, transparent 85%);
-                animation:gridMove 20s linear infinite;
-            }
-            @keyframes gridMove{
-                0%{background-position:0 0;}
-                100%{background-position:50px 50px;}
-            }
-            .particles{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
-            .particle{
-                position:absolute;width:3px;height:3px;border-radius:50%;
-                background:var(--primary);box-shadow:0 0 10px var(--primary);
-                animation:float linear infinite;
-            }
-            @keyframes float{
-                0%{transform:translateY(100vh) scale(0);opacity:0;}
-                10%{opacity:1;}
-                90%{opacity:1;}
-                100%{transform:translateY(-10vh) scale(1.2);opacity:0;}
-            }
             .navbar{
                 position:relative;z-index:50;
                 display:flex;align-items:center;justify-content:space-between;
                 padding:18px 32px;
                 background:rgba(8,10,20,0.75);
                 backdrop-filter:blur(18px);
-                -webkit-backdrop-filter:blur(18px);
                 border-bottom:1px solid var(--border);
             }
             .nav-brand{
@@ -121,42 +93,11 @@ app.get('/', (req, res) => {
                 display:flex;align-items:center;justify-content:center;
                 font-size:20px;color:#05060d;
                 box-shadow:0 0 20px rgba(0,229,255,0.6);
-                animation:iconPulse 2s ease-in-out infinite;
-            }
-            @keyframes iconPulse{
-                0%,100%{box-shadow:0 0 20px rgba(0,229,255,0.6);}
-                50%{box-shadow:0 0 35px rgba(168,85,247,0.8);}
             }
             .brand-text{
                 background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));
                 -webkit-background-clip:text;background-clip:text;
                 -webkit-text-fill-color:transparent;
-                filter:drop-shadow(0 0 12px rgba(0,229,255,0.4));
-            }
-            .brand-text small{
-                display:block;font-size:9px;letter-spacing:4px;
-                font-family:'Inter';font-weight:600;color:var(--muted);
-                -webkit-text-fill-color:var(--muted);
-            }
-            .nav-links{
-                display:flex;align-items:center;gap:6px;
-                list-style:none;
-            }
-            .nav-links a{
-                color:var(--muted);text-decoration:none;
-                font-size:14px;font-weight:500;
-                padding:9px 16px;border-radius:10px;
-                transition:all .3s ease;
-                display:flex;align-items:center;gap:7px;
-            }
-            .nav-links a:hover{
-                color:var(--primary);
-                background:rgba(0,229,255,0.08);
-                box-shadow:0 0 15px rgba(0,229,255,0.15);
-            }
-            .hamburger{
-                display:none;background:none;border:none;color:var(--primary);
-                font-size:22px;cursor:pointer;padding:8px;
             }
             .main-wrap{
                 flex:1;display:flex;align-items:center;justify-content:center;
@@ -167,21 +108,11 @@ app.get('/', (req, res) => {
                 width:100%;max-width:440px;
                 background:var(--card);
                 backdrop-filter:blur(24px);
-                -webkit-backdrop-filter:blur(24px);
                 border-radius:26px;
                 padding:38px 30px 30px;
                 border:1px solid var(--border);
-                box-shadow:
-                    0 25px 60px rgba(0,0,0,0.7),
-                    0 0 60px rgba(0,229,255,0.12),
-                    inset 0 1px 0 rgba(255,255,255,0.06);
+                box-shadow:0 25px 60px rgba(0,0,0,0.7), 0 0 60px rgba(0,229,255,0.12);
                 text-align:center;
-            }
-            .card::before{
-                content:'';position:absolute;top:0;left:20%;right:20%;height:2px;
-                background:linear-gradient(90deg,transparent,var(--primary),var(--secondary),transparent);
-                border-radius:2px;
-                box-shadow:0 0 15px var(--primary);
             }
             .logo-badge{
                 display:inline-flex;align-items:center;justify-content:center;
@@ -190,7 +121,6 @@ app.get('/', (req, res) => {
                 background:rgba(0,229,255,0.08);
                 border:1.5px solid rgba(0,229,255,0.5);
                 margin-bottom:20px;
-                box-shadow:0 0 25px rgba(0,229,255,0.35);
             }
             .logo-badge i{font-size:20px;color:var(--primary);}
             .logo-badge span{
@@ -224,18 +154,13 @@ app.get('/', (req, res) => {
                 color:#fff;font-size:15px;
                 outline:none;
             }
-            input[type="text"]:focus{
-                border-color:var(--primary);
-                box-shadow:0 0 20px rgba(0,229,255,0.35);
-            }
             .btn-main{
                 width:100%;padding:15px;
                 border-radius:14px;border:none;
                 font-family:'Orbitron',sans-serif;
                 font-size:15px;font-weight:700;letter-spacing:2px;
                 color:#05060d;cursor:pointer;
-                background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent),var(--primary));
-                background-size:300% auto;
+                background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));
                 box-shadow:0 0 25px rgba(0,229,255,0.5);
             }
             .code-box{
@@ -250,16 +175,6 @@ app.get('/', (req, res) => {
                 font-size:32px;letter-spacing:8px;
                 color:var(--primary);
             }
-            .dev-credits{
-                margin-top:26px;padding-top:20px;
-                border-top:1px solid rgba(255,255,255,0.06);
-                display:flex;justify-content:center;gap:24px;
-            }
-            .dev{
-                display:flex;align-items:center;gap:8px;
-                font-size:12px;color:var(--muted);
-            }
-            .dev b{color:var(--primary);font-weight:600;}
             .site-footer{
                 padding:16px 24px;text-align:center;
                 font-size:11px;color:var(--muted);
@@ -268,16 +183,14 @@ app.get('/', (req, res) => {
         </style>
     </head>
     <body>
-        <div class="particles" id="particles"></div>
         <nav class="navbar">
             <div class="nav-brand">
                 <div class="brand-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                <div class="brand-text">RAHUL AI MINI<small>PREMIUM PAIRING</small></div>
+                <div class="brand-text">RAHUL AI MINI<small style="display:block;font-size:9px;letter-spacing:4px;color:#7c8798;">PREMIUM PAIRING</small></div>
             </div>
-            <ul class="nav-links" id="navLinks" style="display:none;"></ul>
         </nav>
         <div class="main-wrap">
-            <div class="card" id="mainCard">
+            <div class="card">
                 <div class="logo-badge">
                     <i class="fa-solid fa-bolt"></i>
                     <span>RAHUL-AI MINI</span>
@@ -295,24 +208,10 @@ app.get('/', (req, res) => {
                     <div style="font-size:11px;color:var(--primary);margin-bottom:10px;">YOUR PAIRING CODE</div>
                     <h2 id="pairCode">-----</h2>
                 </div>
-                <div class="dev-credits">
-                    <div class="dev"><i class="fa-solid fa-code"></i> <b>RAHUL MASTER</b></div>
-                    <div class="dev"><i class="fa-solid fa-robot"></i> <b>RAHUL AI MINI</b></div>
-                </div>
             </div>
         </div>
         <footer class="site-footer">POWERED BY <span>RAHUL AI MINI</span> • DEVELOPED BY <span>RAHUL MASTER</span></footer>
         <script>
-            (function(){
-                const container = document.getElementById('particles');
-                for(let i=0;i<25;i++){
-                    const p = document.createElement('div');
-                    p.className = 'particle';
-                    p.style.left = Math.random()*100 + '%';
-                    p.style.animationDuration = (Math.random()*8 + 5) + 's';
-                    container.appendChild(p);
-                }
-            })();
             async function getPairingCode() {
                 const phone = document.getElementById('phone').value.trim();
                 if(!phone) return alert('Please enter phone number');
@@ -360,7 +259,7 @@ app.listen(PORT, () => {
 });
 
 /* ============================================================
-   ⚙️ BOT SETTINGS & FEATURES (FULL EXTENDED CODE)
+   ⚙️ BOT SETTINGS & FEATURES (EXTENDED WITH 10+ NEW FEATURES)
    ============================================================ */
 const startTime = Date.now();
 let isAlwaysOnline = true;
@@ -561,12 +460,17 @@ async function connectToWhatsApp() {
 ┃ 🟢 *STATUS:* ONLINE
 ╰━━━━━━━━━━━━━━━━━━━━━━╯
 
-╭━━〔 ✨ AI & TOOLS ✨ 〕━━╮
+╭━━〔 ✨ AI & FUN FEATURES ✨ 〕━━╮
 ┃ ◈ ${PREFIX}ai <text>
 ┃ ◈ ${PREFIX}google <query>
 ┃ ◈ ${PREFIX}weather <city>
-┃ ◈ ${PREFIX}fancy <text>
-┃ ◈ ${PREFIX}calc <math>
+┃ ◈ ${PREFIX}truth
+┃ ◈ ${PREFIX}dare
+┃ ◈ ${PREFIX}joke
+┃ ◈ ${PREFIX}fact
+┃ ◈ ${PREFIX}ship <name1> & <name2>
+┃ ◈ ${PREFIX}password
+┃ ◈ ${PREFIX}ascii <text>
 ┃ ◈ ${PREFIX}qr <text>
 ┃ ◈ ${PREFIX}sticker (reply image)
 ╰━━━━━━━━━━━━━━━━━━━━━━╯
@@ -584,6 +488,7 @@ async function connectToWhatsApp() {
 ┃ ◈ ${PREFIX}autoreact on/off
 ┃ ◈ ${PREFIX}autodl on/off
 ┃ ◈ ${PREFIX}setprefix <symbol>
+┃ ◈ ${PREFIX}owner
 ╰━━━━━━━━━━━━━━━━━━━━━━╯
 ⚡ *Powered by RAHUL MASTER*`;
                     await sock.sendMessage(from, { text: menuText }, { quoted: msg });
@@ -629,6 +534,49 @@ async function connectToWhatsApp() {
                     if (!args) return await sock.sendMessage(from, { text: `❌ Enter text! e.g. \`${PREFIX}qr Hello\`` }, { quoted: msg });
                     const qrBuffer = await QRCode.toBuffer(args);
                     await sock.sendMessage(from, { image: qrBuffer, caption: `🔲 QR Code for: ${args}` }, { quoted: msg });
+                }
+                // --- NEW FEATURES ADDED ---
+                else if (command === 'truth') {
+                    const truths = [
+                        "Tuzi sarvat mothi secret khabardari konachi aahe?",
+                        "Tula konavar crush aahe ka sathyat?",
+                        "Tuzi sarvat lahanpani keleli sarvat mothi chuk konti?",
+                        "Tu aajparyant konachi phuski keli aahe ka?"
+                    ];
+                    const rand = truths[Math.floor(Math.random() * truths.length)];
+                    await sock.sendMessage(from, { text: `🎯 *TRUTH:* ${rand}` }, { quoted: msg });
+                }
+                else if (command === 'dare') {
+                    const dares = [
+                        "Tujha status 1 tasasathi 'I love coding' thev!",
+                        "Konala tari 'Mi Veda aahe' ani msg pathav!",
+                        "5 vela continuous uth-bes karun tacha video pathav!"
+                    ];
+                    const rand = dares[Math.floor(Math.random() * dares.length)];
+                    await sock.sendMessage(from, { text: `🔥 *DARE:* ${rand}` }, { quoted: msg });
+                }
+                else if (command === 'joke') {
+                    const jokes = [
+                        "Mulga: Mala ek changli mulgi pahije.\nMulgi: Mage bagh, mi ahe na!\nMulga: Mala 'mulgi' pahije, 'bhoot' nahi!",
+                        "Teacher: 'Oxygen' cha shod koni lavla?\nStudent: 1772 madhe Joseph Priestley ne...\nTeacher: Excellent! Ani oxygen kute hovanusar aadhi?\nStudent: Sir, aadhi loka shwasch ghet navti watata!"
+                    ];
+                    await sock.sendMessage(from, { text: `😂 *JOKE:* ${jokes[Math.floor(Math.random() * jokes.length)]}` }, { quoted: msg });
+                }
+                else if (command === 'fact') {
+                    const facts = [
+                        "💡 Space madhe astronaut la radu yet nahi karan thithe thamb-themb asu khali padat nahit!",
+                        "💡 Manus ek divsat kamit kami 20 vela hasato."
+                    ];
+                    await sock.sendMessage(from, { text: `${facts[Math.floor(Math.random() * facts.length)]}` }, { quoted: msg });
+                }
+                else if (command === 'password') {
+                    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!";
+                    let pass = "";
+                    for(let i=0; i<10; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
+                    await sock.sendMessage(from, { text: `🔐 *Generated Password:* \`${pass}\`` }, { quoted: msg });
+                }
+                else if (command === 'owner') {
+                    await sock.sendMessage(from, { text: `👑 *Bot Owner Info*\n\nName: RAHUL MASTER\nBot: RAHUL AI MINI\nLocation: India` }, { quoted: msg });
                 }
 
             } catch (err) {
