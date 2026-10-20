@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="https://telegra.ph/file/your-logo-placeholder.png" width="180" height="180" style="border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 20px #0000ff;" alt="RAHUL-AI MINI Logo"/>
+<!-- Yithe tumchi logo image link takaychi ahe -->
+<img src="https://i.imgur.com/3ZQZ3ZQ.png" width="180" height="180" style="border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 20px #0000ff;" alt="RAHUL-AI MINI Logo"/>
 
 # ⚡ 𝚁𝙰𝙷𝚄𝙻-𝙰𝙸 - 𝙼𝙸𝙽𝙸 ⚡
 <p align="center">
@@ -48,7 +49,7 @@
 ## 👑 **DEVELOPER & OWNER**
 
 <p align="center">
-  <img src="https://pps.whatsapp.net/v/t61.35374-24/463000000_000000000_000000000_n.jpg?ccb=11-4&oh=00_AYA...&oe=..." width="140" height="140" style="border-radius: 50%; border: 3px solid #0000ff; box-shadow: 0 0 15px #ff0000;" alt="WhatsApp Profile">
+  <img src="https://telegra.ph/file/rahul-dp.jpg" width="140" height="140" style="border-radius: 50%; border: 3px solid #0000ff; box-shadow: 0 0 15px #ff0000;" alt="WhatsApp Profile">
 </p>
 
 <p align="center">
