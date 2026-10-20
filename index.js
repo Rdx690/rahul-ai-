@@ -379,7 +379,7 @@ app.get('/', (req, res) => {
             <div class="nav-brand">
                 <div class="brand-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                 <div class="brand-text">
-                    VFX MINI
+                    RAHUL AI MINI
                     <small>PREMIUM PAIRING</small>
                 </div>
             </div>
@@ -397,7 +397,7 @@ app.get('/', (req, res) => {
             <div class="card" id="mainCard">
                 <div class="logo-badge">
                     <i class="fa-solid fa-bolt"></i>
-                    <span>VFX MINI</span>
+                    <span>RAHUL-AI MINI</span>
                 </div>
 
                 <h1>PAIRING PORTAL</h1>
