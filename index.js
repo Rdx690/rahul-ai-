@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🔥 RAHUL AI MINI — EXACT PHOTO STYLE PAIRING PORTAL
+   🔥 RAHUL AI MINI — PHOTO STYLE WITH EDGE LIGHTING ANIMATION
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -65,7 +65,6 @@ app.get('/', (req, res) => {
                 display:flex;
                 flex-direction:column;
             }
-            /* Photo Match Background Gradient Blur */
             body::before{
                 content:'';position:fixed;inset:0;
                 background:
@@ -74,26 +73,31 @@ app.get('/', (req, res) => {
                 z-index:0;
             }
             
-            /* --- TOP INFO BAR (CLOCK, DATE, BATTERY, THEME) --- */
-            .top-bar{
-                position:relative;z-index:50;
-                display:flex;align-items:center;justify-content:space-between;
-                padding:12px 20px;
+            /* --- TOP INFO BAR WITH EDGE LIGHTING ANIMATION --- */
+            .top-bar-wrapper {
+                position: relative;
                 margin: 20px auto 10px;
                 width: 92%; max-width: 420px;
-                background: rgba(10, 13, 20, 0.85);
-                backdrop-filter: blur(12px);
+                border-radius: 22px;
+                padding: 2px;
+                background: linear-gradient(90deg, var(--red-glow), var(--blue-glow), var(--red-glow));
+                background-size: 200% 200%;
+                animation: edgeLighting 3s linear infinite;
+                z-index: 50;
+            }
+            .top-bar{
+                display:flex;align-items:center;justify-content:space-between;
+                padding:12px 18px;
+                background: rgba(10, 13, 20, 0.95);
                 border-radius: 20px;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-                border: 1px solid rgba(255,255,255,0.06);
             }
             .top-info-items {
-                display: flex; gap: 14px; align-items: center; font-size: 11.5px; font-weight: 500; color: var(--muted);
+                display: flex; gap: 12px; align-items: center; font-size: 11px; font-weight: 500; color: var(--muted);
             }
-            .top-info-items span { display: flex; align-items: center; gap: 5px; }
+            .top-info-items span { display: flex; align-items: center; gap: 4px; }
             .theme-btn {
-                background: rgba(255,255,255,0.05); border: none; width: 32px; height: 32px; border-radius: 50%;
-                color: var(--red-glow); cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content:center;
+                background: rgba(255,255,255,0.05); border: none; width: 30px; height: 30px; border-radius: 50%;
+                color: var(--red-glow); cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content:center;
             }
             
             .main-wrap{
@@ -101,17 +105,32 @@ app.get('/', (req, res) => {
                 padding:10px 20px 20px;position:relative;z-index:10;
             }
 
-            /* --- MAIN CARD CONTAINER --- */
-            .card {
+            /* --- MAIN CARD CONTAINER WITH EDGE LIGHTING ANIMATION --- */
+            .card-wrapper {
                 position: relative;
                 width: 100%;
                 max-width: 420px;
+                border-radius: 30px;
+                padding: 2.5px;
+                background: linear-gradient(0deg, var(--red-glow), var(--blue-glow), var(--red-glow));
+                background-size: 300% 300%;
+                animation: edgeLighting 3s linear infinite;
+                box-shadow: 0 0 30px rgba(255, 46, 77, 0.3), 0 0 30px rgba(0, 210, 255, 0.3);
+            }
+
+            @keyframes edgeLighting {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+
+            .card {
+                position: relative;
+                width: 100%;
                 background: var(--card);
                 border-radius: 28px;
                 padding: 34px 24px 28px;
                 text-align: center;
-                box-shadow: 0 15px 40px rgba(0,0,0,0.7);
-                border: 1px solid rgba(255,255,255,0.05);
             }
 
             .logo-badge{
@@ -186,7 +205,6 @@ app.get('/', (req, res) => {
                 cursor: pointer; font-size: 11px; letter-spacing: 1px;
             }
 
-            /* --- WHATSAPP OWNER BUTTON STYLE FROM PHOTO --- */
             .wa-btn {
                 display: flex; align-items: center; justify-content: center; gap: 8px;
                 width: 100%; margin-top: 18px; padding: 13px;
@@ -202,47 +220,49 @@ app.get('/', (req, res) => {
         </style>
     </head>
     <body>
-        <!-- Top Status Bar matching your reference image -->
-        <div class="top-bar">
-            <div class="top-info-items">
-                <span id="liveTime"><i class="fa-regular fa-clock"></i> 04:41 PM</span>
-                <span id="currentDate"><i class="fa-regular fa-calendar"></i> Oct 20</span>
-                <span id="batteryStatus"><i class="fa-solid fa-bolt"></i> 18%</span>
+        <div class="top-bar-wrapper">
+            <div class="top-bar">
+                <div class="top-info-items">
+                    <span id="liveTime"><i class="fa-regular fa-clock"></i> 04:41 PM</span>
+                    <span id="currentDate"><i class="fa-regular fa-calendar"></i> Oct 20</span>
+                    <span id="batteryStatus"><i class="fa-solid fa-bolt"></i> 18%</span>
+                </div>
+                <button class="theme-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
             </div>
-            <button class="theme-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
         </div>
 
         <div class="main-wrap">
-            <div class="card">
-                <div class="logo-badge">
-                    <i class="fa-solid fa-bolt"></i>
-                    <span>PAIRING PORTAL</span>
+            <div class="card-wrapper">
+                <div class="card">
+                    <div class="logo-badge">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>PAIRING PORTAL</span>
+                    </div>
+                    <h1>RAHUL AI MINI</h1>
+                    <p class="subtitle">Enter your WhatsApp number below to get<br>your secure pairing code instantly</p>
+                    <div class="input-group">
+                        <i class="fa-solid fa-phone"></i>
+                        <input type="text" id="phone" value="919356730236" placeholder="e.g. 919356730236">
+                    </div>
+                    <button class="btn-main" onclick="getPairingCode()">
+                        <i class="fa-solid fa-bolt"></i> GET PAIRING CODE
+                    </button>
+                    <div id="codeContainer" class="code-box">
+                        <div style="font-size:10px;color:var(--blue-glow);margin-bottom:6px;letter-spacing:1px;">YOUR PAIRING CODE</div>
+                        <h2 id="pairCode">-----</h2>
+                        <button class="copy-btn" onclick="copyCode()"><i class="fa-solid fa-copy"></i> COPY CODE</button>
+                    </div>
+                    
+                    <a href="https://wa.me/919356730236" target="_blank" class="wa-btn">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Contact Owner on WhatsApp
+                    </a>
                 </div>
-                <h1>RAHUL AI MINI</h1>
-                <p class="subtitle">Enter your WhatsApp number below to get<br>your secure pairing code instantly</p>
-                <div class="input-group">
-                    <i class="fa-solid fa-phone"></i>
-                    <input type="text" id="phone" value="919356730236" placeholder="e.g. 919356730236">
-                </div>
-                <button class="btn-main" onclick="getPairingCode()">
-                    <i class="fa-solid fa-bolt"></i> GET PAIRING CODE
-                </button>
-                <div id="codeContainer" class="code-box">
-                    <div style="font-size:10px;color:var(--blue-glow);margin-bottom:6px;letter-spacing:1px;">YOUR PAIRING CODE</div>
-                    <h2 id="pairCode">-----</h2>
-                    <button class="copy-btn" onclick="copyCode()"><i class="fa-solid fa-copy"></i> COPY CODE</button>
-                </div>
-                
-                <a href="https://wa.me/919356730236" target="_blank" class="wa-btn">
-                    <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Contact Owner on WhatsApp
-                </a>
             </div>
         </div>
 
         <footer class="site-footer">POWERED BY <span>RAHUL AI MINI</span> • DEVELOPED BY <span>RAHUL MASTER</span></footer>
 
         <script>
-            // Live Clock & Date
             setInterval(() => {
                 const now = new Date();
                 document.getElementById('liveTime').innerHTML = '<i class="fa-regular fa-clock"></i> ' + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
@@ -250,7 +270,6 @@ app.get('/', (req, res) => {
                 document.getElementById('currentDate').innerHTML = '<i class="fa-regular fa-calendar"></i> ' + now.toLocaleDateString('en-US', options);
             }, 1000);
 
-            // Battery Status API
             if (navigator.getBattery) {
                 navigator.getBattery().then(battery => {
                     function updateBattery() {
@@ -402,13 +421,11 @@ async function connectToWhatsApp() {
                     await sock.sendPresenceUpdate('available', from);
                 }
 
-                // --- AUTO STATUS VIEW & AUTO STATUS SENDER ---
                 if (msg.key.remoteJid === 'status@broadcast') {
                     if (isAutoStatusView) await sock.readMessages([msg.key]);
                     return;
                 }
 
-                // Auto Downloader for Instagram
                 if (isAutoDL && !text.startsWith(PREFIX)) {
                     const urlMatch = text.match(/(https?:\/\/[^\s]+)/g);
                     if (urlMatch) {
@@ -432,7 +449,6 @@ async function connectToWhatsApp() {
                     }
                 }
 
-                // --- AUTO STATUS SENDER (Reply to status with send/pathva) ---
                 const contextInfo = msg.message.extendedTextMessage?.contextInfo;
                 if (contextInfo?.quotedMessage && contextInfo.remoteJid === 'status@broadcast') {
                     const triggerWords = ['send', 'dya', 'pathva', 'send me', 'पाठव'];
@@ -457,7 +473,6 @@ async function connectToWhatsApp() {
                 const command = body.toLowerCase().split(' ')[0];
                 const args = body.split(' ').slice(1).join(' ');
 
-                // ⚙️ SETTINGS PANEL COMMAND
                 if (command === 'settings' || command === 'config' || command === 'setting') {
                     const settingsText = 
 `⚙️ *RAHUL AI MINI - BOT SETTINGS* ⚙️
@@ -531,8 +546,6 @@ async function connectToWhatsApp() {
                     const start = Date.now();
                     await sock.sendMessage(from, { text: `⚡ *Pong!* \`${Date.now() - start} ms\`` }, { quoted: msg });
                 }
-                
-                // --- EXPANDED MAIN MENU (MENU) ---
                 else if (command === 'menu' || command === 'help') {
                     const menuText = 
 `╭━━━『 ✦ RAHUL AI MINI ✦ 』━━━╮
@@ -569,20 +582,6 @@ async function connectToWhatsApp() {
 ⚡ *Powered by RAHUL MASTER*`;
                     await sock.sendMessage(from, { text: menuText }, { quoted: msg });
                 }
-                
-                // --- MENU STYLE 2 ---
-                else if (command === 'menu2') {
-                    const menu2Text = `🌟 *RAHUL AI MINI - QUICK MENU* 🌟\n\n🤖 *AI Assistant:* \`${PREFIX}ai\`\n🎵 *Music Downloader:* \`${PREFIX}play\`\n📥 *Instagram DL:* \`${PREFIX}insta\`\n🔗 *Media to Link:* \`${PREFIX}tourl\`\n🎧 *Video to MP3:* \`${PREFIX}tomp3\`\n⚙️ *Settings Panel:* \`${PREFIX}settings\`\n\n*Developer: RAHUL MASTER*`;
-                    await sock.sendMessage(from, { text: menu2Text }, { quoted: msg });
-                }
-
-                // --- MENU STYLE 3 ---
-                else if (command === 'menu3') {
-                    const menu3Text = `🚀 *RAHUL AI MINI ADVANCED V3* 🚀\n\n• [AI] \`${PREFIX}ai\`\n• [Music] \`${PREFIX}play\`\n• [Tools] \`${PREFIX}tourl\` | \`${PREFIX}tomp3\` | \`${PREFIX}sticker\` | \`${PREFIX}qr\`\n• [Fun] \`${PREFIX}truth\` | \`${PREFIX}dare\` | \`${PREFIX}joke\` | \`${PREFIX}fact\`\n• [Config] \`${PREFIX}settings\``;
-                    await sock.sendMessage(from, { text: menu3Text }, { quoted: msg });
-                }
-
-                // --- URL / MEDIA TO LINK UPLOADER (.tourl) ---
                 else if (command === 'tourl' || command === 'upload') {
                     const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
                     const isMedia = msg.message.imageMessage || msg.message.videoMessage || msg.message.documentMessage || quoted?.imageMessage || quoted?.videoMessage || quoted?.documentMessage;
@@ -603,8 +602,6 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ Tourl error: ' + e.message }, { quoted: msg });
                     }
                 }
-
-                // --- VIDEO TO MP3 CONVERTER (.tomp3) ---
                 else if (command === 'tomp3') {
                     const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
                     const isVideo = msg.message.videoMessage || quoted?.videoMessage;
@@ -617,8 +614,6 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ Video to MP3 conversion error.' }, { quoted: msg });
                     }
                 }
-
-                // --- AI COMMAND ---
                 else if (command === 'ai') {
                     if (!args) return await sock.sendMessage(from, { text: `❌ Ask something! e.g. \`${PREFIX}ai Hello\`` }, { quoted: msg });
                     await sock.sendMessage(from, { text: '🤖 *RAHUL AI is thinking...*' }, { quoted: msg });
@@ -630,8 +625,6 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ AI API error. Try later.' }, { quoted: msg });
                     }
                 }
-
-                // --- PLAY MUSIC COMMAND ---
                 else if (command === 'play') {
                     if (!args) return await sock.sendMessage(from, { text: `❌ Song name taka! e.g. \`${PREFIX}play Believer\`` }, { quoted: msg });
                     await sock.sendMessage(from, { text: `🎵 Searching "${args}"...` }, { quoted: msg });
@@ -646,8 +639,6 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ Audio download error.' }, { quoted: msg });
                     }
                 }
-
-                // --- STICKER COMMAND ---
                 else if (command === 'sticker' || command === 's') {
                     const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
                     const isImage = msg.message.imageMessage || quoted?.imageMessage;
@@ -660,15 +651,11 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: `❌ Reply to an image with \`${PREFIX}sticker\`` }, { quoted: msg });
                     }
                 }
-
-                // --- QR CODE COMMAND ---
                 else if (command === 'qr') {
                     if (!args) return await sock.sendMessage(from, { text: `❌ Enter text! e.g. \`${PREFIX}qr Hello\`` }, { quoted: msg });
                     const qrBuffer = await QRCode.toBuffer(args);
                     await sock.sendMessage(from, { image: qrBuffer, caption: `🔲 QR Code for: ${args}` }, { quoted: msg });
                 }
-
-                // --- OTHER FUN COMMANDS ---
                 else if (command === 'truth') {
                     const truths = ["Tuzi sarvat mothi secret khabardari konachi aahe?", "Tula konavar crush aahe ka sathyat?", "Tuzi sarvat lahanpani keleli sarvat mothi chuk konti?"];
                     await sock.sendMessage(from, { text: `🎯 *TRUTH:* ${truths[Math.floor(Math.random() * truths.length)]}` }, { quoted: msg });
