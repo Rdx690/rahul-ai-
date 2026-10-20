@@ -5,34 +5,25 @@
 
   <br><br>
 
-  <!-- CUSTOM RGB RED & BLUE EDGE LIGHTING LOGO -->
-  <div style="display: inline-block; padding: 5px; border-radius: 50%; background: linear-gradient(45deg, #ff0055, #0055ff, #00e5ff, #ff0055); background-size: 300% 300%; animation: rgbGlow 4s ease infinite; box-shadow: 0 0 40px rgba(255, 0, 85, 0.7), 0 0 40px rgba(0, 229, 255, 0.7);">
-    <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">
-      <img src="https://api.iconify.design/fluent-emoji-flat:robot.svg?width=130&height=130" width="130" height="130" style="border-radius: 50%; background: #030409; padding: 22px; display: block;" alt="RAHUL-AI-MINI Logo" />
-    </a>
+  <!-- NEW RGB LED ANIMATED BORDER BOX WITH STARS -->
+  <div style="width: 85%; padding: 25px; border-radius: 20px; background: linear-gradient(135deg, #05060d, #0b0f19); border: 3px solid transparent; background-image: linear-gradient(#05060d, #05060d), linear-gradient(90deg, #ff0055, #0055ff, #00e5ff, #ff0055); background-origin: border-box; background-clip: content-box, border-box; box-shadow: 0 0 25px rgba(255, 0, 85, 0.5), 0 0 25px rgba(0, 229, 255, 0.5);">
+    
+    <h1>
+      <span style="background: linear-gradient(90deg, #ff0055, #00e5ff, #ff0055); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 28px; font-family: 'Orbitron', sans-serif;">
+        🌟 RAHUL AI MINI 🌟
+      </span>
+    </h1>
+    
+    <p style="color: #a0aec0; font-size: 14px; margin-top: 8px;">
+      ⚡ <b>Next-Gen WhatsApp Automation & AI Bot</b> ⚡
+    </p>
+    <p style="color: #00e5ff; font-size: 13px;">
+      ✨ Developed with ❤️ by <b>RAHUL MASTER</b> ✨
+    </p>
+
   </div>
 
-  <style>
-    @keyframes rgbGlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-  </style>
-
   <br><br>
-
-  <!-- RED & BLUE RGB GRADIENT HEADING -->
-  <h1>
-    <span style="background: linear-gradient(90deg, #ff0055, #00e5ff, #ff0055); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 30px; font-family: 'Orbitron', sans-serif; animation: rgbGlow 3s linear infinite;">
-      ⚡ RAHUL AI MINI ⚡
-    </span>
-  </h1>
-
-  <p><b>🚀 Powerful, Fast & Multi-Featured WhatsApp Automation Bot</b></p>
-  <p><i>Developed with ❤️ by <b style="color: #00e5ff;">RAHUL MASTER</b></i></p>
-
-  <br>
 
   <!-- LIVE PAIRING PORTAL BUTTON -->
   <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">
