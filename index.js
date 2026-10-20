@@ -1011,7 +1011,7 @@ async function connectToWhatsApp() {
                     if (data?.status !== 'success' || !data?.url) {
                         return await sock.sendMessage(from, { text: '❌ Video not found or video API failed.' }, { quoted: msg });
                     }
-                    const caption = `🎬 *RAHUL AI MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP4'}`;
+                    const caption = `🎬*RAHUL AI MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP4'}`;
                     // Download bytes first; passing a signed Googlevideo URL directly to Baileys can fail on redirects/network restrictions.
                     const videoRes = await axios.get(data.url, {
                         responseType: 'arraybuffer',
