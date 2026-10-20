@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🔥 VFX MINI — PREMIUM PAIRING PORTAL (NEW STYLE)
+   🔥 RAHUL AI MINI — PREMIUM PAIRING PORTAL (NEW STYLE)
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>VFX MINI • Premium Pairing Portal</title>
+        <title>RAHUL AI MINI • Premium Pairing Portal</title>
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
@@ -426,7 +426,7 @@ app.get('/', (req, res) => {
 
         <!-- ============ FOOTER ============ -->
         <footer class="site-footer">
-            POWERED BY <span>VFX MINI</span> • DEVELOPED BY <span>SOURAJITVFX</span> &amp; <span>RAHUL AI</span>
+            POWERED BY <span>RAHUL AI MINI</span> • DEVELOPED BY <span>RAHUL-MASTER</span> &amp; <span>RAHUL AI MINI</span>
         </footer>
 
         <script>
@@ -523,7 +523,7 @@ app.get('/pair', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`🌐 VFX MINI Web Server running on port ${PORT}`);
+    console.log(`🌐 RAHUL AI MINI Web Server running on port ${PORT}`);
 });
 
 /* ============================================================
@@ -632,14 +632,14 @@ async function connectToWhatsApp() {
             }
         } else if (connection === 'open') {
             console.log('\n==================================================');
-            console.log('✅ VFX MINI IS ONLINE & CONNECTED SUCCESSFULLY!');
+            console.log('✅ RAHUL MINI IS ONLINE & CONNECTED SUCCESSFULLY!');
             console.log('==================================================\n');
             try {
                 const userJid = sock.user.id.split(':')[0] + '@s.whatsapp.net';
                 const startMessage = 
-`🎬 *VFX MINI CONNECTED SUCCESSFULLY!* ⚡
+`🎬 *RAahUL MINI CONNECTED SUCCESSFULLY!* ⚡
 
-👨‍💻 *Developers:* SOURAJITVFX & RAHUL AI
+👨‍💻 *Developers:* RAHUL-MASTER & RAHUL AI
 📌 *Prefix:* [ \`${PREFIX}\` ]
 ⚡ *Status:* Online & Ready 24/7
 🟢 *Always Online:* ${isAlwaysOnline ? 'ON' : 'OFF'}
@@ -649,7 +649,7 @@ async function connectToWhatsApp() {
 
 💡 *Try typing:* \`${PREFIX}menu\` or \`${PREFIX}ping\` to test commands!
 
-⚙️ *Powered by VFX MINI*`;
+⚙️ *Powered by Rahul Master*`;
 
                 await sock.sendMessage(userJid, { text: startMessage });
             } catch (err) {
@@ -692,8 +692,8 @@ async function connectToWhatsApp() {
                             const data = res.data;
                             const mediaUrl = data?.url || data?.urls?.[0];
                             if (data?.status === 'success' && mediaUrl) {
-                                if (data.type === 'image' || /\.jpe?g(\?|$)/i.test(mediaUrl) || /\.png(\?|$)/i.test(mediaUrl)) await sock.sendMessage(from, { image: { url: mediaUrl }, caption: '📸 *VFX MINI Instagram AutoDL*' }, { quoted: msg });
-                                else await sock.sendMessage(from, { video: { url: mediaUrl }, caption: '📸 *VFX MINI Instagram AutoDL*' }, { quoted: msg });
+                                if (data.type === 'image' || /\.jpe?g(\?|$)/i.test(mediaUrl) || /\.png(\?|$)/i.test(mediaUrl)) await sock.sendMessage(from, { image: { url: mediaUrl }, caption: '' }, { quoted: msg });
+                                else await sock.sendMessage(from, { video: { url: mediaUrl }, caption: '' }, { quoted: msg });
                                 return;
                             }
                         } catch (e) { console.error('Instagram AutoDL error:', e.message); }
@@ -711,7 +711,7 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '🚀 *Fast AutoDL:* Downloading video...' }, { quoted: msg });
                         const videoUrl = await getFastVideoUrl(url);
                         if (videoUrl) {
-                            await sock.sendMessage(from, { video: { url: videoUrl }, caption: '⚡ *VFX MINI Fast AutoDL Success!*' }, { quoted: msg });
+                            await sock.sendMessage(from, { video: { url: videoUrl }, caption: '⚡ *RAHUL AI MINI Fast AutoDL Success!*' }, { quoted: msg });
                             return;
                         }
                     }
@@ -763,7 +763,7 @@ async function connectToWhatsApp() {
                 await sock.sendMessage(from, { text: '🔄 *Checking for updates & pulling latest code from GitHub...*' }, { quoted: msg });
                 exec('git pull', async (err, stdout, stderr) => {
                     if (err) return await sock.sendMessage(from, { text: `❌ *Update Failed:* ${err.message}` }, { quoted: msg });
-                    if (stdout.includes('Already up to date')) return await sock.sendMessage(from, { text: '✅ *VFX MINI is already on the latest version!*' }, { quoted: msg });
+                    if (stdout.includes('Already up to date')) return await sock.sendMessage(from, { text: '✅ *RAHUL AI MINI is already on the latest version!*' }, { quoted: msg });
                     await sock.sendMessage(from, { text: `✅ *Update Successful!*\n\n\`\`\`${stdout}\`\`\`\n\n🔄 *Restarting bot now...*` }, { quoted: msg });
                     process.exit(0);
                 });
@@ -832,7 +832,7 @@ async function connectToWhatsApp() {
                 await sock.sendMessage(from, { text: '🚀 Speed testing...' }, { quoted: msg });
                 const end = Date.now();
                 await sock.sendMessage(from, { 
-                    text: `⚡ *VFX MINI SPEED*\n\n⏱️ *Latency:* \`${end - start} ms\`\n🟢 *Status:* Active & Online` 
+                    text: `⚡ *RAHUL AI MINI SPEED*\n\n⏱️ *Latency:* \`${end - start} ms\`\n🟢 *Status:* Active & Online` 
                 }, { quoted: msg });
             }
             else if (command === 'menu' || command === 'help') {
@@ -844,9 +844,9 @@ async function connectToWhatsApp() {
                 const usedRam = Math.round(process.memoryUsage().rss / 1024 / 1024);
                 const totalRam = Math.round(require('os').totalmem() / 1024 / 1024);
                 const menuText = [
-                    '╭━━━『 ✦ 𝙑𝙁𝙓 𝙈𝙄𝙉𝙄 ✦ 』━━━╮',
+                    '╭━━━『 ✦ RAHUL AI MINI ✦ 』━━━╮',
                     '┃ ⚡ *ᴘʀᴇᴍɪᴜᴍ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ*',
-                    '┃ 👑 *ᴏᴡɴᴇʀ:* 𝐒ꭷᴜʀᴀᴊɪᴛ メ 𝐕𝐅𝐗',
+                    '┃ 👑 *ᴏᴡɴᴇʀ:* RAHUL-MASTER',
                     '┃ ⌨️ *ᴘʀᴇғɪx:* ' + PREFIX,
                     '┃ 🟢 *sᴛᴀᴛᴜs:* ' + (sock?.user ? 'ᴄᴏɴɴᴇᴄᴛᴇᴅ' : 'sᴛᴀʀᴛɪɴɢ'),
                     '┃ ⏱️ *ᴜᴘᴛɪᴍᴇ:* ' + uptimeHours + 'h ' + uptimeMinutes + 'm ' + uptimeRemainder + 's',
@@ -900,7 +900,7 @@ async function connectToWhatsApp() {
                     '┃ ◈ ' + PREFIX + 'owner',
                     '╰━━━━━━━━━━━━━━━━━━━━━━╯',
                     '',
-                    '╰━━━『 ⚡ ᴘᴏᴡᴇʀᴇᴅ ʙʏ 𝐒𝐎𝐔𝐑𝐀𝐉𝐈𝐓 𝐕𝐅𝐗 』━━━╯'
+                    '╰━━━『 ⚡ ᴘᴏᴡᴇʀᴇᴅ ʙʏ RAHUL MASTER 』━━━╯'
                 ].join('\n');
                 try {
                     const page = await axios.get('https://ibb.co/HL6Ftn8P', { timeout: 12000 });
@@ -958,7 +958,7 @@ async function connectToWhatsApp() {
                     }
                     const title = data.title || args;
                     const safeTitle = title.replace(/[\\/:*?"<>|]/g, '').slice(0, 80) || 'audio';
-                    const infoText = `🎵 *VFX MINI MUSIC PLAYER* 🎵\n\n📌 *Title:* ${title}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎧 *Quality:* ${data.quality || 'MP3'}`;
+                    const infoText = `🎵 *RAHUL AI MINI MUSIC PLAYER* 🎵\n\n📌 *Title:* ${title}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎧 *Quality:* ${data.quality || 'MP3'}`;
                     // Fetch audio bytes explicitly to avoid Baileys URL-stream issues and signed-URL redirects.
                     const audioRes = await axios.get(data.url, {
                         responseType: 'arraybuffer',
@@ -1011,7 +1011,7 @@ async function connectToWhatsApp() {
                     if (data?.status !== 'success' || !data?.url) {
                         return await sock.sendMessage(from, { text: '❌ Video not found or video API failed.' }, { quoted: msg });
                     }
-                    const caption = `🎬 *VFX MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP4'}`;
+                    const caption = `🎬 *RAHUL AI MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP4'}`;
                     // Download bytes first; passing a signed Googlevideo URL directly to Baileys can fail on redirects/network restrictions.
                     const videoRes = await axios.get(data.url, {
                         responseType: 'arraybuffer',
@@ -1107,7 +1107,7 @@ async function connectToWhatsApp() {
                 const minutes = Math.floor((uptimeMs / (1000 * 60)) % 60);
                 const hours = Math.floor(uptimeMs / (1000 * 60 * 60));
                 await sock.sendMessage(from, { 
-                    text: `⏱️ *VFX MINI UPTIME*\n\nBot is running for: \`${hours} hours, ${minutes} minutes, ${seconds} seconds\`` 
+                    text: `⏱️ *RAHUL AI MINI UPTIME*\n\nBot is running for: \`${hours} hours, ${minutes} minutes, ${seconds} seconds\`` 
                 }, { quoted: msg });
             }
             else if (command === 'google' || command === 'g') {
@@ -1152,8 +1152,8 @@ async function connectToWhatsApp() {
                         quoted ? { message: quoted } : msg, 'buffer', {}
                     );
                     const sticker = new Sticker(media, {
-                        pack: 'VFX MINI',
-                        author: 'SOURAJITVFX & RAHUL AI',
+                        pack: 'RAHUL AI MINI',
+                        author: ' RAHUL AI',
                         type: StickerTypes.FULL,
                         categories: ['🤩', '🎉'],
                         quality: 70
