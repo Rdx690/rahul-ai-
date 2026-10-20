@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🔥 RAHUL AI MINI — PREMIUM PAIRING PORTAL
+   🔥 RAHUL AI MINI — PREMIUM PAIRING PORTAL (WITH DARK/LIGHT, BATTERY, ANIMATION & COPY)
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
-            * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+            * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; transition: background 0.3s, color 0.3s; }
             :root{
                 --primary:#00e5ff;
                 --secondary:#a855f7;
@@ -50,6 +50,13 @@ app.get('/', (req, res) => {
                 --border:rgba(0,229,255,0.25);
                 --text:#e2e8f0;
                 --muted:#7c8798;
+            }
+            .light-mode {
+                --bg:#f0f2f5;
+                --card:rgba(255,255,255,0.85);
+                --border:rgba(0,150,255,0.3);
+                --text:#1e293b;
+                --muted:#64748b;
             }
             html,body{height:100%;}
             body{
@@ -68,17 +75,12 @@ app.get('/', (req, res) => {
                     radial-gradient(ellipse at 85% 25%, rgba(168,85,247,0.18), transparent 55%),
                     radial-gradient(ellipse at 50% 95%, rgba(255,46,136,0.15), transparent 60%);
                 z-index:0;
-                animation:pulseBg 10s ease-in-out infinite;
-            }
-            @keyframes pulseBg{
-                0%,100%{opacity:0.85;}
-                50%{opacity:1;}
             }
             .navbar{
                 position:relative;z-index:50;
                 display:flex;align-items:center;justify-content:space-between;
                 padding:18px 32px;
-                background:rgba(8,10,20,0.75);
+                background:var(--card);
                 backdrop-filter:blur(18px);
                 border-bottom:1px solid var(--border);
             }
@@ -98,6 +100,13 @@ app.get('/', (req, res) => {
                 background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));
                 -webkit-background-clip:text;background-clip:text;
                 -webkit-text-fill-color:transparent;
+            }
+            .top-info {
+                display: flex; gap: 15px; align-items: center; font-size: 13px; font-weight: 600; color: var(--muted);
+            }
+            .theme-btn {
+                background: none; border: 1.5px solid var(--border); color: var(--text);
+                padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 14px;
             }
             .main-wrap{
                 flex:1;display:flex;align-items:center;justify-content:center;
@@ -134,7 +143,6 @@ app.get('/', (req, res) => {
                 font-family:'Orbitron',sans-serif;
                 font-size:20px;font-weight:700;
                 letter-spacing:2px;margin-bottom:8px;
-                color:#fff;
             }
             .subtitle{
                 font-size:13px;color:var(--muted);
@@ -150,18 +158,27 @@ app.get('/', (req, res) => {
                 width:100%;padding:15px 15px 15px 48px;
                 border-radius:14px;
                 border:1.5px solid rgba(0,229,255,0.2);
-                background:rgba(5,8,18,0.8);
-                color:#fff;font-size:15px;
+                background:var(--bg);
+                color:var(--text);font-size:15px;
                 outline:none;
             }
+            /* Edge Animation Button (Glow & Shimmer effect) */
             .btn-main{
                 width:100%;padding:15px;
                 border-radius:14px;border:none;
                 font-family:'Orbitron',sans-serif;
                 font-size:15px;font-weight:700;letter-spacing:2px;
-                color:#05060d;cursor:pointer;
-                background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));
+                color:#fff;cursor:pointer;
+                background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent),var(--primary));
+                background-size:300% auto;
                 box-shadow:0 0 25px rgba(0,229,255,0.5);
+                animation: edgeGlow 3s linear infinite;
+                position: relative; overflow: hidden;
+            }
+            @keyframes edgeGlow {
+                0% { background-position: 0% 50%; box-shadow: 0 0 15px var(--primary); }
+                50% { background-position: 100% 50%; box-shadow: 0 0 30px var(--secondary); }
+                100% { background-position: 0% 50%; box-shadow: 0 0 15px var(--primary); }
             }
             .code-box{
                 margin-top:22px;padding:20px;
@@ -172,13 +189,19 @@ app.get('/', (req, res) => {
             }
             .code-box h2{
                 font-family:'Orbitron',sans-serif;
-                font-size:32px;letter-spacing:8px;
+                font-size:28px;letter-spacing:6px;
                 color:var(--primary);
+                margin-bottom:12px;
+            }
+            .copy-btn {
+                padding: 8px 18px; border-radius: 8px; border: none;
+                background: var(--primary); color: #000; font-weight: bold;
+                cursor: pointer; font-size: 12px; letter-spacing: 1px;
             }
             .site-footer{
                 padding:16px 24px;text-align:center;
                 font-size:11px;color:var(--muted);
-                border-top:1px solid rgba(255,255,255,0.04);
+                border-top:1px solid var(--border);
             }
         </style>
     </head>
@@ -186,7 +209,12 @@ app.get('/', (req, res) => {
         <nav class="navbar">
             <div class="nav-brand">
                 <div class="brand-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                <div class="brand-text">RAHUL AI MINI<small style="display:block;font-size:9px;letter-spacing:4px;color:#7c8798;">PREMIUM PAIRING</small></div>
+                <div class="brand-text">RAHUL AI MINI<small style="display:block;font-size:9px;letter-spacing:4px;color:var(--muted);">PREMIUM PAIRING</small></div>
+            </div>
+            <div class="top-info">
+                <span id="liveTime"><i class="fa-regular fa-clock"></i> 00:00:00</span>
+                <span id="batteryStatus"><i class="fa-solid fa-battery-full"></i> Loading...</span>
+                <button class="theme-btn" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="themeIcon"></i></button>
             </div>
         </nav>
         <div class="main-wrap">
@@ -205,13 +233,46 @@ app.get('/', (req, res) => {
                     <i class="fa-solid fa-bolt"></i> GET PAIRING CODE
                 </button>
                 <div id="codeContainer" class="code-box">
-                    <div style="font-size:11px;color:var(--primary);margin-bottom:10px;">YOUR PAIRING CODE</div>
+                    <div style="font-size:11px;color:var(--primary);margin-bottom:8px;">YOUR PAIRING CODE</div>
                     <h2 id="pairCode">-----</h2>
+                    <button class="copy-btn" onclick="copyCode()"><i class="fa-solid fa-copy"></i> COPY CODE</button>
                 </div>
             </div>
         </div>
         <footer class="site-footer">POWERED BY <span>RAHUL AI MINI</span> • DEVELOPED BY <span>RAHUL MASTER</span></footer>
         <script>
+            // Live Time & Battery Status
+            setInterval(() => {
+                const now = new Date();
+                document.getElementById('liveTime').innerHTML = '<i class="fa-regular fa-clock"></i> ' + now.toLocaleTimeString();
+            }, 1000);
+
+            if (navigator.getBattery) {
+                navigator.getBattery().then(battery => {
+                    function updateBattery() {
+                        const level = Math.round(battery.level * 100);
+                        document.getElementById('batteryStatus').innerHTML = '<i class="fa-solid fa-battery-three-quarters"></i> ' + level + '%';
+                    }
+                    updateBattery();
+                });
+            } else {
+                document.getElementById('batteryStatus').style.display = 'none';
+            }
+
+            // Dark/Light Mode Toggle
+            function toggleTheme() {
+                document.body.classList.toggle('light-mode');
+                const icon = document.getElementById('themeIcon');
+                icon.className = document.body.classList.contains('light-mode') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            }
+
+            // Copy Pairing Code Function
+            function copyCode() {
+                const codeText = document.getElementById('pairCode').innerText;
+                navigator.clipboard.writeText(codeText);
+                alert('✅ Pairing Code Copied: ' + codeText);
+            }
+
             async function getPairingCode() {
                 const phone = document.getElementById('phone').value.trim();
                 if(!phone) return alert('Please enter phone number');
@@ -259,7 +320,7 @@ app.listen(PORT, () => {
 });
 
 /* ============================================================
-   ⚙️ BOT SETTINGS & FEATURES (UPDATED WITH ALL REQUESTED FEATURES)
+   ⚙️ BOT SETTINGS & FEATURES (EXPANDED FULL MENU & TOOLS)
    ============================================================ */
 const startTime = Date.now();
 let isAlwaysOnline = true;
@@ -471,7 +532,7 @@ async function connectToWhatsApp() {
                     await sock.sendMessage(from, { text: `⚡ *Pong!* \`${Date.now() - start} ms\`` }, { quoted: msg });
                 }
                 
-                // --- MENU STYLES (MENU, MENU2, MENU3) ---
+                // --- EXPANDED MAIN MENU (MENU) ---
                 else if (command === 'menu' || command === 'help') {
                     const menuText = 
 `╭━━━『 ✦ RAHUL AI MINI ✦ 』━━━╮
@@ -479,23 +540,45 @@ async function connectToWhatsApp() {
 ┃ 👑 *OWNER:* RAHUL MASTER
 ┃ ⌨️ *PREFIX:* ${PREFIX}
 ┃ 🟢 *STATUS:* ONLINE
+┃ ⏱️ *UPTIME:* ${Math.floor(process.uptime() / 60)} Minutes
 ╰━━━━━━━━━━━━━━━━━━━━━━╯
+╭━━〔 ✨ AI & FUN COMMANDS ✨ 〕━━╮
 ┃ ◈ ${PREFIX}ai <text>
-┃ ◈ ${PREFIX}play <song>
+┃ ◈ ${PREFIX}truth
+┃ ◈ ${PREFIX}dare
+┃ ◈ ${PREFIX}joke
+┃ ◈ ${PREFIX}fact
+╰━━━━━━━━━━━━━━━━━━━━━━╯
+╭━━〔 🎬 MEDIA & DOWNLOADS 🎬 〕━━╮
+┃ ◈ ${PREFIX}play <song name>
 ┃ ◈ ${PREFIX}insta <url>
 ┃ ◈ ${PREFIX}tourl (reply media)
 ┃ ◈ ${PREFIX}tomp3 (reply video)
+┃ ◈ ${PREFIX}sticker (reply image)
+┃ ◈ ${PREFIX}qr <text>
+╰━━━━━━━━━━━━━━━━━━━━━━╯
+╭━━〔 ⚙️ SETTINGS & CONFIG ⚙️ 〕━━╮
 ┃ ◈ ${PREFIX}settings
+┃ ◈ ${PREFIX}alwaysonline on/off
+┃ ◈ ${PREFIX}autostatus on/off
+┃ ◈ ${PREFIX}autoreact on/off
+┃ ◈ ${PREFIX}autodl on/off
+┃ ◈ ${PREFIX}setprefix <symbol>
+┃ ◈ ${PREFIX}owner
 ╰━━━━━━━━━━━━━━━━━━━━━━╯
 ⚡ *Powered by RAHUL MASTER*`;
                     await sock.sendMessage(from, { text: menuText }, { quoted: msg });
                 }
+                
+                // --- MENU STYLE 2 ---
                 else if (command === 'menu2') {
-                    const menu2Text = `🌟 *RAHUL AI MINI - STYLE 2* 🌟\n\n1️⃣ ${PREFIX}ai - AI Assistant\n2️⃣ ${PREFIX}play - Download Music\n3️⃣ ${PREFIX}tourl - Upload Media to Link\n4️⃣ ${PREFIX}tomp3 - Convert Video to MP3\n5️⃣ ${PREFIX}settings - Bot Configuration\n\n*Owner: RAHUL MASTER*`;
+                    const menu2Text = `🌟 *RAHUL AI MINI - QUICK MENU* 🌟\n\n🤖 *AI Assistant:* \`${PREFIX}ai\`\n🎵 *Music Downloader:* \`${PREFIX}play\`\n📥 *Instagram DL:* \`${PREFIX}insta\`\n🔗 *Media to Link:* \`${PREFIX}tourl\`\n🎧 *Video to MP3:* \`${PREFIX}tomp3\`\n⚙️ *Settings Panel:* \`${PREFIX}settings\`\n\n*Developer: RAHUL MASTER*`;
                     await sock.sendMessage(from, { text: menu2Text }, { quoted: msg });
                 }
+
+                // --- MENU STYLE 3 ---
                 else if (command === 'menu3') {
-                    const menu3Text = `🚀 *RAHUL AI MINI V3* 🚀\n\n• AI & Fun: \`${PREFIX}ai\`, \`${PREFIX}joke\`, \`${PREFIX}truth\`, \`${PREFIX}dare\`, \`${PREFIX}fact\`\n• Downloader: \`${PREFIX}play\`, \`${PREFIX}insta\`\n• Tools: \`${PREFIX}tourl\`, \`${PREFIX}tomp3\`, \`${PREFIX}qr\`, \`${PREFIX}sticker\`\n• Settings: \`${PREFIX}settings\``;
+                    const menu3Text = `🚀 *RAHUL AI MINI ADVANCED V3* 🚀\n\n• [AI] \`${PREFIX}ai\`\n• [Music] \`${PREFIX}play\`\n• [Tools] \`${PREFIX}tourl\` | \`${PREFIX}tomp3\` | \`${PREFIX}sticker\` | \`${PREFIX}qr\`\n• [Fun] \`${PREFIX}truth\` | \`${PREFIX}dare\` | \`${PREFIX}joke\` | \`${PREFIX}fact\`\n• [Config] \`${PREFIX}settings\``;
                     await sock.sendMessage(from, { text: menu3Text }, { quoted: msg });
                 }
 
@@ -576,6 +659,13 @@ async function connectToWhatsApp() {
                     } else {
                         await sock.sendMessage(from, { text: `❌ Reply to an image with \`${PREFIX}sticker\`` }, { quoted: msg });
                     }
+                }
+
+                // --- QR CODE COMMAND ---
+                else if (command === 'qr') {
+                    if (!args) return await sock.sendMessage(from, { text: `❌ Enter text! e.g. \`${PREFIX}qr Hello\`` }, { quoted: msg });
+                    const qrBuffer = await QRCode.toBuffer(args);
+                    await sock.sendMessage(from, { image: qrBuffer, caption: `🔲 QR Code for: ${args}` }, { quoted: msg });
                 }
 
                 // --- OTHER FUN COMMANDS ---
