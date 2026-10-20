@@ -5,40 +5,46 @@
 
   <br><br>
 
-  <!-- RAHUL-AI-MINI LOGO WITH RED & BLUE EDGE LIGHTING -->
-  <div align="center">
+  <!-- CUSTOM ANIMATED RED & BLUE GLOWING LOGO CONTAINER -->
+  <div style="display: inline-block; padding: 6px; border-radius: 50%; background: linear-gradient(135deg, #ff0055, #00e5ff, #ff0055); animation: borderGlow 3s linear infinite; box-shadow: 0 0 35px rgba(255, 0, 85, 0.6), 0 0 35px rgba(0, 229, 255, 0.6);">
     <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">
-      <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80" width="220" height="220" style="border-radius: 50%; border: 4px solid #00e5ff; box-shadow: 0 0 30px #ff0055, 0 0 30px #00e5ff;" alt="RAHUL-AI-MINI Logo" />
+      <img src="https://api.iconify.design/fluent-emoji-flat:robot.svg?width=140&height=140" width="140" height="140" style="border-radius: 50%; background: #05060d; padding: 20px;" alt="RAHUL-AI-MINI Logo" />
     </a>
   </div>
+
+  <style>
+    @keyframes borderGlow {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+  </style>
 
   <br><br>
 
   <!-- RED & BLUE LED ANIMATED HEADING -->
   <h1>
-    <span style="color: #00e5ff; font-weight: 900; font-size: 28px;">
+    <span style="background: linear-gradient(90deg, #ff0055, #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 30px; font-family: 'Orbitron', sans-serif;">
       ⚡ RAHUL AI MINI ⚡
     </span>
   </h1>
 
-  <p><b>Powerful, Fast & Multi-Featured WhatsApp Automation Bot</b></p>
-  <p><i>Developed with ❤️ by <b>RAHUL MASTER</b></i></p>
+  <p><b>🚀 Powerful, Fast & Multi-Featured WhatsApp Automation Bot</b></p>
+  <p><i>Developed with ❤️ by <b style="color: #00e5ff;">RAHUL MASTER</b></i></p>
 
   <br>
 
   <!-- LIVE PAIRING PORTAL BUTTON -->
   <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">
-    <img src="https://img.shields.io/badge/FREE_MINI_BOT-PAIR_NOW-00E5FF?style=for-the-badge&logo=whatsapp&logoColor=white&colorA=FF0055" alt="Pair Now Portal" />
+    <img src="https://img.shields.io/badge/FREE_MINI_BOT-PAIR_NOW_⚡-00E5FF?style=for-the-badge&logo=whatsapp&logoColor=white&colorA=FF0055" alt="Pair Now Portal" />
   </a>
 
   <br><br>
-  <hr style="border: 1px solid #00e5ff;">
+  <hr style="border: 1px solid #00e5ff; width: 60%;">
   <br>
 
   <!-- DEPLOYMENT PLATFORMS BUTTONS -->
   <h2>🚀 Deploy Platforms</h2>
-
-  <p>Choose your favorite platform to deploy <b>RAHUL AI MINI</b>:</p>
+  <p>Choose your favorite platform to deploy <b>RAHUL AI MINI</b> instantly:</p>
 
   <!-- KOYEB BUTTON -->
   <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/Rahul-Bot-Master/rahul-ai-mini&branch=main&name=rahul-ai-mini">
@@ -56,7 +62,7 @@
   </a>
 
   <br><br>
-  <hr style="border: 1px solid #ff0055;">
+  <hr style="border: 1px solid #ff0055; width: 60%;">
   <br>
 
   <!-- BOT FEATURES LIST -->
