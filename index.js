@@ -361,7 +361,17 @@ async function connectToWhatsApp() {
         sock.ev.on('connection.update', async (update) => {
             const { connection, lastDisconnect } = update;
             if (connection === 'close') {
-                const shouldReconnect = lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut;
+                const statusCode = lastDisconnect?.error?.output?.statusCode;
+                const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
+
+                // 🔴 FIX: Agar logged out ya session invalid ho gaya hai toh session folder clear kar do
+                if (statusCode === DisconnectReason.loggedOut) {
+                    console.log('⚠️ Device logged out or session corrupted. Cleaning session folder...');
+                    if (fs.existsSync(authDir)) {
+                        fs.rmSync(authDir, { recursive: true, force: true });
+                    }
+                }
+
                 if (shouldReconnect && !reconnectTimer) {
                     reconnectTimer = setTimeout(() => {
                         reconnectTimer = null;
