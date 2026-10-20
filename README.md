@@ -1,11 +1,13 @@
 <div align="center">
 
-<!-- RAHUL AI MINI LOGO -->
-<img src="https://telegra.ph/file/a8b981cae936c6460fae2.png" width="180" height="180" style="border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 25px #0000ff;" alt="RAHUL-AI MINI Logo"/>
-
-# ⚡ 𝚁𝙰𝙷𝚄𝙻-𝙰𝙸 - 𝙼𝙸𝙽𝙸 ⚡
 <p align="center">
-  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=22&duration=3000&pause=1000&color=FF0000&center=true&vCenter=true&width=430&height=50&lines=WELCOME+TO+RAHUL+AI+MINI;LIGHTNING+RPG+LED+EDITION;POWERED+BY+RAHUL+MASTER" alt="Typing SVG" /></a>
+  <img src="https://capsule-render.vercel.app/api?type=wavy&height=120&color=gradient&customColorList=ff0000,0000ff,ff0000&text=⚡+RAHUL-AI-MINI+⚡&fontColor=ffffff&fontSize=30&fontAlign=50&animation=fadeIn" width="100%"/>
+</p>
+
+# <span style="color: #ff0000;">⚡</span> 𝚁𝙰𝙷𝚄𝙻-𝙰𝙸 - 𝙼𝙸𝙽𝙸 <span style="color: #0000ff;">⚡</span>
+
+<p align="center">
+  <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=24&duration=3000&pause=1000&color=FF0000&center=true&vCenter=true&width=500&height=60&lines=WELCOME+TO+RAHUL+AI+MINI;FULL+RPG+LED+LIGHTNING+EDITION;POWERED+BY+RAHUL+MASTER" alt="Typing SVG" /></a>
 </p>
 
 </div>
@@ -20,17 +22,21 @@
 
 ---
 
-## 🚀 **DEPLOYMENT PLATFORMS**
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506587ee.gif" width="100%">
+</p>
+
+## 🚀 **DEPLOYMENT PLATFORMS (LED LIGHTNING BUTTONS)**
 
 <p align="center">
   <!-- Koyeb Deploy Button -->
   <a href="https://app.koyeb.com/deploy?type=git&repository=https://github.com/Rahul-Bot-Master/rahul-ai-mini&branch=main">
-    <img src="https://img.shields.io/badge/DEPLOY_TO_KOYEB-FF0000?style=for-the-badge&logo=koyeb&logoColor=0000FF" alt="Deploy to Koyeb"/>
+    <img src="https://img.shields.io/badge/🔥_DEPLOY_TO_KOYEB-FF0000?style=for-the-badge&logo=koyeb&logoColor=0000FF" style="box-shadow: 0 0 15px #ff0000; border-radius: 8px;" alt="Deploy to Koyeb"/>
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <!-- Railway Deploy Button -->
   <a href="https://railway.app/new">
-    <img src="https://railway.app/button.svg" width="150" alt="Deploy on Railway"/>
+    <img src="https://railway.app/badge.svg?style=for-the-badge&color=0000FF" style="box-shadow: 0 0 15px #0000ff; border-radius: 8px;" alt="Deploy on Railway"/>
   </a>
 </p>
 
@@ -40,31 +46,26 @@
 
 <p align="center">
   <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">
-    <img src="https://img.shields.io/badge/🔥_CLICK_HERE_TO_VISIT_FREE_MINI_BOT_SITE-0000FF?style=for-the-badge&logo=google-chrome&logoColor=FF0000" alt="Free Mini Bot Site"/>
+    <img src="https://img.shields.io/badge/⚡_VISIT_FREE_MINI_BOT_SITE_⚡-FF0000?style=for-the-badge&logo=google-chrome&logoColor=0000FF" style="box-shadow: 0 0 20px #ff0000; border-radius: 10px;" alt="Free Mini Bot Site"/>
   </a>
 </p>
 
 ---
 
-## 👑 **DEVELOPER & OWNER**
-
-<p align="center">
-  <img src="https://telegra.ph/file/rahul-dp.jpg" width="140" height="140" style="border-radius: 50%; border: 3px solid #0000ff; box-shadow: 0 0 15px #ff0000;" alt="WhatsApp Profile">
-</p>
+## 👑 **DEVELOPER & CONTACT**
 
 <p align="center">
   <a href="https://wa.me/919356730236?text=Hello%20Rahul%20Master,%20I%20need%20Rahul%20AI%20Mini%20Bot!">
-    <img src="https://img.shields.io/badge/WHATSAPP-9356730236-FF0000?style=for-the-badge&logo=whatsapp&logoColor=0000FF" alt="WhatsApp">
+    <img src="https://img.shields.io/badge/WHATSAPP_CONTACT_+919356730236-0000FF?style=for-the-badge&logo=whatsapp&logoColor=FF0000" style="box-shadow: 0 0 15px #0000ff; border-radius: 8px;" alt="WhatsApp">
   </a>
 </p>
 
 ---
 
-### ⚡ **RPG LED LIGHTNING EFFECT & THEME**
-- **Primary Glow Theme:** 🔴 **Red** & 🔵 **Blue** LED Neon Glow.
-- **Owner / Creator:** **Rahul Master** (`𝚁𝙰𝙷𝚄𝙻-𝙼𝙰𝚂𝚃𝙴𝚁`)
-- **Contact Number:** `+91 9356730236`
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506587ee.gif" width="100%">
+</p>
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=wavy&height=100&color=gradient&customColorList=ff0000,0000ff,ff0000&text=RAHUL-AI-MINI-LED-RPG&fontColor=ffffff&fontSize=20" width="100%"/>
+  <img src="https://capsule-render.vercel.app/api?type=venom&height=100&color=gradient&customColorList=ff0000,0000ff,ff0000&text=RAHUL-AI-MINI-RPG-EFFECT&fontColor=ffffff&fontSize=22" width="100%"/>
 </p>
