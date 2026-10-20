@@ -61,6 +61,7 @@ app.get('/', (req, res) => {
                 display:flex;
                 flex-direction:column;
             }
+            /* VFX Background */
             body::before{
                 content:'';position:fixed;inset:0;
                 background:
@@ -74,6 +75,7 @@ app.get('/', (req, res) => {
                 0%,100%{opacity:0.85;}
                 50%{opacity:1;}
             }
+            /* Animated grid */
             body::after{
                 content:'';position:fixed;inset:0;
                 background-image:
@@ -89,6 +91,7 @@ app.get('/', (req, res) => {
                 0%{background-position:0 0;}
                 100%{background-position:50px 50px;}
             }
+            /* Floating particles */
             .particles{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
             .particle{
                 position:absolute;width:3px;height:3px;border-radius:50%;
@@ -101,6 +104,8 @@ app.get('/', (req, res) => {
                 90%{opacity:1;}
                 100%{transform:translateY(-10vh) scale(1.2);opacity:0;}
             }
+
+            /* ============ NAVBAR ============ */
             .navbar{
                 position:relative;z-index:50;
                 display:flex;align-items:center;justify-content:space-between;
@@ -154,10 +159,13 @@ app.get('/', (req, res) => {
                 background:rgba(0,229,255,0.08);
                 box-shadow:0 0 15px rgba(0,229,255,0.15);
             }
+            .nav-links a i{font-size:13px;}
             .hamburger{
                 display:none;background:none;border:none;color:var(--primary);
                 font-size:22px;cursor:pointer;padding:8px;
             }
+
+            /* ============ MAIN CARD ============ */
             .main-wrap{
                 flex:1;display:flex;align-items:center;justify-content:center;
                 padding:40px 20px;position:relative;z-index:10;
@@ -184,12 +192,14 @@ app.get('/', (req, res) => {
                 0%{opacity:0;transform:translateY(40px) scale(.95);}
                 100%{opacity:1;transform:translateY(0) scale(1);}
             }
+            /* Top gradient line */
             .card::before{
                 content:'';position:absolute;top:0;left:20%;right:20%;height:2px;
                 background:linear-gradient(90deg,transparent,var(--primary),var(--secondary),transparent);
                 border-radius:2px;
                 box-shadow:0 0 15px var(--primary);
             }
+
             .logo-badge{
                 display:inline-flex;align-items:center;justify-content:center;
                 gap:10px;
@@ -212,6 +222,7 @@ app.get('/', (req, res) => {
                 -webkit-background-clip:text;background-clip:text;
                 -webkit-text-fill-color:transparent;
             }
+
             h1{
                 font-family:'Orbitron',sans-serif;
                 font-size:20px;font-weight:700;
@@ -222,6 +233,7 @@ app.get('/', (req, res) => {
                 font-size:13px;color:var(--muted);
                 margin-bottom:26px;line-height:1.5;
             }
+
             .input-group{position:relative;margin-bottom:18px;}
             .input-group i{
                 position:absolute;left:18px;top:50%;
@@ -245,6 +257,7 @@ app.get('/', (req, res) => {
                 background:rgba(5,8,18,0.95);
             }
             input[type="text"]::placeholder{color:#4a5568;}
+
             .btn-main{
                 width:100%;padding:15px;
                 border-radius:14px;border:none;
@@ -268,6 +281,7 @@ app.get('/', (req, res) => {
             }
             .btn-main:active{transform:translateY(0);}
             .btn-main i{margin-right:8px;}
+
             .code-box{
                 margin-top:22px;padding:20px;
                 background:rgba(0,229,255,0.05);
@@ -297,6 +311,8 @@ app.get('/', (req, res) => {
                 0%,100%{text-shadow:0 0 20px var(--primary),0 0 40px var(--secondary);}
                 50%{text-shadow:0 0 30px var(--primary),0 0 60px var(--accent);}
             }
+
+            /* Developer credits */
             .dev-credits{
                 margin-top:26px;padding-top:20px;
                 border-top:1px solid rgba(255,255,255,0.06);
@@ -315,6 +331,8 @@ app.get('/', (req, res) => {
                 border:1px solid rgba(0,229,255,0.25);
             }
             .dev b{color:var(--primary);font-weight:600;letter-spacing:.5px;}
+
+            /* ============ FOOTER ============ */
             .site-footer{
                 position:relative;z-index:10;
                 padding:16px 24px;
@@ -325,6 +343,8 @@ app.get('/', (req, res) => {
                 border-top:1px solid rgba(255,255,255,0.04);
             }
             .site-footer span{color:var(--primary);font-weight:600;}
+
+            /* ============ RESPONSIVE ============ */
             @media (max-width:768px){
                 .navbar{padding:14px 18px;}
                 .nav-links{
@@ -351,8 +371,10 @@ app.get('/', (req, res) => {
     </head>
     <body>
 
+        <!-- Floating Particles -->
         <div class="particles" id="particles"></div>
 
+        <!-- ============ NAVBAR ============ -->
         <nav class="navbar">
             <div class="nav-brand">
                 <div class="brand-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
@@ -370,6 +392,7 @@ app.get('/', (req, res) => {
             <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
         </nav>
 
+        <!-- ============ MAIN CARD ============ -->
         <div class="main-wrap">
             <div class="card" id="mainCard">
                 <div class="logo-badge">
@@ -401,11 +424,13 @@ app.get('/', (req, res) => {
             </div>
         </div>
 
+        <!-- ============ FOOTER ============ -->
         <footer class="site-footer">
             POWERED BY <span>RAHUL AI MINI</span> • DEVELOPED BY <span>RAHUL-MASTER</span> &amp; <span>RAHUL AI MINI</span>
         </footer>
 
         <script>
+            // ---------- Floating Particles ----------
             (function(){
                 const container = document.getElementById('particles');
                 const colors = ['#00e5ff','#a855f7','#ff2e88'];
@@ -422,6 +447,7 @@ app.get('/', (req, res) => {
                 }
             })();
 
+            // ---------- Mobile Nav ----------
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('navLinks');
             hamburger.addEventListener('click', () => {
@@ -431,6 +457,7 @@ app.get('/', (req, res) => {
                     : '<i class="fa-solid fa-bars"></i>';
             });
 
+            // ---------- 3D Tilt Effect on Card ----------
             const card = document.getElementById('mainCard');
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
@@ -442,6 +469,7 @@ app.get('/', (req, res) => {
                 card.style.transform = 'rotateY(0) rotateX(0)';
             });
 
+            // ---------- Pairing Logic (same-to-same) ----------
             async function getPairingCode() {
                 const phone = document.getElementById('phone').value.trim();
                 if(!phone) return alert('Please enter phone number');
@@ -471,6 +499,7 @@ app.get('/', (req, res) => {
     `);
 });
 
+// Endpoint to generate Pairing Code (unchanged)
 app.get('/pair', async (req, res) => {
     let phone = req.query.number || '919356730236';
     let cleanedNumber = phone.replace(/[^0-9]/g, '');
@@ -497,10 +526,14 @@ app.listen(PORT, () => {
     console.log(`🌐 RAHUL AI MINI Web Server running on port ${PORT}`);
 });
 
+/* ============================================================
+   ⚙️ BOT SETTINGS
+   ============================================================ */
 const startTime = Date.now();
 let isAlwaysOnline = String(process.env.ALWAYS_ONLINE || 'false').toLowerCase() === 'true';
 let isAutoStatusView = true;
 
+// Refresh WhatsApp presence periodically while Always Online is enabled.
 let presenceHeartbeat = null;
 function syncAlwaysOnlineHeartbeat() {
     if (presenceHeartbeat) {
@@ -550,6 +583,8 @@ let isConnecting = false;
 async function getPersistentAuthDir() {
     const localDir = path.resolve('session');
     const volumeDir = '/data';
+    // Railway volume is mounted at /data. Copy the existing session once,
+    // before switching auth storage, so the first persistent deploy can reuse it.
     if (fs.existsSync(volumeDir)) {
         const persistentDir = path.join(volumeDir, 'session');
         fs.mkdirSync(persistentDir, { recursive: true });
@@ -569,39 +604,39 @@ async function connectToWhatsApp() {
     if (isConnecting) return;
     isConnecting = true;
     try {
-        const authDir = await getPersistentAuthDir();
-        const { state, saveCreds } = await useMultiFileAuthState(authDir);
-        const { version } = await fetchLatestBaileysVersion();
+    const authDir = await getPersistentAuthDir();
+    const { state, saveCreds } = await useMultiFileAuthState(authDir);
+    const { version } = await fetchLatestBaileysVersion();
 
-        sock = makeWASocket({
-            version,
-            logger: pino({ level: 'silent' }),
-            printQRInTerminal: false,
-            auth: state,
-            browser: Browsers.ubuntu("Chrome")
-        });
+    sock = makeWASocket({
+        version,
+        logger: pino({ level: 'silent' }),
+        printQRInTerminal: false,
+        auth: state,
+        browser: Browsers.ubuntu("Chrome")
+    });
 
-        sock.ev.on('creds.update', saveCreds);
+    sock.ev.on('creds.update', saveCreds);
 
-        sock.ev.on('connection.update', async (update) => {
-            const { connection, lastDisconnect } = update;
-            if (connection === 'close') {
-                const statusCode = lastDisconnect?.error?.output?.statusCode;
-                const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
-                console.log('⚠️ Connection closed. Status:', statusCode, 'Reconnecting:', shouldReconnect);
-                if (shouldReconnect && !reconnectTimer) {
-                    reconnectTimer = setTimeout(() => {
-                        reconnectTimer = null;
-                        connectToWhatsApp().catch(err => console.error('Reconnect error:', err.message));
-                    }, 3000);
-                }
-            } else if (connection === 'open') {
-                console.log('\n==================================================');
-                console.log('✅ RAHUL MINI IS ONLINE & CONNECTED SUCCESSFULLY!');
-                console.log('==================================================\n');
-                try {
-                    const userJid = sock.user.id.split(':')[0] + '@s.whatsapp.net';
-                    const startMessage = 
+    sock.ev.on('connection.update', async (update) => {
+        const { connection, lastDisconnect } = update;
+        if (connection === 'close') {
+            const statusCode = lastDisconnect?.error?.output?.statusCode;
+            const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
+            console.log('⚠️ Connection closed. Status:', statusCode, 'Reconnecting:', shouldReconnect);
+            if (shouldReconnect && !reconnectTimer) {
+                reconnectTimer = setTimeout(() => {
+                    reconnectTimer = null;
+                    connectToWhatsApp().catch(err => console.error('Reconnect error:', err.message));
+                }, 3000);
+            }
+        } else if (connection === 'open') {
+            console.log('\n==================================================');
+            console.log('✅ RAHUL MINI IS ONLINE & CONNECTED SUCCESSFULLY!');
+            console.log('==================================================\n');
+            try {
+                const userJid = sock.user.id.split(':')[0] + '@s.whatsapp.net';
+                const startMessage = 
 `🔴 *RAHUL MINI CONNECTED SUCCESSFULLY!* ⚡
 
 👨‍💻 *Developers:* RAHUL-MASTER & RAHUL AI
@@ -616,559 +651,562 @@ async function connectToWhatsApp() {
 
 ⚙️ *Powered by Rahul Master*`;
 
-                    await sock.sendMessage(userJid, { text: startMessage });
-                } catch (err) {
-                    console.error("Start Message Send Error:", err);
-                }
+                await sock.sendMessage(userJid, { text: startMessage });
+            } catch (err) {
+                console.error("Start Message Send Error:", err);
             }
-        });
+        }
+    });
 
-        sock.ev.on('messages.upsert', async (m) => {
-            try {
-                const msg = m.messages[0];
-                if (!msg.message) return;
+    sock.ev.on('messages.upsert', async (m) => {
+        try {
+            const msg = m.messages[0];
+            if (!msg.message) return;
 
-                const from = msg.key.remoteJid;
-                const text = msg.message.conversation || msg.message.extendedTextMessage?.text || msg.message.imageMessage?.caption || msg.message.videoMessage?.caption || '';
+            const from = msg.key.remoteJid;
+            const text = msg.message.conversation || msg.message.extendedTextMessage?.text || msg.message.imageMessage?.caption || msg.message.videoMessage?.caption || '';
 
-                if (isAutoReact && !msg.key.fromMe && from !== 'status@broadcast') {
-                    const emojis = ['❤️', '🔥', '⚡', '🤖', '👍', '⭐', '✨'];
-                    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-                    await sock.sendMessage(from, { react: { text: randomEmoji, key: msg.key } });
-                }
+            if (isAutoReact && !msg.key.fromMe && from !== 'status@broadcast') {
+                const emojis = ['❤️', '🔥', '⚡', '🤖', '👍', '⭐', '✨'];
+                const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                await sock.sendMessage(from, { react: { text: randomEmoji, key: msg.key } });
+            }
 
-                if (isAlwaysOnline && from) {
-                    await sock.sendPresenceUpdate('available', from);
-                }
+            if (isAlwaysOnline && from) {
+                await sock.sendPresenceUpdate('available', from);
+            }
 
-                if (msg.key.remoteJid === 'status@broadcast') {
-                    if (isAutoStatusView) await sock.readMessages([msg.key]);
-                    return;
-                }
+            if (msg.key.remoteJid === 'status@broadcast') {
+                if (isAutoStatusView) await sock.readMessages([msg.key]);
+                return;
+            }
 
-                if (isAutoDL && !text.startsWith(PREFIX)) {
-                    const urlMatch = text.match(/(https?:\/\/[^\s]+)/g);
-                    if (urlMatch) {
-                        const url = urlMatch[0];
-                        if (url.includes('instagram.com')) {
-                            try {
-                                await sock.sendMessage(from, { text: '📸 *Instagram AutoDL:* Downloading media...' }, { quoted: msg });
-                                const res = await axios.get(`https://api.sayan-nexuswork.workers.dev/insta?url=${encodeURIComponent(url)}`, { timeout: 30000 });
-                                const data = res.data;
-                                const mediaUrl = data?.url || data?.urls?.[0];
-                                if (data?.status === 'success' && mediaUrl) {
-                                    if (data.type === 'image' || /\.jpe?g(\?|$)/i.test(mediaUrl) || /\.png(\?|$)/i.test(mediaUrl)) await sock.sendMessage(from, { image: { url: mediaUrl }, caption: '' }, { quoted: msg });
-                                    else await sock.sendMessage(from, { video: { url: mediaUrl }, caption: '' }, { quoted: msg });
-                                    return;
-                                }
-                            } catch (e) { console.error('Instagram AutoDL error:', e.message); }
-                        } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
-                            try {
-                                await sock.sendMessage(from, { text: '🎬 *YouTube AutoDL:* Downloading video...' }, { quoted: msg });
-                                const res = await axios.get(`https://api.sayan-nexuswork.workers.dev/video?query=${encodeURIComponent(url)}`, { timeout: 30000 });
-                                const data = res.data;
-                                if (data?.status === 'success' && data?.url) {
-                                    await sock.sendMessage(from, { video: { url: data.url }, caption: `🎬 *${data.title \vert{}\vert{} 'VFX MINI Video'}*\n🎞️ Quality: ${data.quality || 'MP4'}` }, { quoted: msg });
-                                    return;
-                                }
-                            } catch (e) { console.error('YouTube AutoDL error:', e.message); }
-                        } else if (url.includes('facebook.com') || url.includes('fb.watch') || url.includes('tiktok.com')) {
-                            await sock.sendMessage(from, { text: '🚀 *Fast AutoDL:* Downloading video...' }, { quoted: msg });
-                            const videoUrl = await getFastVideoUrl(url);
-                            if (videoUrl) {
-                                await sock.sendMessage(from, { video: { url: videoUrl }, caption: '⚡ *RAHUL AI MINI Fast AutoDL Success!*' }, { quoted: msg });
+            if (isAutoDL && !text.startsWith(PREFIX)) {
+                const urlMatch = text.match(/(https?:\/\/[^\s]+)/g);
+                if (urlMatch) {
+                    const url = urlMatch[0];
+                    if (url.includes('instagram.com')) {
+                        try {
+                            await sock.sendMessage(from, { text: '📸 *Instagram AutoDL:* Downloading media...' }, { quoted: msg });
+                            const res = await axios.get(`https://api.sayan-nexuswork.workers.dev/insta?url=${encodeURIComponent(url)}`, { timeout: 30000 });
+                            const data = res.data;
+                            const mediaUrl = data?.url || data?.urls?.[0];
+                            if (data?.status === 'success' && mediaUrl) {
+                                if (data.type === 'image' || /\.jpe?g(\?|$)/i.test(mediaUrl) || /\.png(\?|$)/i.test(mediaUrl)) await sock.sendMessage(from, { image: { url: mediaUrl }, caption: '' }, { quoted: msg });
+                                else await sock.sendMessage(from, { video: { url: mediaUrl }, caption: '' }, { quoted: msg });
                                 return;
                             }
-                        }
-                        await sock.sendMessage(from, { text: '❌ Download failed. Make sure the post is public and try again.' }, { quoted: msg });
-                    }
-                }
-
-                const isGroup = from.endsWith('@g.us');
-                const isCmd = text.startsWith(PREFIX);
-                const body = isCmd ? text.slice(PREFIX.length).trim() : text.trim();
-                const command = body.toLowerCase().split(' ')[0];
-                const args = body.split(' ').slice(1).join(' ');
-
-                const contextInfo = msg.message.extendedTextMessage?.contextInfo;
-                if (contextInfo?.quotedMessage) {
-                    const quotedMsg = contextInfo.quotedMessage;
-                    const isStatusReply = contextInfo.remoteJid === 'status@broadcast';
-                    const triggerWords = ['send', 'send me', 'dya', 'pathva', 'dakhva', 'sənd', 'पाठव', 'दे'];
-                    const userText = text.trim().toLowerCase();
-
-                    if (isStatusReply && triggerWords.some(word => userText.includes(word))) {
-                        await sock.sendMessage(from, { text: '⏳ Status send karat aahe...' }, { quoted: msg });
+                        } catch (e) { console.error('Instagram AutoDL error:', e.message); }
+                    } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
                         try {
-                            const mediaBuffer = await downloadMediaMessage(
-                                { message: quotedMsg }, 'buffer', {}
-                            );
-                            if (quotedMsg.videoMessage) {
-                                await sock.sendMessage(from, {
-                                    video: mediaBuffer,
-                                    caption: quotedMsg.videoMessage.caption || '🎬 *Here is your status video!*',
-                                    mimetype: 'video/mp4'
-                                }, { quoted: msg });
-                            } else if (quotedMsg.imageMessage) {
-                                await sock.sendMessage(from, {
-                                    image: mediaBuffer,
-                                    caption: quotedMsg.imageMessage.caption || '🖼️ *Here is your status image!*'
-                                }, { quoted: msg });
+                            await sock.sendMessage(from, { text: '🎬 *YouTube AutoDL:* Downloading video...' }, { quoted: msg });
+                            const res = await axios.get(`https://api.sayan-nexuswork.workers.dev/video?query=${encodeURIComponent(url)}`, { timeout: 30000 });
+                            const data = res.data;
+                            if (data?.status === 'success' && data?.url) {
+                                await sock.sendMessage(from, { video: { url: data.url }, caption: `🎬 *${data.title || 'VFX MINI Video'}*\n🎞️ Quality: ${data.quality || 'MP4'}` }, { quoted: msg });
+                                return;
                             }
-                        } catch (err) {
-                            console.error('Status Send Error:', err);
-                            await sock.sendMessage(from, { text: '❌ Status download karun pathvnyat adchan aali.' }, { quoted: msg });
+                        } catch (e) { console.error('YouTube AutoDL error:', e.message); }
+                    } else if (url.includes('facebook.com') || url.includes('fb.watch') || url.includes('tiktok.com')) {
+                        await sock.sendMessage(from, { text: '🚀 *Fast AutoDL:* Downloading video...' }, { quoted: msg });
+                        const videoUrl = await getFastVideoUrl(url);
+                        if (videoUrl) {
+                            await sock.sendMessage(from, { video: { url: videoUrl }, caption: '⚡ *RAHUL AI MINI Fast AutoDL Success!*' }, { quoted: msg });
+                            return;
                         }
                     }
+                    await sock.sendMessage(from, { text: '❌ Download failed. Make sure the post is public and try again.' }, { quoted: msg });
                 }
+            }
 
-                if (!isCmd && command !== 'ping' && command !== 'menu') return;
+            const isGroup = from.endsWith('@g.us');
+            const isCmd = text.startsWith(PREFIX);
+            const body = isCmd ? text.slice(PREFIX.length).trim() : text.trim();
+            const command = body.toLowerCase().split(' ')[0];
+            const args = body.split(' ').slice(1).join(' ');
 
-                if (command === 'update' || command === 'autoupdate') {
-                    await sock.sendMessage(from, { text: '🔄 *Checking for updates & pulling latest code from GitHub...*' }, { quoted: msg });
-                    exec('git pull', async (err, stdout, stderr) => {
-                        if (err) return await sock.sendMessage(from, { text: `❌ *Update Failed:* ${err.message}` }, { quoted: msg });
-                        if (stdout.includes('Already up to date')) return await sock.sendMessage(from, { text: '✅ *RAHUL AI MINI is already on the latest version!*' }, { quoted: msg });
-                        await sock.sendMessage(from, { text: `✅ *Update Successful!*\n\n\`\`\`${stdout}\`\`\`\n\n🔄 *Restarting bot now...*` }, { quoted: msg });
-                        process.exit(0);
-                    });
-                }
-                else if (command === 'alwaysonline' || command === 'autoonline') {
-                    if (args.toLowerCase() === 'on') {
-                        isAlwaysOnline = true;
-                        syncAlwaysOnlineHeartbeat();
-                        try { await sock.sendPresenceUpdate('available'); } catch (e) {}
-                        try { await sock.sendPresenceUpdate('available', from); } catch (e) {}
-                        await sock.sendMessage(from, { text: '🟢 *Always Online Status is now ACTIVATED!*' }, { quoted: msg });
-                    } else if (args.toLowerCase() === 'off') {
-                        isAlwaysOnline = false;
-                        syncAlwaysOnlineHeartbeat();
-                        try { await sock.sendPresenceUpdate('unavailable'); } catch (e) {}
-                        try { await sock.sendPresenceUpdate('unavailable', from); } catch (e) {}
-                        await sock.sendMessage(from, { text: '🔴 *Always Online Status is now DEACTIVATED!*' }, { quoted: msg });
-                    } else {
-                        await sock.sendMessage(from, { 
-                            text: `⚙️ *Always Online Settings*\n\n🟢 On: \`${PREFIX}alwaysonline on\`\n🔴 Off: \`${PREFIX}alwaysonline off\`\n\n📌 *Status:* ${isAlwaysOnline ? '🟢 ON' : '🔴 OFF'}` 
-                        }, { quoted: msg });
-                    }
-                }
-                else if (command === 'statusview' || command === 'autostatus') {
-                    if (args.toLowerCase() === 'on') {
-                        isAutoStatusView = true;
-                        await sock.sendMessage(from, { text: '🟢 *Auto Status View is now ACTIVATED!*' }, { quoted: msg });
-                    } else if (args.toLowerCase() === 'off') {
-                        isAutoStatusView = false;
-                        await sock.sendMessage(from, { text: '🔴 *Auto Status View is now DEACTIVATED!*' }, { quoted: msg });
-                    } else {
-                        await sock.sendMessage(from, { 
-                            text: `👀 *Auto Status View Settings*\n\n🟢 On: \`${PREFIX}statusview on\`\n🔴 Off: \`${PREFIX}statusview off\`\n\n📌 *Status:* ${isAutoStatusView ? '🟢 ON' : '🔴 OFF'}` 
-                        }, { quoted: msg });
-                    }
-                }
-                else if (command === 'autoreact') {
-                    if (args.toLowerCase() === 'on') {
-                        isAutoReact = true;
-                        await sock.sendMessage(from, { text: '❤️ *Auto React is now ACTIVATED!*' }, { quoted: msg });
-                    } else if (args.toLowerCase() === 'off') {
-                        isAutoReact = false;
-                        await sock.sendMessage(from, { text: '🖤 *Auto React is now DEACTIVATED!*' }, { quoted: msg });
-                    } else {
-                        await sock.sendMessage(from, { text: `❤️ *Auto React Status:* ${isAutoReact ? 'ON' : 'OFF'}\nUse: \`${PREFIX}autoreact on/off\`` }, { quoted: msg });
-                    }
-                }
-                else if (command === 'autodl') {
-                    if (args.toLowerCase() === 'on') {
-                        isAutoDL = true;
-                        await sock.sendMessage(from, { text: '📥 *Auto DL (All Video Downloader) is now ACTIVATED!*' }, { quoted: msg });
-                    } else if (args.toLowerCase() === 'off') {
-                        isAutoDL = false;
-                        await sock.sendMessage(from, { text: '📤 *Auto DL is now DEACTIVATED!*' }, { quoted: msg });
-                    } else {
-                        await sock.sendMessage(from, { text: `📥 *Auto DL Status:* ${isAutoDL ? 'ON' : 'OFF'}\nUse: \`${PREFIX}autodl on/off\`` }, { quoted: msg });
-                    }
-                }
-                else if (command === 'setprefix' || command === 'prefix') {
-                    if (!args) return await sock.sendMessage(from, { text: `⚙️ *Current Prefix:* \`${PREFIX}\`\n\nउदा. \`${PREFIX}setprefix !\` लिहून प्रिफिक्स बदला.` }, { quoted: msg });
-                    PREFIX = args.trim();
-                    await sock.sendMessage(from, { text: `✅ *Bot Prefix successfully changed to:* \`${PREFIX}\`` }, { quoted: msg });
-                }
-                else if (command === 'ping') {
-                    const start = Date.now();
-                    await sock.sendMessage(from, { text: '🚀 Speed testing...' }, { quoted: msg });
-                    const end = Date.now();
-                    await sock.sendMessage(from, { 
-                        text: `⚡ *RAHUL AI MINI SPEED*\n\n⏱️ *Latency:* \`${end - start} ms\`\n🟢 *Status:* Active & Online` 
-                    }, { quoted: msg });
-                }
-                else if (command === 'menu' || command === 'help') {
-                    const now = new Date();
-                    const uptimeSeconds = Math.floor(process.uptime());
-                    const uptimeHours = Math.floor(uptimeSeconds / 3600);
-                    const uptimeMinutes = Math.floor((uptimeSeconds % 3600) / 60);
-                    const uptimeRemainder = uptimeSeconds % 60;
-                    const usedRam = Math.round(process.memoryUsage().rss / 1024 / 1024);
-                    const totalRam = Math.round(require('os').totalmem() / 1024 / 1024);
-                    const menuText = [
-                        '╭━━━『 ✦ RAHUL AI MINI ✦ 』━━━╮',
-                        '┃ ⚡ *ᴘʀᴇᴍɪᴜᴍ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ*',
-                        '┃ 👑 *ᴏᴡɴᴇʀ:* RAHUL-MASTER',
-                        '┃ ⌨️ *ᴘʀᴇғɪx:* ' + PREFIX,
-                        '┃ 🟢 *sᴛᴀᴛᴜs:* ' + (sock?.user ? 'ᴄᴏɴɴᴇᴄᴛᴇᴅ' : 'sᴛᴀʀᴛɪɴɢ'),
-                        '┃ ⏱️ *ᴜᴘᴛɪᴍᴇ:* ' + uptimeHours + 'h ' + uptimeMinutes + 'm ' + uptimeRemainder + 's',
-                        '┃ 🧠 *ʀᴀᴍ:* ' + usedRam + '/' + totalRam + ' MB',
-                        '┃ 📥 *ᴀᴜᴛᴏ ᴅʟ:* ' + (isAutoDL ? 'ᴏɴ' : 'ᴏғғ'),
-                        '┃ 🗓️ *ᴅᴀᴛᴇ:* ' + now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' }),
-                        '╰━━━━━━━━━━━━━━━━━━━━━━╯',
-                        '',
-                        '╭━━〔 ✨ ᴀɪ • sᴛʏʟᴇ ✨ 〕━━╮',
-                        '┃ ◈ ' + PREFIX + 'ai <text>',
-                        '┃ ◈ ' + PREFIX + 'google <query>',
-                        '┃ ◈ ' + PREFIX + 'weather <city>',
-                        '┃ ◈ ' + PREFIX + 'quote',
-                        '┃ ◈ ' + PREFIX + 'fancy <text>',
-                        '┃ ◈ ' + PREFIX + 'font <text>',
-                        '╰━━━━━━━━━━━━━━━━━━━━━━╯',
-                        '',
-                        '╭━━〔 🎬 ᴅᴏᴡɴʟᴏᴀᴅᴇʀ 🎬 〕━━╮',
-                        '┃ ◈ ' + PREFIX + 'play <song>',
-                        '┃ ◈ ' + PREFIX + 'mp3 <song>',
-                        '┃ ◈ ' + PREFIX + 'video <name>',
-                        '┃ ◈ ' + PREFIX + 'insta <url>',
-                        '┃ ◈ ᴏᴘᴇɴ ᴘᴜʙʟɪᴄ ᴠɪᴅᴇᴏ ʟɪɴᴋ ғᴏʀ ᴀᴜᴛᴏᴅʟ',
-                        '╰━━━━━━━━━━━━━━━━━━━━━━╯',
-                        '',
-                        '╭━━〔 🧰 ᴛᴏᴏʟs 🧰 〕━━╮',
-                        '┃ ◈ ' + PREFIX + 'ping',
-                        '┃ ◈ ' + PREFIX + 'uptime',
-                        '┃ ◈ ' + PREFIX + 'calc <math>',
-                        '┃ ◈ ' + PREFIX + 'qr <text>',
-                        '┃ ◈ ' + PREFIX + 'tourl (reply media)',
-                        '┃ ◈ ' + PREFIX + 'sticker (reply image)',
-                        '╰━━━━━━━━━━━━━━━━━━━━━━╯',
-                        '',
-                        '╭━━〔 ⚙️ sᴇᴛᴛɪɴɢs ⚙️ 〕━━╮',
-                        '┃ ◈ ' + PREFIX + 'setprefix <symbol>',
-                        '┃ ◈ ' + PREFIX + 'alwaysonline on/off',
-                        '┃ ◈ ' + PREFIX + 'statusview on/off',
-                        '┃ ◈ ' + PREFIX + 'autoreact on/off',
-                        '┃ ◈ ' + PREFIX + 'autodl on/off',
-                        '┃ ◈ ' + PREFIX + 'update',
-                        '╰━━━━━━━━━━━━━━━━━━━━━━╯',
-                        '',
-                        '╭━━〔 👥 ɢʀᴏᴜᴘ ᴛᴏᴏʟs 👥 〕━━╮',
-                        '┃ ◈ ' + PREFIX + 'tagall <message>',
-                        '┃ ◈ ' + PREFIX + 'mute',
-                        '┃ ◈ ' + PREFIX + 'unmute',
-                        '╰━━━━━━━━━━━━━━━━━━━━━━╯',
-                        '',
-                        '╭━━〔 👑 ᴏᴡɴᴇʀ 👑 〕━━╮',
-                        '┃ ◈ ' + PREFIX + 'owner',
-                        '╰━━━━━━━━━━━━━━━━━━━━━━╯',
-                        '',
-                        '╰━━━『 ⚡ ᴘᴏᴡᴇʀᴇᴅ ʙʏ RAHUL MASTER 』━━━╯'
-                    ].join('\n');
-                    try {
-                        const page = await axios.get('https://ibb.co/d0prYPDW', { timeout: 12000 });
-                        const html = typeof page.data === 'string' ? page.data : '';
-                        const match = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
-                            || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
-                        const imageUrl = match?.[1]?.replace(/&amp;/g, '&');
-                        if (imageUrl) {
-                            const imageResponse = await axios.get(imageUrl, {
-                                responseType: 'arraybuffer',
-                                timeout: 15000,
-                                headers: { 'User-Agent': 'Mozilla/5.0' }
-                            });
-                            await sock.sendMessage(from, { image: Buffer.from(imageResponse.data), caption: menuText }, { quoted: msg });
-                        } else {
-                            await sock.sendMessage(from, { text: menuText }, { quoted: msg });
-                        }
-                    } catch (menuImageError) {
-                        console.error('Menu image error:', menuImageError.message);
-                        await sock.sendMessage(from, { text: menuText }, { quoted: msg });
-                    }
-                }
-                else if (command === 'fancy' || command === 'font' || command === 'fonts') {
-                    if (!args.trim()) {
-                        return await sock.sendMessage(from, {
-                            text: `✨ *RAHUL AI MINI FANCY TEXT*\n\nUse: ${PREFIX}fancy Your Text\nExample:${PREFIX}fancy RAHUL AI MINI`
-                        }, { quoted: msg });
-                    }
-                    try {
-                        const apiUrl = `https://eliteprotech-apis.zone.id/fun/font?text=${encodeURIComponent(args.trim())}`;
-                        const response = await axios.get(apiUrl, { timeout: 20000 });
-                        const styles = response.data?.results;
-                        if (response.data?.status !== true || !Array.isArray(styles) || !styles.length) {
-                            throw new Error('No font styles returned');
-                        }
-                        const lines = styles.slice(0, 35).map((item, index) =>
-                            `${index + 1}. *${String(item.name \vert{}\vert{} 'Font').replace(/([_*~])/g, '\\$1')}*\n${item.text || ''}`
-                        );
-                        const output = `✨ *RAHUL AI MINI FANCY TEXT* ✨\n\n📝 *Input:* ${args.trim()}\n\n${lines.join('\n\n')}\n\n⚡ Powered by RAHUL AI MINI`;
-                        await sock.sendMessage(from, { text: output.slice(0, 60000) }, { quoted: msg });
-                    } catch (error) {
-                        console.error('Fancy font API error:', error.message);
-                        await sock.sendMessage(from, { text: '❌ Fancy font API abhi response nahi de rahi. Thodi der baad try karo.' }, { quoted: msg });
-                    }
-                }
-                else if (command === 'play' || command === 'song') {
-                    if (!args) return await sock.sendMessage(from, { text: `❌ Song name taka! e.g. \`${PREFIX}play Blinding Lights\`` }, { quoted: msg });
-                    await sock.sendMessage(from, { text: `🎵 Searching: "${args}"...\n⚡ Preparing audio.` }, { quoted: msg });
-                    try {
-                        const api = `https://api.sayan-nexuswork.workers.dev/music?query=${encodeURIComponent(args.trim())}`;
-                        const res = await axios.get(api, { timeout: 20000 });
-                        const data = res.data;
-                        if (data?.status !== 'success' || !data?.url) {
-                            return await sock.sendMessage(from, { text: '❌ Song not found or music API failed.' }, { quoted: msg });
-                        }
-                        const title = data.title || args;
-                        const safeTitle = title.replace(/[\\/:*?"<>|]/g, '').slice(0, 80) || 'audio';
-                        const infoText = `🎵 *RAHUL AI MINI MUSIC PLAYER* 🎵\n\n📌 *Title:* ${title}\n⏱️ *Duration:* ${data.duration \vert{}\vert{} 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel \vert{}\vert{} 'Unknown'}\n🎧 *Quality:* ${data.quality || 'MP3'}`;
-                        const audioRes = await axios.get(data.url, {
-                            responseType: 'arraybuffer',
-                            timeout: 60000,
-                            maxRedirects: 5,
-                            maxContentLength: 25 * 1024 * 1024,
-                            headers: { 'User-Agent': 'Mozilla/5.0' }
-                        });
-                        const audioBuffer = Buffer.from(audioRes.data);
-                        if (!audioBuffer.length) throw new Error('Audio response was empty');
-                        await sock.sendMessage(from, {
-                            audio: audioBuffer,
-                            mimetype: 'audio/mpeg',
-                            fileName: `${safeTitle}.mp3`,
-                            ptt: false
-                        }, { quoted: msg });
-                        await sock.sendMessage(from, { text: infoText }, { quoted: msg });
-                    } catch (err) {
-                        console.error('Play audio download/send error:', err.message);
-                        const reason = err.response?.status ? `HTTP ${err.response.status}` : (err.code || err.message || 'unknown error');
-                        await sock.sendMessage(from, { text: `❌ Play failed (${reason}). Try again or use a shorter track.` }, { quoted: msg });
-                    }
-                }
-                else if (command === 'mp3' || command === 'yta') {
-                    if (!args) return await sock.sendMessage(from, { text: `❌ Song name taka! e.g. \`${PREFIX}mp3 Blinding Lights\`` }, { quoted: msg });
-                    await sock.sendMessage(from, { text: '🎵 *Downloading MP3 audio, please wait...*' }, { quoted: msg });
-                    try {
-                        const api = `https://api.sayan-nexuswork.workers.dev/music?query=${encodeURIComponent(args)}`;
-                        const res = await axios.get(api, { timeout: 30000 });
-                        const data = res.data;
-                        if (data?.status === 'success' && data?.url) {
-                            const title = data.title || 'audio';
-                            await sock.sendMessage(from, { audio: { url: data.url }, mimetype: 'audio/mpeg', ptt: false, fileName: `${title.replace(/[\\/:*?"<>|]/g, '').slice(0, 80)}.mp3` }, { quoted: msg });
-                        } else {
-                            await sock.sendMessage(from, { text: '❌ MP3 download failed. Song not found.' }, { quoted: msg });
-                        }
-                    } catch (e) {
-                        console.error('MP3 API error:', e.message);
-                        await sock.sendMessage(from, { text: '❌ Server error while downloading audio.' }, { quoted: msg });
-                    }
-                }
-                else if (command === 'video' || command === 'ytvideo') {
-                    if (!args) return await sock.sendMessage(from, { text: `❌ Video name taka! e.g. \`${PREFIX}video Tere Naam\`` }, { quoted: msg });
-                    await sock.sendMessage(from, { text: `🎬 Searching: "${args}"...\n⏳ Fetching video file, please wait.` }, { quoted: msg });
-                    try {
-                        const api = `https://api.sayan-nexuswork.workers.dev/video?query=${encodeURIComponent(args.trim())}`;
-                        const res = await axios.get(api, { timeout: 30000 });
-                        const data = res.data;
-                        if (data?.status !== 'success' || !data?.url) {
-                            return await sock.sendMessage(from, { text: '❌ Video not found or video API failed.' }, { quoted: msg });
-                        }
-                        const caption = `🎬*RAHUL AI MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration \vert{}\vert{} 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel \vert{}\vert{} 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP3'}`;
-                        const videoRes = await axios.get(data.url, {
-                            responseType: 'arraybuffer',
-                            timeout: 120000,
-                            maxRedirects: 5,
-                            maxContentLength: 80 * 1024 * 1024,
-                            headers: { 'User-Agent': 'Mozilla/5.0' }
-                        });
-                        const videoBuffer = Buffer.from(videoRes.data);
-                        if (!videoBuffer.length) throw new Error('Video response was empty');
-                        await sock.sendMessage(from, { video: videoBuffer, mimetype: 'video/mp4', caption }, { quoted: msg });
-                    } catch (e) {
-                        console.error('Video download/send error:', e.message);
-                        const reason = e.response?.status ? `HTTP ${e.response.status}` : (e.code || e.message || 'unknown error');
-                        await sock.sendMessage(from, { text: `❌ Video download failed (${reason}). Try a shorter video or retry shortly.` }, { quoted: msg });
-                    }
-                }
-                else if (command === 'insta' || command === 'instagram') {
-                    if (!args || !/instagram\.com\//i.test(args)) return await sock.sendMessage(from, { text: `❌ Instagram URL taka! e.g. \`${PREFIX}insta https://www.instagram.com/reel/URL\`` }, { quoted: msg });
-                    await sock.sendMessage(from, { text: '📥 *Downloading Instagram media...*' }, { quoted: msg });
-                    try {
-                        const api = `https://api.sayan-nexuswork.workers.dev/insta?url=${encodeURIComponent(args.trim())}`;
-                        const res = await axios.get(api, { timeout: 30000 });
-                        const data = res.data;
-                        const mediaUrl = data?.url || data?.urls?.[0];
-                        if (data?.status !== 'success' || !mediaUrl) return await sock.sendMessage(from, { text: '❌ Instagram media unavailable or API failed.' }, { quoted: msg });
-                        if (data.type === 'image' || /\.jpe?g(\?|$)/i.test(mediaUrl) || /\.png(\?|$)/i.test(mediaUrl)) {
-                            await sock.sendMessage(from, { image: { url: mediaUrl }, caption: '📸 *VFX MINI Instagram Downloader*' }, { quoted: msg });
-                        } else {
-                            await sock.sendMessage(from, { video: { url: mediaUrl }, caption: '📸 *VFX MINI Instagram Downloader*' }, { quoted: msg });
-                        }
-                    } catch (e) {
-                        console.error('Instagram API error:', e.message);
-                        await sock.sendMessage(from, { text: '❌ Instagram download failed. Check that the post is public and try again.' }, { quoted: msg });
-                    }
-                }
-                else if (command === 'tourl' || command === 'upload') {
-                    const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
-                    const isMedia = msg.message.imageMessage || msg.message.videoMessage || msg.message.documentMessage || quoted?.imageMessage || quoted?.videoMessage || quoted?.documentMessage;
-                    if (!isMedia) return await sock.sendMessage(from, { text: `❌ Konvtyahi photo, video ya file la reply karun \`${PREFIX}tourl\` type kara!` }, { quoted: msg });
-                    await sock.sendMessage(from, { text: '📤 *Uploading media to server, please wait...*' }, { quoted: msg });
+            const contextInfo = msg.message.extendedTextMessage?.contextInfo;
+            if (contextInfo?.quotedMessage) {
+                const quotedMsg = contextInfo.quotedMessage;
+                const isStatusReply = contextInfo.remoteJid === 'status@broadcast';
+                const triggerWords = ['send', 'send me', 'dya', 'pathva', 'dakhva', 'sənd', 'पाठव', 'दे'];
+                const userText = text.trim().toLowerCase();
+
+                if (isStatusReply && triggerWords.some(word => userText.includes(word))) {
+                    await sock.sendMessage(from, { text: '⏳ Status send karat aahe...' }, { quoted: msg });
                     try {
                         const mediaBuffer = await downloadMediaMessage(
-                            quoted ? { message: quoted } : msg, 'buffer', {}
+                            { message: quotedMsg }, 'buffer', {}
                         );
-                        const form = new FormData();
-                        form.append('file', mediaBuffer, { filename: 'vfx-mini-media.bin' });
-                        const uploadRes = await axios.post('https://telegra.ph/upload', form, {
-                            headers: { ...form.getHeaders() }
-                        });
-                        if (uploadRes.data && uploadRes.data[0] && uploadRes.data[0].src) {
-                            const fileUrl = 'https://telegra.ph' + uploadRes.data[0].src;
-                            await sock.sendMessage(from, { text: `🔗 *MEDIA UPLOADED SUCCESSFULLY!*\n\n📌 *URL:* ${fileUrl}` }, { quoted: msg });
-                        } else {
-                            await sock.sendMessage(from, { text: '❌ Upload fail zali. Punha prayatna kara.' }, { quoted: msg });
+                        if (quotedMsg.videoMessage) {
+                            await sock.sendMessage(from, {
+                                video: mediaBuffer,
+                                caption: quotedMsg.videoMessage.caption || '🎬 *Here is your status video!*',
+                                mimetype: 'video/mp4'
+                            }, { quoted: msg });
+                        } else if (quotedMsg.imageMessage) {
+                            await sock.sendMessage(from, {
+                                image: mediaBuffer,
+                                caption: quotedMsg.imageMessage.caption || '🖼️ *Here is your status image!*'
+                            }, { quoted: msg });
                         }
-                    } catch (e) {
-                        await sock.sendMessage(from, { text: '❌ Tourl error: ' + e.message }, { quoted: msg });
+                    } catch (err) {
+                        console.error('Status Send Error:', err);
+                        await sock.sendMessage(from, { text: '❌ Status download karun pathvnyat adchan aali.' }, { quoted: msg });
                     }
                 }
-                else if (command === 'qr') {
-                    if (!args) return await sock.sendMessage(from, { text: `❌ Text kiwa link taka! e.g. \`${PREFIX}qr Hello VFX MINI\`` }, { quoted: msg });
-                    try {
-                        const qrBuffer = await QRCode.toBuffer(args);
-                        await sock.sendMessage(from, { image: qrBuffer, caption: `🔲 *QR Code for:* ${args}` }, { quoted: msg });
-                    } catch {
-                        await sock.sendMessage(from, { text: '❌ QR Code banvnyat error aala.' }, { quoted: msg });
-                    }
-                }
-                else if (command === 'calc') {
-                    if (!args) return await sock.sendMessage(from, { text: `❌ Ganiti samikaran taka! e.g. \`${PREFIX}calc 50 + 50 * 2\`` }, { quoted: msg });
-                    try {
-                        const sanitized = args.replace(/[^0-9+\-*/().]/g, '');
-                        const result = eval(sanitized);
-                        await sock.sendMessage(from, { text: `🧮 *Calculator*\n\n❓ *Expression:* ${args}\n✅ *Answer:*${result}` }, { quoted: msg });
-                    } catch {
-                        await sock.sendMessage(from, { text: '❌ Chukiche samikaran.' }, { quoted: msg });
-                    }
-                }
-                else if (command === 'quote') {
-                    const quotesList = [
-                        "\"Yashachi survat nehami prayatnani hote.\" - VFX MINI",
-                        "\"Kasht karnyachi tayari asel, tar kontehi swapna apoorna rahat nahi.\"",
-                        "\"Aaj keleli mehanat udyache bhavishya tharavte.\"",
-                        "\"Apyash hi yashachi pahili payari aahe.\""
-                    ];
-                    const randomQuote = quotesList[Math.floor(Math.random() * quotesList.length)];
-                    await sock.sendMessage(from, { text: `💡 *Daily Quote*\n\n${randomQuote}` }, { quoted: msg });
-                }
-                else if (command === 'uptime') {
-                    const uptimeMs = Date.now() - startTime;
-                    const seconds = Math.floor((uptimeMs / 1000) % 60);
-                    const minutes = Math.floor((uptimeMs / (1000 * 60)) % 60);
-                    const hours = Math.floor(uptimeMs / (1000 * 60 * 60));
+            }
+
+            if (!isCmd && command !== 'ping' && command !== 'menu') return;
+
+            if (command === 'update' || command === 'autoupdate') {
+                await sock.sendMessage(from, { text: '🔄 *Checking for updates & pulling latest code from GitHub...*' }, { quoted: msg });
+                exec('git pull', async (err, stdout, stderr) => {
+                    if (err) return await sock.sendMessage(from, { text: `❌ *Update Failed:* ${err.message}` }, { quoted: msg });
+                    if (stdout.includes('Already up to date')) return await sock.sendMessage(from, { text: '✅ *RAHUL AI MINI is already on the latest version!*' }, { quoted: msg });
+                    await sock.sendMessage(from, { text: `✅ *Update Successful!*\n\n\`\`\`${stdout}\`\`\`\n\n🔄 *Restarting bot now...*` }, { quoted: msg });
+                    process.exit(0);
+                });
+            }
+            else if (command === 'alwaysonline' || command === 'autoonline') {
+                if (args.toLowerCase() === 'on') {
+                    isAlwaysOnline = true;
+                    syncAlwaysOnlineHeartbeat();
+                    try { await sock.sendPresenceUpdate('available'); } catch (e) {}
+                    try { await sock.sendPresenceUpdate('available', from); } catch (e) {}
+                    await sock.sendMessage(from, { text: '🟢 *Always Online Status is now ACTIVATED!*' }, { quoted: msg });
+                } else if (args.toLowerCase() === 'off') {
+                    isAlwaysOnline = false;
+                    syncAlwaysOnlineHeartbeat();
+                    try { await sock.sendPresenceUpdate('unavailable'); } catch (e) {}
+                    try { await sock.sendPresenceUpdate('unavailable', from); } catch (e) {}
+                    await sock.sendMessage(from, { text: '🔴 *Always Online Status is now DEACTIVATED!*' }, { quoted: msg });
+                } else {
                     await sock.sendMessage(from, { 
-                        text: `⏱️ *RAHUL AI MINI UPTIME*\n\nBot is running for: \`${hours} hours, ${minutes} minutes, ${seconds} seconds\`` 
+                        text: `⚙️ *Always Online Settings*\n\n🟢 On: \`${PREFIX}alwaysonline on\`\n🔴 Off: \`${PREFIX}alwaysonline off\`\n\n📌 *Status:* ${isAlwaysOnline ? '🟢 ON' : '🔴 OFF'}` 
                     }, { quoted: msg });
                 }
-                else if (command === 'google' || command === 'g') {
-                    if (!args) return await sock.sendMessage(from, { text: `❌ Krupaya search karnyasathi kahitari liha! e.g. \`${PREFIX}google India\`` }, { quoted: msg });
-                    await sock.sendMessage(from, { text: `🔍 Searching for "${args}"...` }, { quoted: msg });
-                    try {
-                        const searchUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(args)}&format=json`;
-                        const res = await axios.get(searchUrl);
-                        let resultText = res.data.AbstractText || res.data.RelatedTopics?.[0]?.Text || 'Konthi mahiti sapadli nahi.';
-                        await sock.sendMessage(from, { 
-                            text: `🌐 *Google Search Results*\n\n📌 *Query:* ${args}\n\n📝 ${resultText}` 
-                        }, { quoted: msg });
-                    } catch {
-                        await sock.sendMessage(from, { text: '❌ Search kartana error aala.' }, { quoted: msg });
-                    }
+            }
+            else if (command === 'statusview' || command === 'autostatus') {
+                if (args.toLowerCase() === 'on') {
+                    isAutoStatusView = true;
+                    await sock.sendMessage(from, { text: '🟢 *Auto Status View is now ACTIVATED!*' }, { quoted: msg });
+                } else if (args.toLowerCase() === 'off') {
+                    isAutoStatusView = false;
+                    await sock.sendMessage(from, { text: '🔴 *Auto Status View is now DEACTIVATED!*' }, { quoted: msg });
+                } else {
+                    await sock.sendMessage(from, { 
+                        text: `👀 *Auto Status View Settings*\n\n🟢 On: \`${PREFIX}statusview on\`\n🔴 Off: \`${PREFIX}statusview off\`\n\n📌 *Status:* ${isAutoStatusView ? '🟢 ON' : '🔴 OFF'}` 
+                    }, { quoted: msg });
                 }
-                else if (command === 'weather') {
-                    if (!args) return await sock.sendMessage(from, { text: `❌ Sharache naav taka! e.g. \`${PREFIX}weather Mumbai\`` }, { quoted: msg });
-                    await sock.sendMessage(from, { text: `🌤️ Fetching weather for ${args}...` }, { quoted: msg });
-                    try {
-                        const weatherRes = await axios.get(`https://wttr.in/${encodeURIComponent(args)}?format=j1`);
-                        const current = weatherRes.data.current_condition[0];
-                        const area = weatherRes.data.nearest_area[0];
-                        const weatherInfo = 
+            }
+            else if (command === 'autoreact') {
+                if (args.toLowerCase() === 'on') {
+                    isAutoReact = true;
+                    await sock.sendMessage(from, { text: '❤️ *Auto React is now ACTIVATED!*' }, { quoted: msg });
+                } else if (args.toLowerCase() === 'off') {
+                    isAutoReact = false;
+                    await sock.sendMessage(from, { text: '🖤 *Auto React is now DEACTIVATED!*' }, { quoted: msg });
+                } else {
+                    await sock.sendMessage(from, { text: `❤️ *Auto React Status:* ${isAutoReact ? 'ON' : 'OFF'}\nUse: \`${PREFIX}autoreact on/off\`` }, { quoted: msg });
+                }
+            }
+            else if (command === 'autodl') {
+                if (args.toLowerCase() === 'on') {
+                    isAutoDL = true;
+                    await sock.sendMessage(from, { text: '📥 *Auto DL (All Video Downloader) is now ACTIVATED!*' }, { quoted: msg });
+                } else if (args.toLowerCase() === 'off') {
+                    isAutoDL = false;
+                    await sock.sendMessage(from, { text: '📤 *Auto DL is now DEACTIVATED!*' }, { quoted: msg });
+                } else {
+                    await sock.sendMessage(from, { text: `📥 *Auto DL Status:* ${isAutoDL ? 'ON' : 'OFF'}\nUse: \`${PREFIX}autodl on/off\`` }, { quoted: msg });
+                }
+            }
+            else if (command === 'setprefix' || command === 'prefix') {
+                if (!args) return await sock.sendMessage(from, { text: `⚙️ *Current Prefix:* \`${PREFIX}\`\n\nउदा. \`${PREFIX}setprefix !\` लिहून प्रिफिक्स बदला.` }, { quoted: msg });
+                PREFIX = args.trim();
+                await sock.sendMessage(from, { text: `✅ *Bot Prefix successfully changed to:* \`${PREFIX}\`` }, { quoted: msg });
+            }
+            else if (command === 'ping') {
+                const start = Date.now();
+                await sock.sendMessage(from, { text: '🚀 Speed testing...' }, { quoted: msg });
+                const end = Date.now();
+                await sock.sendMessage(from, { 
+                    text: `⚡ *RAHUL AI MINI SPEED*\n\n⏱️ *Latency:* \`${end - start} ms\`\n🟢 *Status:* Active & Online` 
+                }, { quoted: msg });
+            }
+            else if (command === 'menu' || command === 'help') {
+                const now = new Date();
+                const uptimeSeconds = Math.floor(process.uptime());
+                const uptimeHours = Math.floor(uptimeSeconds / 3600);
+                const uptimeMinutes = Math.floor((uptimeSeconds % 3600) / 60);
+                const uptimeRemainder = uptimeSeconds % 60;
+                const usedRam = Math.round(process.memoryUsage().rss / 1024 / 1024);
+                const totalRam = Math.round(require('os').totalmem() / 1024 / 1024);
+                const menuText = [
+                    '╭━━━『 ✦ RAHUL AI MINI ✦ 』━━━╮',
+                    '┃ ⚡ *ᴘʀᴇᴍɪᴜᴍ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ*',
+                    '┃ 👑 *ᴏᴡɴᴇʀ:* RAHUL-MASTER',
+                    '┃ ⌨️ *ᴘʀᴇғɪx:* ' + PREFIX,
+                    '┃ 🟢 *sᴛᴀᴛᴜs:* ' + (sock?.user ? 'ᴄᴏɴɴᴇᴄᴛᴇᴅ' : 'sᴛᴀʀᴛɪɴɢ'),
+                    '┃ ⏱️ *ᴜᴘᴛɪᴍᴇ:* ' + uptimeHours + 'h ' + uptimeMinutes + 'm ' + uptimeRemainder + 's',
+                    '┃ 🧠 *ʀᴀᴍ:* ' + usedRam + '/' + totalRam + ' MB',
+                    '┃ 📥 *ᴀᴜᴛᴏ ᴅʟ:* ' + (isAutoDL ? 'ᴏɴ' : 'ᴏғғ'),
+                    '┃ 🗓️ *ᴅᴀᴛᴇ:* ' + now.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' }),
+                    '╰━━━━━━━━━━━━━━━━━━━━━━╯',
+                    '',
+                    '╭━━〔 ✨ ᴀɪ • sᴛʏʟᴇ ✨ 〕━━╮',
+                    '┃ ◈ ' + PREFIX + 'ai <text>',
+                    '┃ ◈ ' + PREFIX + 'google <query>',
+                    '┃ ◈ ' + PREFIX + 'weather <city>',
+                    '┃ ◈ ' + PREFIX + 'quote',
+                    '┃ ◈ ' + PREFIX + 'fancy <text>',
+                    '┃ ◈ ' + PREFIX + 'font <text>',
+                    '╰━━━━━━━━━━━━━━━━━━━━━━╯',
+                    '',
+                    '╭━━〔 🎬 ᴅᴏᴡɴʟᴏᴀᴅᴇʀ 🎬 〕━━╮',
+                    '┃ ◈ ' + PREFIX + 'play <song>',
+                    '┃ ◈ ' + PREFIX + 'mp3 <song>',
+                    '┃ ◈ ' + PREFIX + 'video <name>',
+                    '┃ ◈ ' + PREFIX + 'insta <url>',
+                    '┃ ◈ ᴏᴘᴇɴ ᴘᴜʙʟɪᴄ ᴠɪᴅᴇᴏ ʟɪɴᴋ ғᴏʀ ᴀᴜᴛᴏᴅʟ',
+                    '╰━━━━━━━━━━━━━━━━━━━━━━╯',
+                    '',
+                    '╭━━〔 🧰 ᴛᴏᴏʟs 🧰 〕━━╮',
+                    '┃ ◈ ' + PREFIX + 'ping',
+                    '┃ ◈ ' + PREFIX + 'uptime',
+                    '┃ ◈ ' + PREFIX + 'calc <math>',
+                    '┃ ◈ ' + PREFIX + 'qr <text>',
+                    '┃ ◈ ' + PREFIX + 'tourl (reply media)',
+                    '┃ ◈ ' + PREFIX + 'sticker (reply image)',
+                    '╰━━━━━━━━━━━━━━━━━━━━━━╯',
+                    '',
+                    '╭━━〔 ⚙️ sᴇᴛᴛɪɴɢs ⚙️ 〕━━╮',
+                    '┃ ◈ ' + PREFIX + 'setprefix <symbol>',
+                    '┃ ◈ ' + PREFIX + 'alwaysonline on/off',
+                    '┃ ◈ ' + PREFIX + 'statusview on/off',
+                    '┃ ◈ ' + PREFIX + 'autoreact on/off',
+                    '┃ ◈ ' + PREFIX + 'autodl on/off',
+                    '┃ ◈ ' + PREFIX + 'update',
+                    '╰━━━━━━━━━━━━━━━━━━━━━━╯',
+                    '',
+                    '╭━━〔 👥 ɢʀᴏᴜᴘ ᴛᴏᴏʟs 👥 〕━━╮',
+                    '┃ ◈ ' + PREFIX + 'tagall <message>',
+                    '┃ ◈ ' + PREFIX + 'mute',
+                    '┃ ◈ ' + PREFIX + 'unmute',
+                    '╰━━━━━━━━━━━━━━━━━━━━━━╯',
+                    '',
+                    '╭━━〔 👑 ᴏᴡɴᴇʀ 👑 〕━━╮',
+                    '┃ ◈ ' + PREFIX + 'owner',
+                    '╰━━━━━━━━━━━━━━━━━━━━━━╯',
+                    '',
+                    '╰━━━『 ⚡ ᴘᴏᴡᴇʀᴇᴅ ʙʏ RAHUL MASTER 』━━━╯'
+                ].join('\n');
+                try {
+                    const page = await axios.get('https://ibb.co/d0prYPDW', { timeout: 12000 });
+                    const html = typeof page.data === 'string' ? page.data : '';
+                    const match = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
+                        || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+                    const imageUrl = match?.[1]?.replace(/&amp;/g, '&');
+                    if (imageUrl) {
+                        const imageResponse = await axios.get(imageUrl, {
+                            responseType: 'arraybuffer',
+                            timeout: 15000,
+                            headers: { 'User-Agent': 'Mozilla/5.0' }
+                        });
+                        await sock.sendMessage(from, { image: Buffer.from(imageResponse.data), caption: menuText }, { quoted: msg });
+                    } else {
+                        await sock.sendMessage(from, { text: menuText }, { quoted: msg });
+                    }
+                } catch (menuImageError) {
+                    console.error('Menu image error:', menuImageError.message);
+                    await sock.sendMessage(from, { text: menuText }, { quoted: msg });
+                }
+            }
+            else if (command === 'fancy' || command === 'font' || command === 'fonts') {
+                if (!args.trim()) {
+                    return await sock.sendMessage(from, {
+                        text: `✨ *RAHUL AI MINI FANCY TEXT*\n\nUse: ${PREFIX}fancy Your Text\nExample: ${PREFIX}fancy RAHUL AI MINI`
+                    }, { quoted: msg });
+                }
+                try {
+                    const apiUrl = `https://eliteprotech-apis.zone.id/fun/font?text=${encodeURIComponent(args.trim())}`;
+                    const response = await axios.get(apiUrl, { timeout: 20000 });
+                    const styles = response.data?.results;
+                    if (response.data?.status !== true || !Array.isArray(styles) || !styles.length) {
+                        throw new Error('No font styles returned');
+                    }
+                    const lines = styles.slice(0, 35).map((item, index) =>
+                        `${index + 1}. *${String(item.name || 'Font').replace(/([_*~])/g, '\\$1')}*\n${item.text || ''}`
+                    );
+                    const output = `✨ *RAHUL AI MINI FANCY TEXT* ✨\n\n📝 *Input:* ${args.trim()}\n\n${lines.join('\n\n')}\n\n⚡ Powered by RAHUL AI MINI`;
+                    await sock.sendMessage(from, { text: output.slice(0, 60000) }, { quoted: msg });
+                } catch (error) {
+                    console.error('Fancy font API error:', error.message);
+                    await sock.sendMessage(from, { text: '❌ Fancy font API abhi response nahi de rahi. Thodi der baad try karo.' }, { quoted: msg });
+                }
+            }
+            else if (command === 'play' || command === 'song') {
+                if (!args) return await sock.sendMessage(from, { text: `❌ Song name taka! e.g. \`${PREFIX}play Blinding Lights\`` }, { quoted: msg });
+                await sock.sendMessage(from, { text: `🎵 Searching: "${args}"...\n⚡ Preparing audio.` }, { quoted: msg });
+                try {
+                    const api = `https://api.sayan-nexuswork.workers.dev/music?query=${encodeURIComponent(args.trim())}`;
+                    const res = await axios.get(api, { timeout: 20000 });
+                    const data = res.data;
+                    if (data?.status !== 'success' || !data?.url) {
+                        return await sock.sendMessage(from, { text: '❌ Song not found or music API failed.' }, { quoted: msg });
+                    }
+                    const title = data.title || args;
+                    const safeTitle = title.replace(/[\\/:*?"<>|]/g, '').slice(0, 80) || 'audio';
+                    const infoText = `🎵 *RAHUL AI MINI MUSIC PLAYER* 🎵\n\n📌 *Title:* ${title}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎧 *Quality:* ${data.quality || 'MP3'}`;
+                    // Fetch audio bytes explicitly to avoid Baileys URL-stream issues and signed-URL redirects.
+                    const audioRes = await axios.get(data.url, {
+                        responseType: 'arraybuffer',
+                        timeout: 60000,
+                        maxRedirects: 5,
+                        maxContentLength: 25 * 1024 * 1024,
+                        headers: { 'User-Agent': 'Mozilla/5.0' }
+                    });
+                    const audioBuffer = Buffer.from(audioRes.data);
+                    if (!audioBuffer.length) throw new Error('Audio response was empty');
+                    await sock.sendMessage(from, {
+                        audio: audioBuffer,
+                        mimetype: 'audio/mpeg',
+                        fileName: `${safeTitle}.mp3`,
+                        ptt: false
+                    }, { quoted: msg });
+                    // Send track details after audio so the main download is not delayed by thumbnail fetching.
+                    await sock.sendMessage(from, { text: infoText }, { quoted: msg });
+                } catch (err) {
+                    console.error('Play audio download/send error:', err.message);
+                    const reason = err.response?.status ? `HTTP ${err.response.status}` : (err.code || err.message || 'unknown error');
+                    await sock.sendMessage(from, { text: `❌ Play failed (${reason}). Try again or use a shorter track.` }, { quoted: msg });
+                }
+            }
+            else if (command === 'mp3' || command === 'yta') {
+                if (!args) return await sock.sendMessage(from, { text: `❌ Song name taka! e.g. \`${PREFIX}mp3 Blinding Lights\`` }, { quoted: msg });
+                await sock.sendMessage(from, { text: '🎵 *Downloading MP3 audio, please wait...*' }, { quoted: msg });
+                try {
+                    const api = `https://api.sayan-nexuswork.workers.dev/music?query=${encodeURIComponent(args)}`;
+                    const res = await axios.get(api, { timeout: 30000 });
+                    const data = res.data;
+                    if (data?.status === 'success' && data?.url) {
+                        const title = data.title || 'audio';
+                        await sock.sendMessage(from, { audio: { url: data.url }, mimetype: 'audio/mpeg', ptt: false, fileName: `${title.replace(/[\\/:*?"<>|]/g, '').slice(0, 80)}.mp3` }, { quoted: msg });
+                    } else {
+                        await sock.sendMessage(from, { text: '❌ MP3 download failed. Song not found.' }, { quoted: msg });
+                    }
+                } catch (e) {
+                    console.error('MP3 API error:', e.message);
+                    await sock.sendMessage(from, { text: '❌ Server error while downloading audio.' }, { quoted: msg });
+                }
+            }
+            else if (command === 'video' || command === 'ytvideo') {
+                if (!args) return await sock.sendMessage(from, { text: `❌ Video name taka! e.g. \`${PREFIX}video Tere Naam\`` }, { quoted: msg });
+                await sock.sendMessage(from, { text: `🎬 Searching: "${args}"...\n⏳ Fetching video file, please wait.` }, { quoted: msg });
+                try {
+                    const api = `https://api.sayan-nexuswork.workers.dev/video?query=${encodeURIComponent(args.trim())}`;
+                    const res = await axios.get(api, { timeout: 30000 });
+                    const data = res.data;
+                    if (data?.status !== 'success' || !data?.url) {
+                        return await sock.sendMessage(from, { text: '❌ Video not found or video API failed.' }, { quoted: msg });
+                    }
+                    const caption = `🎬*RAHUL AI MINI VIDEO DOWNLOADER*\n\n📌 *Title:* ${data.title || args}\n⏱️ *Duration:* ${data.duration || 'Unknown'}\n👀 *Views:* ${data.views || 'Unknown'}\n🎙️ *Channel:* ${data.channel || 'Unknown'}\n🎞️ *Quality:* ${data.quality || 'MP4'}`;
+                    // Download bytes first; passing a signed Googlevideo URL directly to Baileys can fail on redirects/network restrictions.
+                    const videoRes = await axios.get(data.url, {
+                        responseType: 'arraybuffer',
+                        timeout: 120000,
+                        maxRedirects: 5,
+                        maxContentLength: 80 * 1024 * 1024,
+                        headers: { 'User-Agent': 'Mozilla/5.0' }
+                    });
+                    const videoBuffer = Buffer.from(videoRes.data);
+                    if (!videoBuffer.length) throw new Error('Video response was empty');
+                    await sock.sendMessage(from, { video: videoBuffer, mimetype: 'video/mp4', caption }, { quoted: msg });
+                } catch (e) {
+                    console.error('Video download/send error:', e.message);
+                    const reason = e.response?.status ? `HTTP ${e.response.status}` : (e.code || e.message || 'unknown error');
+                    await sock.sendMessage(from, { text: `❌ Video download failed (${reason}). Try a shorter video or retry shortly.` }, { quoted: msg });
+                }
+            }
+            else if (command === 'insta' || command === 'instagram') {
+                if (!args || !/instagram\.com\//i.test(args)) return await sock.sendMessage(from, { text: `❌ Instagram URL taka! e.g. \`${PREFIX}insta https://www.instagram.com/reel/URL\`` }, { quoted: msg });
+                await sock.sendMessage(from, { text: '📥 *Downloading Instagram media...*' }, { quoted: msg });
+                try {
+                    const api = `https://api.sayan-nexuswork.workers.dev/insta?url=${encodeURIComponent(args.trim())}`;
+                    const res = await axios.get(api, { timeout: 30000 });
+                    const data = res.data;
+                    const mediaUrl = data?.url || data?.urls?.[0];
+                    if (data?.status !== 'success' || !mediaUrl) return await sock.sendMessage(from, { text: '❌ Instagram media unavailable or API failed.' }, { quoted: msg });
+                    if (data.type === 'image' || /\.jpe?g(\?|$)/i.test(mediaUrl) || /\.png(\?|$)/i.test(mediaUrl)) {
+                        await sock.sendMessage(from, { image: { url: mediaUrl }, caption: '📸 *VFX MINI Instagram Downloader*' }, { quoted: msg });
+                    } else {
+                        await sock.sendMessage(from, { video: { url: mediaUrl }, caption: '📸 *VFX MINI Instagram Downloader*' }, { quoted: msg });
+                    }
+                } catch (e) {
+                    console.error('Instagram API error:', e.message);
+                    await sock.sendMessage(from, { text: '❌ Instagram download failed. Check that the post is public and try again.' }, { quoted: msg });
+                }
+            }
+            else if (command === 'tourl' || command === 'upload') {
+                const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
+                const isMedia = msg.message.imageMessage || msg.message.videoMessage || msg.message.documentMessage || quoted?.imageMessage || quoted?.videoMessage || quoted?.documentMessage;
+                if (!isMedia) return await sock.sendMessage(from, { text: `❌ Konvtyahi photo, video ya file la reply karun \`${PREFIX}tourl\` type kara!` }, { quoted: msg });
+                await sock.sendMessage(from, { text: '📤 *Uploading media to server, please wait...*' }, { quoted: msg });
+                try {
+                    const mediaBuffer = await downloadMediaMessage(
+                        quoted ? { message: quoted } : msg, 'buffer', {}
+                    );
+                    const form = new FormData();
+                    form.append('file', mediaBuffer, { filename: 'vfx-mini-media.bin' });
+                    const uploadRes = await axios.post('https://telegra.ph/upload', form, {
+                        headers: { ...form.getHeaders() }
+                    });
+                    if (uploadRes.data && uploadRes.data[0] && uploadRes.data[0].src) {
+                        const fileUrl = 'https://telegra.ph' + uploadRes.data[0].src;
+                        await sock.sendMessage(from, { text: `🔗 *MEDIA UPLOADED SUCCESSFULLY!*\n\n📌 *URL:* ${fileUrl}` }, { quoted: msg });
+                    } else {
+                        await sock.sendMessage(from, { text: '❌ Upload fail zali. Punha prayatna kara.' }, { quoted: msg });
+                    }
+                } catch (e) {
+                    await sock.sendMessage(from, { text: '❌ Tourl error: ' + e.message }, { quoted: msg });
+                }
+            }
+            else if (command === 'qr') {
+                if (!args) return await sock.sendMessage(from, { text: `❌ Text kiwa link taka! e.g. \`${PREFIX}qr Hello VFX MINI\`` }, { quoted: msg });
+                try {
+                    const qrBuffer = await QRCode.toBuffer(args);
+                    await sock.sendMessage(from, { image: qrBuffer, caption: `🔲 *QR Code for:* ${args}` }, { quoted: msg });
+                } catch {
+                    await sock.sendMessage(from, { text: '❌ QR Code banvnyat error aala.' }, { quoted: msg });
+                }
+            }
+            else if (command === 'calc') {
+                if (!args) return await sock.sendMessage(from, { text: `❌ Ganiti samikaran taka! e.g. \`${PREFIX}calc 50 + 50 * 2\`` }, { quoted: msg });
+                try {
+                    const sanitized = args.replace(/[^0-9+\-*/().]/g, '');
+                    const result = eval(sanitized);
+                    await sock.sendMessage(from, { text: `🧮 *Calculator*\n\n❓ *Expression:* ${args}\n✅ *Answer:* ${result}` }, { quoted: msg });
+                } catch {
+                    await sock.sendMessage(from, { text: '❌ Chukiche samikaran.' }, { quoted: msg });
+                }
+            }
+            else if (command === 'quote') {
+                const quotesList = [
+                    "\"Yashachi survat nehami prayatnani hote.\" - VFX MINI",
+                    "\"Kasht karnyachi tayari asel, tar kontehi swapna apoorna rahat nahi.\"",
+                    "\"Aaj keleli mehanat udyache bhavishya tharavte.\"",
+                    "\"Apyash hi yashachi pahili payari aahe.\""
+                ];
+                const randomQuote = quotesList[Math.floor(Math.random() * quotesList.length)];
+                await sock.sendMessage(from, { text: `💡 *Daily Quote*\n\n${randomQuote}` }, { quoted: msg });
+            }
+            else if (command === 'uptime') {
+                const uptimeMs = Date.now() - startTime;
+                const seconds = Math.floor((uptimeMs / 1000) % 60);
+                const minutes = Math.floor((uptimeMs / (1000 * 60)) % 60);
+                const hours = Math.floor(uptimeMs / (1000 * 60 * 60));
+                await sock.sendMessage(from, { 
+                    text: `⏱️ *RAHUL AI MINI UPTIME*\n\nBot is running for: \`${hours} hours, ${minutes} minutes, ${seconds} seconds\`` 
+                }, { quoted: msg });
+            }
+            else if (command === 'google' || command === 'g') {
+                if (!args) return await sock.sendMessage(from, { text: `❌ Krupaya search karnyasathi kahitari liha! e.g. \`${PREFIX}google India\`` }, { quoted: msg });
+                await sock.sendMessage(from, { text: `🔍 Searching for "${args}"...` }, { quoted: msg });
+                try {
+                    const searchUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(args)}&format=json`;
+                    const res = await axios.get(searchUrl);
+                    let resultText = res.data.AbstractText || res.data.RelatedTopics?.[0]?.Text || 'Konthi mahiti sapadli nahi.';
+                    await sock.sendMessage(from, { 
+                        text: `🌐 *Google Search Results*\n\n📌 *Query:* ${args}\n\n📝 ${resultText}` 
+                    }, { quoted: msg });
+                } catch {
+                    await sock.sendMessage(from, { text: '❌ Search kartana error aala.' }, { quoted: msg });
+                }
+            }
+            else if (command === 'weather') {
+                if (!args) return await sock.sendMessage(from, { text: `❌ Sharache naav taka! e.g. \`${PREFIX}weather Mumbai\`` }, { quoted: msg });
+                await sock.sendMessage(from, { text: `🌤️ Fetching weather for ${args}...` }, { quoted: msg });
+                try {
+                    const weatherRes = await axios.get(`https://wttr.in/${encodeURIComponent(args)}?format=j1`);
+                    const current = weatherRes.data.current_condition[0];
+                    const area = weatherRes.data.nearest_area[0];
+                    const weatherInfo = 
 `🌤️ *Weather Report*
-📍 *City:* ${area.areaName[0].value},${area.country[0].value}
+📍 *City:* ${area.areaName[0].value}, ${area.country[0].value}
 🌡️ *Temperature:* ${current.temp_C} °C
 💧 *Humidity:* ${current.humidity}%
 🌬️ *Wind Speed:* ${current.windspeedKmph} km/h
 ☁️ *Condition:* ${current.weatherDesc[0].value}`;
-                        await sock.sendMessage(from, { text: weatherInfo }, { quoted: msg });
-                    } catch {
-                        await sock.sendMessage(from, { text: '❌ Havamanachi mahiti milvnyat apyash aale.' }, { quoted: msg });
-                    }
+                    await sock.sendMessage(from, { text: weatherInfo }, { quoted: msg });
+                } catch {
+                    await sock.sendMessage(from, { text: '❌ Havamanachi mahiti milvnyat apyash aale.' }, { quoted: msg });
                 }
-                else if (command === 'sticker' || command === 's') {
-                    const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
-                    const isImage = msg.message.imageMessage || quoted?.imageMessage;
-                    if (isImage) {
-                        await sock.sendMessage(from, { text: '⏳ Creating sticker...' }, { quoted: msg });
-                        const media = await downloadMediaMessage(
-                            quoted ? { message: quoted } : msg, 'buffer', {}
-                        );
-                        const sticker = new Sticker(media, {
-                            pack: 'RAHUL AI MINI',
-                            author: ' RAHUL AI',
-                            type: StickerTypes.FULL,
-                            categories: ['🤩', '🎉'],
-                            quality: 70
-                        });
-                        const buffer = await sticker.toBuffer();
-                        await sock.sendMessage(from, { sticker: buffer }, { quoted: msg });
-                    } else {
-                        await sock.sendMessage(from, { text: `❌ Photola reply deun \`${PREFIX}sticker\` type kara!` }, { quoted: msg });
-                    }
-                }
-                else if (command === 'ai') {
-                    if (!args) return await sock.sendMessage(from, { text: `❌ Prashna taka! e.g. \`${PREFIX}ai Hello\`` }, { quoted: msg });
-                    await sock.sendMessage(from, { text: '🤖 *RAHUL AI is thinking...*' }, { quoted: msg });
-                    try {
-                        const res = await axios.get(
-                            `https://eliteprotech-apis.zone.id/ai/chatgpt?prompt=${encodeURIComponent(args)}`,
-                            { timeout: 45000 }
-                        );
-                        const responseText = res.data?.text || res.data?.response || res.data?.message;
-                        if (res.data?.success !== true || !responseText) throw new Error('AI API returned no answer');
-                        await sock.sendMessage(from, { text: `🤖 *RAHUL AI Answer*\n\n${responseText}\n\n✨ Model: ${res.data?.model || 'ChatGPT'}` }, { quoted: msg });
-                    } catch (e) {
-                        console.error('AI API error:', e.response?.status || e.message);
-                        await sock.sendMessage(from, { text: '❌ AI API abhi response nahi de rahi. Thodi der baad try karo.' }, { quoted: msg });
-                    }
-                }
-                else if (command === 'tagall' && isGroup) {
-                    const groupMetadata = await sock.groupMetadata(from);
-                    const participants = groupMetadata.participants;
-                    let mentionsText = `📢 *GROUP ANNOUNCEMENT*\n\n💬 *Message:* ${args || 'Attention Everyone!'}\n\n`;
-                    let mentions = [];
-                    for (let mem of participants) {
-                        mentionsText += `👥 @${mem.id.split('@')[0]}\n`;
-                        mentions.push(mem.id);
-                    }
-                    await sock.sendMessage(from, { text: mentionsText, mentions: mentions }, { quoted: msg });
-                }
-                else if (command === 'mute' && isGroup) {
-                    await sock.groupSettingUpdate(from, 'announcement');
-                    await sock.sendMessage(from, { text: '🔒 Group Settings Changed: Only Admins can send messages.' });
-                }
-                else if (command === 'unmute' && isGroup) {
-                    await sock.groupSettingUpdate(from, 'not_announcement');
-                    await sock.sendMessage(from, { text: '🔓 Group Settings Changed: All members can send messages.' });
-                }
-                else if (command === 'owner') {
-                    await sock.sendMessage(from, { text: `👑 *Owner Info*\n\nDevelopers: SOURAJITVFX & RAHUL AI\nBot: VFX MINI` }, { quoted: msg });
-                }
-
-            } catch (err) {
-                console.error('Error handling message:', err);
             }
-        });
+            else if (command === 'sticker' || command === 's') {
+                const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
+                const isImage = msg.message.imageMessage || quoted?.imageMessage;
+                if (isImage) {
+                    await sock.sendMessage(from, { text: '⏳ Creating sticker...' }, { quoted: msg });
+                    const media = await downloadMediaMessage(
+                        quoted ? { message: quoted } : msg, 'buffer', {}
+                    );
+                    const sticker = new Sticker(media, {
+                        pack: 'RAHUL AI MINI',
+                        author: ' RAHUL AI',
+                        type: StickerTypes.FULL,
+                        categories: ['🤩', '🎉'],
+                        quality: 70
+                    });
+                    const buffer = await sticker.toBuffer();
+                    await sock.sendMessage(from, { sticker: buffer }, { quoted: msg });
+                } else {
+                    await sock.sendMessage(from, { text: `❌ Photola reply deun \`${PREFIX}sticker\` type kara!` }, { quoted: msg });
+                }
+            }
+            else if (command === 'ai') {
+                if (!args) return await sock.sendMessage(from, { text: `❌ Prashna taka! e.g. \`${PREFIX}ai Hello\`` }, { quoted: msg });
+                await sock.sendMessage(from, { text: '🤖 *RAHUL AI is thinking...*' }, { quoted: msg });
+                try {
+                    const res = await axios.get(
+                        `https://eliteprotech-apis.zone.id/ai/chatgpt?prompt=${encodeURIComponent(args)}`,
+                        { timeout: 45000 }
+                    );
+                    const responseText = res.data?.text || res.data?.response || res.data?.message;
+                    if (res.data?.success !== true || !responseText) throw new Error('AI API returned no answer');
+                    await sock.sendMessage(from, { text: `🤖 *RAHUL AI Answer*\n\n${responseText}\n\n✨ Model: ${res.data?.model || 'ChatGPT'}` }, { quoted: msg });
+                } catch (e) {
+                    console.error('AI API error:', e.response?.status || e.message);
+                    await sock.sendMessage(from, { text: '❌ AI API abhi response nahi de rahi. Thodi der baad try karo.' }, { quoted: msg });
+                }
+            }
+            else if (command === 'tagall' && isGroup) {
+                const groupMetadata = await sock.groupMetadata(from);
+                const participants = groupMetadata.participants;
+                let mentionsText = `📢 *GROUP ANNOUNCEMENT*\n\n💬 *Message:* ${args || 'Attention Everyone!'}\n\n`;
+                let mentions = [];
+                for (let mem of participants) {
+                    mentionsText += `👥 @${mem.id.split('@')[0]}\n`;
+                    mentions.push(mem.id);
+                }
+                await sock.sendMessage(from, { text: mentionsText, mentions: mentions }, { quoted: msg });
+            }
+            else if (command === 'mute' && isGroup) {
+                await sock.groupSettingUpdate(from, 'announcement');
+                await sock.sendMessage(from, { text: '🔒 Group Settings Changed: Only Admins can send messages.' });
+            }
+            else if (command === 'unmute' && isGroup) {
+                await sock.groupSettingUpdate(from, 'not_announcement');
+                await sock.sendMessage(from, { text: '🔓 Group Settings Changed: All members can send messages.' });
+            }
+            else if (command === 'owner') {
+                await sock.sendMessage(from, { text: `👑 *Owner Info*\n\nDevelopers: SOURAJITVFX & RAHUL AI\nBot: VFX MINI` }, { quoted: msg });
+            }
+
+        } catch (err) {
+            console.error('Error handling message:', err);
+        }
+    });
     } catch (err) {
         console.error('WhatsApp connection setup failed:', err);
         if (!reconnectTimer) {
@@ -1183,3 +1221,5 @@ async function connectToWhatsApp() {
 }
 
 connectToWhatsApp().catch(err => console.error('Initial WhatsApp connection error:', err));
+ 
+ 
