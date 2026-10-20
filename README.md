@@ -1,29 +1,30 @@
 <div align="center">
 
-  <!-- RED & BLUE GLOWING ANIMATED HEADER -->
+  <!-- RED & BLUE RGB GLOWING ANIMATED HEADER -->
   <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=900&size=32&duration=3000&pause=1000&color=00E5FF&center=true&vCenter=true&width=500&height=70&lines=RAHUL+AI+MINI;CREATED+BY+RAHUL+MASTER;FREE+MINI+BOT" alt="Header Typing" />
 
   <br><br>
 
-  <!-- CUSTOM ANIMATED RED & BLUE GLOWING LOGO CONTAINER -->
-  <div style="display: inline-block; padding: 6px; border-radius: 50%; background: linear-gradient(135deg, #ff0055, #00e5ff, #ff0055); animation: borderGlow 3s linear infinite; box-shadow: 0 0 35px rgba(255, 0, 85, 0.6), 0 0 35px rgba(0, 229, 255, 0.6);">
+  <!-- CUSTOM RGB RED & BLUE EDGE LIGHTING LOGO -->
+  <div style="display: inline-block; padding: 5px; border-radius: 50%; background: linear-gradient(45deg, #ff0055, #0055ff, #00e5ff, #ff0055); background-size: 300% 300%; animation: rgbGlow 4s ease infinite; box-shadow: 0 0 40px rgba(255, 0, 85, 0.7), 0 0 40px rgba(0, 229, 255, 0.7);">
     <a href="https://combative-angelle-rahulhiran440-9b43fa9f.koyeb.app">
-      <img src="https://api.iconify.design/fluent-emoji-flat:robot.svg?width=140&height=140" width="140" height="140" style="border-radius: 50%; background: #05060d; padding: 20px;" alt="RAHUL-AI-MINI Logo" />
+      <img src="https://api.iconify.design/fluent-emoji-flat:robot.svg?width=130&height=130" width="130" height="130" style="border-radius: 50%; background: #030409; padding: 22px; display: block;" alt="RAHUL-AI-MINI Logo" />
     </a>
   </div>
 
   <style>
-    @keyframes borderGlow {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
+    @keyframes rgbGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 
   <br><br>
 
-  <!-- RED & BLUE LED ANIMATED HEADING -->
+  <!-- RED & BLUE RGB GRADIENT HEADING -->
   <h1>
-    <span style="background: linear-gradient(90deg, #ff0055, #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 30px; font-family: 'Orbitron', sans-serif;">
+    <span style="background: linear-gradient(90deg, #ff0055, #00e5ff, #ff0055); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; font-size: 30px; font-family: 'Orbitron', sans-serif; animation: rgbGlow 3s linear infinite;">
       ⚡ RAHUL AI MINI ⚡
     </span>
   </h1>
@@ -39,7 +40,7 @@
   </a>
 
   <br><br>
-  <hr style="border: 1px solid #00e5ff; width: 60%;">
+  <hr style="border: 1px solid #00e5ff; width: 60%; box-shadow: 0 0 10px #00e5ff;">
   <br>
 
   <!-- DEPLOYMENT PLATFORMS BUTTONS -->
@@ -62,7 +63,7 @@
   </a>
 
   <br><br>
-  <hr style="border: 1px solid #ff0055; width: 60%;">
+  <hr style="border: 1px solid #ff0055; width: 60%; box-shadow: 0 0 10px #ff0055;">
   <br>
 
   <!-- BOT FEATURES LIST -->
