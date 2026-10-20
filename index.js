@@ -315,20 +315,60 @@ app.get('/', (req, res) => {
     `);
 });
 
+/* ============================================================
+   🔧 FIXED /PAIR ENDPOINT (CLEARS SESSION & GENERATES FRESH CODE)
+   ============================================================ */
 app.get('/pair', async (req, res) => {
-    let phone = req.query.number || '919356730236';
-    let cleanedNumber = phone.replace(/[^0-9]/g, '');
-    if (!sock) {
-        return res.json({ error: 'WhatsApp Socket is initialising, please wait 5 seconds and try again.' });
+    let phone = req.query.number;
+    if (!phone) {
+        return res.json({ error: 'Please provide a valid phone number.' });
     }
+    let cleanedNumber = phone.replace(/[^0-9]/g, '');
+
     try {
-        if (!sock.authState.creds.registered) {
-            await delay(1500);
-            let code = await sock.requestPairingCode(cleanedNumber);
-            return res.json({ code: code, status: 'Success' });
-        } else {
-            return res.json({ error: 'Bot is already linked/registered!' });
+        const authDir = await getPersistentAuthDir();
+        
+        // जर जुनी session फाईल्स अस्तित्वात असतील तर त्या डिलीट करून नवीन नंबरसाठी फ्रेश सॉकेट तयार करू
+        if (fs.existsSync(authDir)) {
+            fs.rmSync(authDir, { recursive: true, force: true });
         }
+        fs.mkdirSync(authDir, { recursive: true });
+
+        if (sock) {
+            try { await sock.logout(); } catch(e) {}
+            sock.end();
+            sock = null;
+        }
+
+        const { state, saveCreds } = await useMultiFileAuthState(authDir);
+        const { version } = await fetchLatestBaileysVersion();
+
+        sock = makeWASocket({
+            version,
+            logger: pino({ level: 'silent' }),
+            printQRInTerminal: false,
+            auth: state,
+            browser: Browsers.ubuntu("Chrome")
+        });
+
+        sock.ev.on('creds.update', saveCreds);
+
+        sock.ev.on('connection.update', async (update) => {
+            const { connection, lastDisconnect } = update;
+            if (connection === 'open') {
+                console.log('✅ RAHUL AI MINI IS CONNECTED SUCCESSFULLY!');
+                try {
+                    const userJid = sock.user.id.split(':')[0] + '@s.whatsapp.net';
+                    await sock.sendMessage(userJid, { text: `🔴 *RAHUL AI MINI CONNECTED SUCCESSFULLY!* ⚡\n\n👨‍💻 *Developer:* RAHUL MASTER\n📌 *Prefix:* \`${PREFIX}\`` });
+                } catch (err) {}
+            }
+        });
+
+        // सॉकेट तयार झाल्यावर थोडा वेळ थांबून पेरिंग कोड मागवू
+        await delay(3000);
+        let code = await sock.requestPairingCode(cleanedNumber);
+        return res.json({ code: code, status: 'Success' });
+
     } catch (err) {
         return res.json({ error: 'Pairing Error: ' + err.message });
     }
@@ -397,10 +437,6 @@ async function connectToWhatsApp() {
                 }
             } else if (connection === 'open') {
                 console.log('✅ RAHUL AI MINI IS CONNECTED!');
-                try {
-                    const userJid = sock.user.id.split(':')[0] + '@s.whatsapp.net';
-                    await sock.sendMessage(userJid, { text: `🔴 *RAHUL AI MINI CONNECTED SUCCESSFULLY!* ⚡\n\n👨‍💻 *Developer:* RAHUL MASTER\n📌 *Prefix:* \`${PREFIX}\`` });
-                } catch (err) {}
             }
         });
 
