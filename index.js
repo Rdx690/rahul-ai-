@@ -418,8 +418,8 @@ app.get('/', (req, res) => {
                 </div>
 
                 <div class="dev-credits">
-                    <div class="dev"><i class="fa-solid fa-code"></i> <b>SOURAJITVFX</b></div>
-                    <div class="dev"><i class="fa-solid fa-robot"></i> <b>RAHUL AI</b></div>
+                    <div class="dev"><i class="fa-solid fa-code"></i> <b>RAHUL MASTER</b></div>
+                    <div class="dev"><i class="fa-solid fa-robot"></i> <b>RAHUL AI MINI</b></div>
                 </div>
             </div>
         </div>
@@ -903,7 +903,7 @@ async function connectToWhatsApp() {
                     '╰━━━『 ⚡ ᴘᴏᴡᴇʀᴇᴅ ʙʏ RAHUL MASTER 』━━━╯'
                 ].join('\n');
                 try {
-                    const page = await axios.get('https://ibb.co/HL6Ftn8P', { timeout: 12000 });
+                    const page = await axios.get('https://ibb.co/d0prYPDW', { timeout: 12000 });
                     const html = typeof page.data === 'string' ? page.data : '';
                     const match = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)
                         || html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
@@ -926,7 +926,7 @@ async function connectToWhatsApp() {
             else if (command === 'fancy' || command === 'font' || command === 'fonts') {
                 if (!args.trim()) {
                     return await sock.sendMessage(from, {
-                        text: `✨ *VFX MINI FANCY TEXT*\n\nUse: ${PREFIX}fancy Your Text\nExample: ${PREFIX}fancy SOURAJIT VFX`
+                        text: `✨ *RAHUL AI MINI FANCY TEXT*\n\nUse: ${PREFIX}fancy Your Text\nExample: ${PREFIX}fancy RAHUL AI MINI`
                     }, { quoted: msg });
                 }
                 try {
@@ -939,7 +939,7 @@ async function connectToWhatsApp() {
                     const lines = styles.slice(0, 35).map((item, index) =>
                         `${index + 1}. *${String(item.name || 'Font').replace(/([_*~])/g, '\\$1')}*\n${item.text || ''}`
                     );
-                    const output = `✨ *VFX MINI FANCY TEXT* ✨\n\n📝 *Input:* ${args.trim()}\n\n${lines.join('\n\n')}\n\n⚡ Powered by VFX MINI`;
+                    const output = `✨ *RAHUL AI MINI FANCY TEXT* ✨\n\n📝 *Input:* ${args.trim()}\n\n${lines.join('\n\n')}\n\n⚡ Powered by RAHUL AI MINI`;
                     await sock.sendMessage(from, { text: output.slice(0, 60000) }, { quoted: msg });
                 } catch (error) {
                     console.error('Fancy font API error:', error.message);
