@@ -1,7 +1,7 @@
 <div align="center">
 
-<!-- Working logo image -->
-<img src="https://raw.githubusercontent.com/rahulhiran440/rahul-ai-mini/main/logo.png" width="180" height="180" style="border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 20px #0000ff;" alt="RAHUL-AI MINI Logo"/>
+<!-- RAHUL AI MINI LOGO -->
+<img src="https://telegra.ph/file/a8b981cae936c6460fae2.png" width="180" height="180" style="border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 25px #0000ff;" alt="RAHUL-AI MINI Logo"/>
 
 # ⚡ 𝚁𝙰𝙷𝚄𝙻-𝙰𝙸 - 𝙼𝙸𝙽𝙸 ⚡
 <p align="center">
@@ -23,9 +23,9 @@
 ## 🚀 **DEPLOYMENT PLATFORMS**
 
 <p align="center">
-  <!-- Koyeb Deploy Button with Red & Blue Styling -->
-  <a href="https://app.koyeb.com/deploy?type=git&repository=https://github.com/rahulhiran440/rahul-ai-mini&branch=main">
-    <img src="https://img.shields.io/badge/DEPUY_TO_KOYEB-FF0000?style=for-the-badge&logo=koyeb&logoColor=0000FF" alt="Deploy to Koyeb"/>
+  <!-- Koyeb Deploy Button -->
+  <a href="https://app.koyeb.com/deploy?type=git&repository=https://github.com/Rahul-Bot-Master/rahul-ai-mini&branch=main">
+    <img src="https://img.shields.io/badge/DEPLOY_TO_KOYEB-FF0000?style=for-the-badge&logo=koyeb&logoColor=0000FF" alt="Deploy to Koyeb"/>
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <!-- Railway Deploy Button -->
