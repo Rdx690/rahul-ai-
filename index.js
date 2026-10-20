@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🔥 RAHUL AI MINI — PREMIUM PAIRING PORTAL (WITH DARK/LIGHT, BATTERY, ANIMATION & COPY)
+   🔥 RAHUL AI MINI — PREMIUM PAIRING PORTAL (FIXED ALREADY LINKED BUG)
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -162,7 +162,6 @@ app.get('/', (req, res) => {
                 color:var(--text);font-size:15px;
                 outline:none;
             }
-            /* Edge Animation Button (Glow & Shimmer effect) */
             .btn-main{
                 width:100%;padding:15px;
                 border-radius:14px;border:none;
@@ -241,7 +240,6 @@ app.get('/', (req, res) => {
         </div>
         <footer class="site-footer">POWERED BY <span>RAHUL AI MINI</span> • DEVELOPED BY <span>RAHUL MASTER</span></footer>
         <script>
-            // Live Time & Battery Status
             setInterval(() => {
                 const now = new Date();
                 document.getElementById('liveTime').innerHTML = '<i class="fa-regular fa-clock"></i> ' + now.toLocaleTimeString();
@@ -259,14 +257,12 @@ app.get('/', (req, res) => {
                 document.getElementById('batteryStatus').style.display = 'none';
             }
 
-            // Dark/Light Mode Toggle
             function toggleTheme() {
                 document.body.classList.toggle('light-mode');
                 const icon = document.getElementById('themeIcon');
                 icon.className = document.body.classList.contains('light-mode') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
             }
 
-            // Copy Pairing Code Function
             function copyCode() {
                 const codeText = document.getElementById('pairCode').innerText;
                 navigator.clipboard.writeText(codeText);
@@ -303,13 +299,9 @@ app.get('/pair', async (req, res) => {
         return res.json({ error: 'WhatsApp Socket is initialising, please wait 5 seconds and try again.' });
     }
     try {
-        if (!sock.authState.creds.registered) {
-            await delay(1500);
-            let code = await sock.requestPairingCode(cleanedNumber);
-            return res.json({ code: code, status: 'Success' });
-        } else {
-            return res.json({ error: 'Bot is already linked/registered!' });
-        }
+        await delay(1500);
+        let code = await sock.requestPairingCode(cleanedNumber);
+        return res.json({ code: code, status: 'Success' });
     } catch (err) {
         return res.json({ error: 'Pairing Error: ' + err.message });
     }
@@ -320,7 +312,7 @@ app.listen(PORT, () => {
 });
 
 /* ============================================================
-   ⚙️ BOT SETTINGS & FEATURES (EXPANDED FULL MENU & TOOLS)
+   ⚙️ BOT SETTINGS & FEATURES
    ============================================================ */
 const startTime = Date.now();
 let isAlwaysOnline = true;
@@ -402,13 +394,11 @@ async function connectToWhatsApp() {
                     await sock.sendPresenceUpdate('available', from);
                 }
 
-                // --- AUTO STATUS VIEW & AUTO STATUS SENDER ---
                 if (msg.key.remoteJid === 'status@broadcast') {
                     if (isAutoStatusView) await sock.readMessages([msg.key]);
                     return;
                 }
 
-                // Auto Downloader for Instagram
                 if (isAutoDL && !text.startsWith(PREFIX)) {
                     const urlMatch = text.match(/(https?:\/\/[^\s]+)/g);
                     if (urlMatch) {
@@ -432,7 +422,6 @@ async function connectToWhatsApp() {
                     }
                 }
 
-                // --- AUTO STATUS SENDER (Reply to status with send/pathva) ---
                 const contextInfo = msg.message.extendedTextMessage?.contextInfo;
                 if (contextInfo?.quotedMessage && contextInfo.remoteJid === 'status@broadcast') {
                     const triggerWords = ['send', 'dya', 'pathva', 'send me', 'पाठव'];
@@ -457,7 +446,6 @@ async function connectToWhatsApp() {
                 const command = body.toLowerCase().split(' ')[0];
                 const args = body.split(' ').slice(1).join(' ');
 
-                // ⚙️ SETTINGS PANEL COMMAND
                 if (command === 'settings' || command === 'config' || command === 'setting') {
                     const settingsText = 
 `⚙️ *RAHUL AI MINI - BOT SETTINGS* ⚙️
@@ -531,8 +519,6 @@ async function connectToWhatsApp() {
                     const start = Date.now();
                     await sock.sendMessage(from, { text: `⚡ *Pong!* \`${Date.now() - start} ms\`` }, { quoted: msg });
                 }
-                
-                // --- EXPANDED MAIN MENU (MENU) ---
                 else if (command === 'menu' || command === 'help') {
                     const menuText = 
 `╭━━━『 ✦ RAHUL AI MINI ✦ 』━━━╮
@@ -569,20 +555,14 @@ async function connectToWhatsApp() {
 ⚡ *Powered by RAHUL MASTER*`;
                     await sock.sendMessage(from, { text: menuText }, { quoted: msg });
                 }
-                
-                // --- MENU STYLE 2 ---
                 else if (command === 'menu2') {
                     const menu2Text = `🌟 *RAHUL AI MINI - QUICK MENU* 🌟\n\n🤖 *AI Assistant:* \`${PREFIX}ai\`\n🎵 *Music Downloader:* \`${PREFIX}play\`\n📥 *Instagram DL:* \`${PREFIX}insta\`\n🔗 *Media to Link:* \`${PREFIX}tourl\`\n🎧 *Video to MP3:* \`${PREFIX}tomp3\`\n⚙️ *Settings Panel:* \`${PREFIX}settings\`\n\n*Developer: RAHUL MASTER*`;
                     await sock.sendMessage(from, { text: menu2Text }, { quoted: msg });
                 }
-
-                // --- MENU STYLE 3 ---
                 else if (command === 'menu3') {
                     const menu3Text = `🚀 *RAHUL AI MINI ADVANCED V3* 🚀\n\n• [AI] \`${PREFIX}ai\`\n• [Music] \`${PREFIX}play\`\n• [Tools] \`${PREFIX}tourl\` | \`${PREFIX}tomp3\` | \`${PREFIX}sticker\` | \`${PREFIX}qr\`\n• [Fun] \`${PREFIX}truth\` | \`${PREFIX}dare\` | \`${PREFIX}joke\` | \`${PREFIX}fact\`\n• [Config] \`${PREFIX}settings\``;
                     await sock.sendMessage(from, { text: menu3Text }, { quoted: msg });
                 }
-
-                // --- URL / MEDIA TO LINK UPLOADER (.tourl) ---
                 else if (command === 'tourl' || command === 'upload') {
                     const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
                     const isMedia = msg.message.imageMessage || msg.message.videoMessage || msg.message.documentMessage || quoted?.imageMessage || quoted?.videoMessage || quoted?.documentMessage;
@@ -603,8 +583,6 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ Tourl error: ' + e.message }, { quoted: msg });
                     }
                 }
-
-                // --- VIDEO TO MP3 CONVERTER (.tomp3) ---
                 else if (command === 'tomp3') {
                     const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
                     const isVideo = msg.message.videoMessage || quoted?.videoMessage;
@@ -617,8 +595,6 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ Video to MP3 conversion error.' }, { quoted: msg });
                     }
                 }
-
-                // --- AI COMMAND ---
                 else if (command === 'ai') {
                     if (!args) return await sock.sendMessage(from, { text: `❌ Ask something! e.g. \`${PREFIX}ai Hello\`` }, { quoted: msg });
                     await sock.sendMessage(from, { text: '🤖 *RAHUL AI is thinking...*' }, { quoted: msg });
@@ -630,8 +606,6 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ AI API error. Try later.' }, { quoted: msg });
                     }
                 }
-
-                // --- PLAY MUSIC COMMAND ---
                 else if (command === 'play') {
                     if (!args) return await sock.sendMessage(from, { text: `❌ Song name taka! e.g. \`${PREFIX}play Believer\`` }, { quoted: msg });
                     await sock.sendMessage(from, { text: `🎵 Searching "${args}"...` }, { quoted: msg });
@@ -646,8 +620,6 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: '❌ Audio download error.' }, { quoted: msg });
                     }
                 }
-
-                // --- STICKER COMMAND ---
                 else if (command === 'sticker' || command === 's') {
                     const quoted = msg.message.extendedTextMessage?.contextInfo?.quotedMessage;
                     const isImage = msg.message.imageMessage || quoted?.imageMessage;
@@ -660,15 +632,11 @@ async function connectToWhatsApp() {
                         await sock.sendMessage(from, { text: `❌ Reply to an image with \`${PREFIX}sticker\`` }, { quoted: msg });
                     }
                 }
-
-                // --- QR CODE COMMAND ---
                 else if (command === 'qr') {
                     if (!args) return await sock.sendMessage(from, { text: `❌ Enter text! e.g. \`${PREFIX}qr Hello\`` }, { quoted: msg });
                     const qrBuffer = await QRCode.toBuffer(args);
                     await sock.sendMessage(from, { image: qrBuffer, caption: `🔲 QR Code for: ${args}` }, { quoted: msg });
                 }
-
-                // --- OTHER FUN COMMANDS ---
                 else if (command === 'truth') {
                     const truths = ["Tuzi sarvat mothi secret khabardari konachi aahe?", "Tula konavar crush aahe ka sathyat?", "Tuzi sarvat lahanpani keleli sarvat mothi chuk konti?"];
                     await sock.sendMessage(from, { text: `🎯 *TRUTH:* ${truths[Math.floor(Math.random() * truths.length)]}` }, { quoted: msg });
