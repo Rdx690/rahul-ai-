@@ -35,8 +35,8 @@
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <!-- Railway Deploy Button -->
-  <a href="https://railway.app/new">
-    <img src="https://railway.app/badge.svg?style=for-the-badge&color=0000FF" style="box-shadow: 0 0 15px #0000ff; border-radius: 8px;" alt="Deploy on Railway"/>
+  <a href="https://railway.app/new/template?template=https://github.com/Rahul-Bot-Master/rahul-ai-mini">
+    <img src="https://img.shields.io/badge/⚡_DEPLOY_TO_RAILWAY-0000FF?style=for-the-badge&logo=railway&logoColor=FF0000" style="box-shadow: 0 0 15px #0000ff; border-radius: 8px;" alt="Deploy on Railway"/>
   </a>
 </p>
 
