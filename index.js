@@ -1,5 +1,5 @@
 /* ============================================================
-   🔥 RAHUL AI MINI — OMEGA SUPREME EDITION (BUG-FIXED & STABLE)
+   🔥 RAHUL AI MINI — OMEGA SUPREME EDITION (STABLE & TESTED)
    DEVELOPED BY: RAHUL MASTER
    ============================================================ */
 const express = require('express');
@@ -612,7 +612,9 @@ Type \`${PREFIX}menu\` to explore all features!`;
                             try {
                                 const gRes = await axios.get(`https://api.github.com/users/${encodeURIComponent(args)}`);
                                 const profile = gRes.data;
-                                const infoText = `🐙 *GitHub User Profile*\n\n👤 *Name:* ${profile.name \vert{}\vert{} profile.login}\n📌 *Bio:* ${profile.bio || 'Not provided'}\n📂 *Public Repos:* ${profile.public_repos}\n👥 *Followers:* ${profile.followers}\n🔗 *Profile:* ${profile.html_url}`;
+                                const profileName = profile.name || profile.login;
+                                const profileBio = profile.bio || 'Not provided';
+                                const infoText = `🐙 *GitHub User Profile*\n\n👤 *Name:* ${profileName}\n📌 *Bio:* ${profileBio}\n📂 *Public Repos:* ${profile.public_repos}\n👥 *Followers:* ${profile.followers}\n🔗 *Profile:* ${profile.html_url}`;
                                 await sock.sendMessage(from, { text: infoText }, { quoted: msg });
                             } catch (e) {
                                 await sock.sendMessage(from, { text: `❌ GitHub user not found.` }, { quoted: msg });
