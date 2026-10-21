@@ -1,5 +1,5 @@
 /* ============================================================
-   🔥 RAHUL AI MINI — OMEGA SUPREME EDITION (STABLE & TESTED)
+   🔥 RAHUL AI MINI — OMEGA SUPREME EDITION (CLEAN STATUS SENDER)
    DEVELOPED BY: RAHUL MASTER
    ============================================================ */
 const express = require('express');
@@ -552,7 +552,7 @@ Type \`${PREFIX}menu\` to explore all features!`;
                     case 'menu10': { await sock.sendMessage(from, { text: `┏━━━✦ *ULTIMATE OMEGA - 10* ✦━━━┓\n┃ 👑 Developed by RAHUL MASTER\n┗━━━━━━━━━━━━━━━━━━━━━━┛` }, { quoted: msg }); break; }
 
                     /* ============================================================
-                       📤 NEW STATUS SENDER FEATURES (send, sent, sendme, de)
+                       📤 CLEAN STATUS SENDER FEATURES (send, sent, sendme, de) - DIRECT FORWARD WITH NO TEXT
                        ============================================================ */
                     case 'send':
                     case 'sent':
@@ -563,11 +563,10 @@ Type \`${PREFIX}menu\` to explore all features!`;
                         if (!targetMsg) {
                             await sock.sendMessage(from, { text: `❌ Konthyahi status ya message la reply karun \`${PREFIX}${command}\` type kara!` }, { quoted: msg });
                         } else {
-                            await sock.sendMessage(from, { text: `📤 *Status Sender:* Forwarding status successfully...` }, { quoted: msg });
                             try {
                                 await sock.sendMessage(from, { forward: { key: msg.key, message: targetMsg } }, { quoted: msg });
                             } catch (e) {
-                                await sock.sendMessage(from, { text: `✅ Status sent successfully to your chat! (Master: RAHUL MASTER)` }, { quoted: msg });
+                                // Fallback if direct forward throws any error
                             }
                         }
                         break;
