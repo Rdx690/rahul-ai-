@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🌐 EXACT MATCH PAIRING PORTAL (WITH RED & BLUE REDESIGN)
+   🌐 EXACT MATCH PAIRING PORTAL (WITH DARK CARD & EDGE LIGHTING)
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
                 --primary:#0066ff;
                 --accent:#ff1a53;
                 --bg:#07070b;
-                --card:rgba(12,14,24,0.92);
+                --card:rgba(15,18,26,0.95);
                 --text:#e2e8f0;
                 --muted:#7c8798;
             }
@@ -107,15 +107,15 @@ app.get('/', (req, res) => {
                 backdrop-filter:blur(24px);
                 border-radius:28px;
                 padding:38px 28px 32px;
-                border:1.5px solid rgba(255,26,83,0.3);
-                box-shadow:0 30px 70px rgba(0,0,0,0.8), 0 0 45px rgba(255,26,83,0.15);
+                border:1.5px solid rgba(255,26,83,0.35);
+                box-shadow:0 30px 70px rgba(0,0,0,0.9), 0 0 45px rgba(255,26,83,0.2);
                 text-align:center;
             }
             .card::after {
                 content: ''; position: absolute; inset: -2px; border-radius: 30px;
-                background: linear-gradient(135deg, var(--accent), #9900ff, var(--primary), var(--accent));
+                background: linear-gradient(135deg, var(--accent), #ff00aa, var(--primary), var(--accent));
                 background-size: 300% 300%; z-index: -1;
-                animation: edgeGlow 5s linear infinite; opacity: 0.85;
+                animation: edgeGlow 5s linear infinite; opacity: 0.9;
             }
             @keyframes edgeGlow {
                 0% { background-position: 0% 50%; }
