@@ -44,134 +44,29 @@ app.get('/', (req, res) => {
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
-            * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; transition: background 0.3s, color 0.3s; }
-            :root{
-                --primary:#0066ff;
-                --accent:#ff1a53;
-                --bg:#07070b;
-                --card:rgba(15,18,26,0.95);
-                --text:#e2e8f0;
-                --muted:#7c8798;
-            }
-            .light-mode {
-                --bg:#f0f2f5;
-                --card:rgba(255,255,255,0.92);
-                --text:#1e293b;
-                --muted:#64748b;
-            }
-            html,body{height:100%;}
-            body{
-                background:var(--bg);
-                color:var(--text);
-                min-height:100vh;
-                overflow-x:hidden;
-                position:relative;
-                display:flex;
-                flex-direction:column;
-                align-items:center;
-                justify-content:center;
-            }
-            body::before{
-                content:'';position:fixed;inset:0;
-                background:
-                    radial-gradient(circle at 50% 10%, rgba(220,20,60,0.55), transparent 45%),
-                    radial-gradient(circle at 50% 90%, rgba(0,80,255,0.45), transparent 50%),
-                    radial-gradient(circle at 10% 50%, rgba(100,10,40,0.4), transparent 50%);
-                z-index:0;
-            }
-            .top-widget {
-                position: absolute; top: 25px; z-index: 20;
-                display: flex; align-items: center; gap: 18px;
-                background: rgba(15,18,30,0.75);
-                backdrop-filter: blur(16px);
-                border: 1px solid rgba(255,26,83,0.3);
-                padding: 10px 22px; border-radius: 30px;
-                font-size: 13px; color: #cbd5e1;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-            }
-            .top-widget span { display: flex; align-items: center; gap: 6px; }
-            .top-widget i { color: var(--accent); }
-            
-            .theme-toggle-btn {
-                position: absolute; top: 25px; right: 25px; z-index: 20;
-                background: rgba(15,18,30,0.75); border: 1px solid rgba(255,26,83,0.3);
-                color: var(--accent); width: 42px; height: 42px; border-radius: 50%;
-                display: flex; align-items: center; justify-content: center; cursor: pointer;
-                box-shadow: 0 8px 32px rgba(0,0,0,0.5); font-size: 16px;
-            }
-
-            .card{
-                position:relative; z-index:10;
-                width:100%;max-width:420px;
-                background:var(--card);
-                backdrop-filter:blur(24px);
-                border-radius:28px;
-                padding:38px 28px 32px;
-                border:1.5px solid rgba(255,26,83,0.35);
-                box-shadow:0 30px 70px rgba(0,0,0,0.9), 0 0 45px rgba(255,26,83,0.2);
-                text-align:center;
-            }
-            .card::after {
-                content: ''; position: absolute; inset: -2px; border-radius: 30px;
-                background: linear-gradient(135deg, var(--accent), #ff00aa, var(--primary), var(--accent));
-                background-size: 300% 300%; z-index: -1;
-                animation: edgeGlow 5s linear infinite; opacity: 0.9;
-            }
-            @keyframes edgeGlow {
-                0% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
-                100% { background-position: 0% 50%; }
-            }
-
-            .badge-title{
-                font-family:'Orbitron',sans-serif;
-                font-size:22px;font-weight:900;
-                letter-spacing:1px;margin-bottom:8px;
-                background:linear-gradient(90deg, #ff1a53, #ff5080, #0066ff);
-                -webkit-background-clip:text;background-clip:text;
-                -webkit-text-fill-color:transparent;
-            }
-            .subtitle{
-                font-size:12px;color:var(--muted);
-                margin-bottom:26px;line-height:1.5;
-            }
-            .input-box{
-                width:100%;padding:14px 16px;
-                border-radius:14px;
-                border:1.5px solid rgba(0,102,255,0.3);
-                background:rgba(5,6,13,0.85);
-                color:var(--text);font-size:15px;
-                outline:none;margin-bottom:18px;text-align:center;
-            }
-            .btn-main{
-                width:100%;padding:14px;
-                border-radius:14px;border:none;
-                font-family:'Orbitron',sans-serif;
-                font-size:13px;font-weight:700;letter-spacing:1px;
-                color:#fff;cursor:pointer;
-                background:linear-gradient(90deg, #ff1a53, #d9006c, #0055ff);
-                background-size:200% auto;
-                box-shadow:0 0 25px rgba(255,26,83,0.4);
-                transition: transform 0.2s, opacity 0.2s;
-            }
-            .btn-main:active { transform: scale(0.98); }
-            .code-box{
-                margin-top:20px;padding:18px;
-                background:rgba(0,102,255,0.05);
-                border-radius:14px;
-                border:1.5px dashed rgba(0,102,255,0.4);
-                display:none;
-            }
-            .code-box h2{
-                font-family:'Orbitron',sans-serif;
-                font-size:24px;letter-spacing:4px;
-                color:#00aaff;margin-bottom:10px;
-            }
-            .copy-btn {
-                padding: 7px 16px; border-radius: 8px; border: none;
-                background: var(--primary); color: #fff; font-weight: bold;
-                cursor: pointer; font-size: 11px; letter-spacing: 1px;
-            }
+            *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+            :root{--accent:#ff245b;--blue:#2878ff;--bg:#05060b;--text:#e7eaf2;--muted:#8b93a7}
+            .light-mode{--bg:#eef1f7;--text:#172033;--muted:#657087}
+            html,body{min-height:100%;width:100%}
+            body{background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 18px 38px}
+            body::before{content:'';position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 10% 15%,rgba(220,10,40,.52),transparent 48%),radial-gradient(ellipse at 90% 90%,rgba(0,75,255,.5),transparent 48%),radial-gradient(ellipse at 80% 10%,rgba(110,0,45,.25),transparent 40%);pointer-events:none}
+            .top-widget{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:20;display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,26px);width:min( calc(100% - 92px), 760px);min-height:54px;background:rgba(8,10,18,.84);backdrop-filter:blur(18px);border:1px solid rgba(255,36,91,.25);padding:10px 16px;border-radius:28px;font-size:clamp(11px,2.5vw,15px);color:#cbd3e4;box-shadow:0 10px 36px #0008}
+            .top-widget span{display:flex;align-items:center;gap:7px;white-space:nowrap}.top-widget i{color:var(--accent)}
+            .theme-toggle-btn{position:fixed;top:24px;right:max(12px,calc((100vw - 900px)/2));z-index:21;background:rgba(8,10,18,.88);border:1px solid rgba(255,36,91,.3);color:var(--accent);width:44px;height:44px;border-radius:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 28px #0007;font-size:17px}
+            .card{position:relative;z-index:10;width:100%;max-width:560px;background:rgba(5,7,12,.94);backdrop-filter:blur(24px);border-radius:34px;padding:clamp(28px,6vw,52px) clamp(20px,5vw,42px) 34px;border:1px solid rgba(255,255,255,.08);box-shadow:0 30px 80px #000b,0 0 38px rgba(255,26,83,.12);text-align:center;overflow:hidden}
+            .card:before{content:'';position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--accent),#bd35d8,var(--blue))}
+            .badge-title{font-family:'Orbitron',sans-serif;font-size:clamp(22px,5vw,34px);font-weight:900;letter-spacing:.4px;margin-bottom:12px;background:linear-gradient(90deg,#ff286d,#bc4bda,#4388ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+            .subtitle{font-size:clamp(13px,3vw,16px);color:var(--muted);margin:0 auto 30px;line-height:1.65;max-width:360px}
+            .input-box{width:100%;padding:18px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.09);background:#020308;color:var(--text);font-size:clamp(16px,4vw,21px);outline:none;margin-bottom:18px;text-align:center;letter-spacing:.5px;box-shadow:inset 0 2px 15px #0008}
+            .input-box:focus{border-color:#3c72ff;box-shadow:0 0 0 3px #2878ff22}
+            .btn-main{width:100%;padding:18px 14px;border-radius:18px;border:0;font-family:'Orbitron',sans-serif;font-size:clamp(12px,3vw,16px);font-weight:700;letter-spacing:.7px;color:#fff;cursor:pointer;background:linear-gradient(100deg,#ff145c,#df087c 52%,#266dff);box-shadow:0 8px 28px rgba(255,20,92,.23);transition:transform .2s,filter .2s}
+            .btn-main:active{transform:scale(.985)}.btn-main:disabled{opacity:.65;cursor:wait}
+            .code-box{margin-top:22px;padding:22px 16px;background:rgba(20,25,40,.75);border-radius:20px;border:1px dashed rgba(65,128,255,.55);display:none}
+            .code-box h2{font-family:'Orbitron',sans-serif;font-size:clamp(24px,6vw,32px);letter-spacing:5px;color:#60a5ff;margin:12px 0}
+            .copy-btn{padding:10px 18px;border-radius:11px;border:1px solid #2878ff55;background:#172d56;color:#fff;font-weight:700;cursor:pointer;font-size:12px;letter-spacing:.5px}
+            .contact-link{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:26px;padding:16px 14px;border-radius:999px;text-decoration:none;color:white;font-size:clamp(13px,3.2vw,16px);font-weight:600;background:linear-gradient(100deg,#16c878,#10a98c);box-shadow:0 8px 26px #10b98122}
+            .divider{height:1px;background:linear-gradient(90deg,transparent,#ffffff18,transparent);margin-top:25px}
+            @media(max-width:420px){body{padding:92px 13px 25px}.top-widget{left:12px;transform:none;width:calc(100% - 76px);gap:10px;padding:10px 11px}.theme-toggle-btn{right:13px}.card{border-radius:28px}.subtitle br{display:none}}
         </style>
     </head>
     <body>
@@ -194,6 +89,8 @@ app.get('/', (req, res) => {
                 <h2 id="pairCode">-----</h2>
                 <button class="copy-btn" onclick="copyCode()"><i class="fa-solid fa-copy"></i> COPY CODE</button>
             </div>
+            <div class="divider"></div>
+            <a class="contact-link" href="https://wa.me/919356730236" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Contact Owner on WhatsApp</a>
         </div>
 
         <script>
