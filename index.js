@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🌐 EXACT MATCH PAIRING PORTAL (WITH CUSTOM EDGE LIGHTING & WIDGET)
+   🌐 EXACT MATCH PAIRING PORTAL (WITH RED & BLUE REDESIGN)
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -46,19 +46,16 @@ app.get('/', (req, res) => {
         <style>
             * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; transition: background 0.3s, color 0.3s; }
             :root{
-                --primary:#00e5ff;
-                --secondary:#a855f7;
-                --accent:#ff2e88;
+                --primary:#0066ff;
+                --accent:#ff1a53;
                 --bg:#07070b;
-                --card:rgba(12,14,24,0.85);
-                --border:rgba(255,46,136,0.35);
+                --card:rgba(12,14,24,0.92);
                 --text:#e2e8f0;
                 --muted:#7c8798;
             }
             .light-mode {
                 --bg:#f0f2f5;
-                --card:rgba(255,255,255,0.85);
-                --border:rgba(0,150,255,0.3);
+                --card:rgba(255,255,255,0.92);
                 --text:#1e293b;
                 --muted:#64748b;
             }
@@ -77,9 +74,9 @@ app.get('/', (req, res) => {
             body::before{
                 content:'';position:fixed;inset:0;
                 background:
-                    radial-gradient(circle at 50% 15%, rgba(180,30,80,0.45), transparent 45%),
-                    radial-gradient(circle at 20% 80%, rgba(100,20,120,0.4), transparent 50%),
-                    radial-gradient(circle at 80% 90%, rgba(20,20,50,0.8), transparent 60%);
+                    radial-gradient(circle at 50% 10%, rgba(220,20,60,0.55), transparent 45%),
+                    radial-gradient(circle at 50% 90%, rgba(0,80,255,0.45), transparent 50%),
+                    radial-gradient(circle at 10% 50%, rgba(100,10,40,0.4), transparent 50%);
                 z-index:0;
             }
             .top-widget {
@@ -87,7 +84,7 @@ app.get('/', (req, res) => {
                 display: flex; align-items: center; gap: 18px;
                 background: rgba(15,18,30,0.75);
                 backdrop-filter: blur(16px);
-                border: 1px solid rgba(255,46,136,0.3);
+                border: 1px solid rgba(255,26,83,0.3);
                 padding: 10px 22px; border-radius: 30px;
                 font-size: 13px; color: #cbd5e1;
                 box-shadow: 0 8px 32px rgba(0,0,0,0.5);
@@ -97,7 +94,7 @@ app.get('/', (req, res) => {
             
             .theme-toggle-btn {
                 position: absolute; top: 25px; right: 25px; z-index: 20;
-                background: rgba(15,18,30,0.75); border: 1px solid rgba(255,46,136,0.3);
+                background: rgba(15,18,30,0.75); border: 1px solid rgba(255,26,83,0.3);
                 color: var(--accent); width: 42px; height: 42px; border-radius: 50%;
                 display: flex; align-items: center; justify-content: center; cursor: pointer;
                 box-shadow: 0 8px 32px rgba(0,0,0,0.5); font-size: 16px;
@@ -110,15 +107,15 @@ app.get('/', (req, res) => {
                 backdrop-filter:blur(24px);
                 border-radius:28px;
                 padding:38px 28px 32px;
-                border:1.5px solid rgba(255,46,136,0.4);
-                box-shadow:0 30px 70px rgba(0,0,0,0.8), 0 0 45px rgba(255,46,136,0.2);
+                border:1.5px solid rgba(255,26,83,0.3);
+                box-shadow:0 30px 70px rgba(0,0,0,0.8), 0 0 45px rgba(255,26,83,0.15);
                 text-align:center;
             }
             .card::after {
                 content: ''; position: absolute; inset: -2px; border-radius: 30px;
-                background: linear-gradient(45deg, var(--accent), var(--secondary), var(--primary), var(--accent));
+                background: linear-gradient(135deg, var(--accent), #9900ff, var(--primary), var(--accent));
                 background-size: 300% 300%; z-index: -1;
-                animation: edgeGlow 6s linear infinite; opacity: 0.7;
+                animation: edgeGlow 5s linear infinite; opacity: 0.85;
             }
             @keyframes edgeGlow {
                 0% { background-position: 0% 50%; }
@@ -129,8 +126,8 @@ app.get('/', (req, res) => {
             .badge-title{
                 font-family:'Orbitron',sans-serif;
                 font-size:22px;font-weight:900;
-                letter-spacing:1.5px;margin-bottom:8px;
-                background:linear-gradient(90deg, #ff2e88, #a855f7, #00e5ff);
+                letter-spacing:1px;margin-bottom:8px;
+                background:linear-gradient(90deg, #ff1a53, #ff5080, #0066ff);
                 -webkit-background-clip:text;background-clip:text;
                 -webkit-text-fill-color:transparent;
             }
@@ -139,10 +136,10 @@ app.get('/', (req, res) => {
                 margin-bottom:26px;line-height:1.5;
             }
             .input-box{
-                width:100%;padding:14px 16px 14px 16px;
+                width:100%;padding:14px 16px;
                 border-radius:14px;
-                border:1.5px solid rgba(255,46,136,0.3);
-                background:rgba(5,6,13,0.8);
+                border:1.5px solid rgba(0,102,255,0.3);
+                background:rgba(5,6,13,0.85);
                 color:var(--text);font-size:15px;
                 outline:none;margin-bottom:18px;text-align:center;
             }
@@ -150,29 +147,29 @@ app.get('/', (req, res) => {
                 width:100%;padding:14px;
                 border-radius:14px;border:none;
                 font-family:'Orbitron',sans-serif;
-                font-size:14px;font-weight:700;letter-spacing:1.5px;
+                font-size:13px;font-weight:700;letter-spacing:1px;
                 color:#fff;cursor:pointer;
-                background:linear-gradient(90deg,#ff2e88,#a855f7,#00e5ff);
-                background-size:300% auto;
-                box-shadow:0 0 25px rgba(255,46,136,0.4);
-                transition: transform 0.2s;
+                background:linear-gradient(90deg, #ff1a53, #d9006c, #0055ff);
+                background-size:200% auto;
+                box-shadow:0 0 25px rgba(255,26,83,0.4);
+                transition: transform 0.2s, opacity 0.2s;
             }
             .btn-main:active { transform: scale(0.98); }
             .code-box{
                 margin-top:20px;padding:18px;
-                background:rgba(0,229,255,0.05);
+                background:rgba(0,102,255,0.05);
                 border-radius:14px;
-                border:1.5px dashed rgba(0,229,255,0.4);
+                border:1.5px dashed rgba(0,102,255,0.4);
                 display:none;
             }
             .code-box h2{
                 font-family:'Orbitron',sans-serif;
-                font-size:26px;letter-spacing:5px;
-                color:var(--primary);margin-bottom:10px;
+                font-size:24px;letter-spacing:4px;
+                color:#00aaff;margin-bottom:10px;
             }
             .copy-btn {
                 padding: 7px 16px; border-radius: 8px; border: none;
-                background: var(--primary); color: #000; font-weight: bold;
+                background: var(--primary); color: #fff; font-weight: bold;
                 cursor: pointer; font-size: 11px; letter-spacing: 1px;
             }
         </style>
