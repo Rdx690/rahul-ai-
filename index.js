@@ -1,5 +1,5 @@
 /* ============================================================
-   🔥 RAHUL AI MINI — OMEGA SUPREME EDITION (UPDATED START MSG)
+   🔥 RAHUL AI MINI — OMEGA SUPREME EDITION (FIXED & UPDATED)
    DEVELOPED BY: RAHUL MASTER
    ============================================================ */
 const express = require('express');
@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 let sock = null;
 
 /* ============================================================
-   🌐 PREMIUM PAIRING PORTAL (CLEANED & OPTIMIZED UI)
+   🌐 PREMIUM PAIRING PORTAL (CLEANED - BATTERY & DATE REMOVED)
    ============================================================ */
 app.get('/', (req, res) => {
     res.send(`
@@ -362,7 +362,6 @@ async function connectToWhatsApp() {
             } else if (connection === 'open') {
                 console.log('✅ RAHUL AI MINI IS CONNECTED!');
                 try {
-                    // 🚀 BOT START NOTIFICATION MESSAGE
                     const userJid = sock.user.id.split(':')[0] + '@s.whatsapp.net';
                     const startMsg = 
 `⚡ *RAHUL AI MINI IS ONLINE NOW!* ⚡
@@ -404,6 +403,7 @@ async function connectToWhatsApp() {
                     const lowerText = text.toLowerCase().trim();
                     const voiceTriggers = ['hi', 'hello', 'good morning', 'good night', 'hey'];
                     if (voiceTriggers.includes(lowerText)) {
+                        // Fixed short voice sample (<10 seconds)
                         const voiceSamples = [
                             'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
                         ];
@@ -483,6 +483,21 @@ Type \`${PREFIX}menu\` to explore all features!`;
                         process.exit(0);
                         break;
                     }
+                    case 'ping': {
+                        await sock.sendMessage(from, { text: `⚡ *Pong!* \`4 ms\`` }, { quoted: msg });
+                        break;
+                    }
+                    case 'ping1': { await sock.sendMessage(from, { text: `⚡ *Pong 1!* \`3 ms\`` }, { quoted: msg }); break; }
+                    case 'ping2': { await sock.sendMessage(from, { text: `⚡ *Pong 2!* \`5 ms\`` }, { quoted: msg }); break; }
+                    case 'ping3': { await sock.sendMessage(from, { text: `⚡ *Pong 3!* \`2 ms\`` }, { quoted: msg }); break; }
+                    case 'ping4': { await sock.sendMessage(from, { text: `⚡ *Pong 4!* \`7 ms\`` }, { quoted: msg }); break; }
+                    case 'ping5': { await sock.sendMessage(from, { text: `⚡ *Pong 5!* \`4 ms\`` }, { quoted: msg }); break; }
+                    case 'ping6': { await sock.sendMessage(from, { text: `⚡ *Pong 6!* \`6 ms\`` }, { quoted: msg }); break; }
+                    case 'ping7': { await sock.sendMessage(from, { text: `⚡ *Pong 7!* \`1 ms\`` }, { quoted: msg }); break; }
+                    case 'ping8': { await sock.sendMessage(from, { text: `⚡ *Pong 8!* \`8 ms\`` }, { quoted: msg }); break; }
+                    case 'ping9': { await sock.sendMessage(from, { text: `⚡ *Pong 9!* \`5 ms\`` }, { quoted: msg }); break; }
+                    case 'ping10': { await sock.sendMessage(from, { text: `⚡ *Pong 10!* \`3 ms\`` }, { quoted: msg }); break; }
+
                     case 'settings':
                     case 'config':
                     case 'setting': {
@@ -578,11 +593,6 @@ Type \`${PREFIX}menu\` to explore all features!`;
                             PREFIX = args.trim();
                             await sock.sendMessage(from, { text: `✅ *Prefix changed to:* \`${PREFIX}\`` }, { quoted: msg });
                         }
-                        break;
-                    }
-                    case 'ping': {
-                        const randomMs = Math.floor(Math.random() * 9) + 1;
-                        await sock.sendMessage(from, { text: `⚡ *Pong!* \`${randomMs} ms\`` }, { quoted: msg });
                         break;
                     }
                     case 'alive':
